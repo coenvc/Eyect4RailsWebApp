@@ -29,8 +29,6 @@ namespace Eyect4RailsWebApp.Models
                             {
                                 Console.WriteLine(propertyInfo);
                             }
-
-
                             command.ExecuteNonQuery();
                             insert = true;
                         }
