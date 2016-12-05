@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eyect4RailsWebApp.Interfaces;
 
 namespace eyect4rails.Classes
 {
-    public class Employee
+    public class Employee:ICruddable
     {
         #region Properties coming from Employee
-        public int Id { get; private set; }
+       
         public string Name { get; set; }
         public string Email { get; set; }
         public string TelephoneNumber { get; set; }
         public string Function { get; set; }
+        public int Id { get; set; }
         #endregion
         #region Properties coming from Account
         public int AccountID { get; private set; }
@@ -65,6 +67,7 @@ namespace eyect4rails.Classes
         {
             return $"{Name}";
         }
+
 
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eyect4RailsWebApp.Interfaces;
+
 namespace eyect4rails.Classes
 {
-    public class Track
+    public class Track:ICruddable
     {
-        public int Id;
+        public int Id { get; set; }
         public bool ConductorRequired;
         public int Sectors;
         public int TestCalculation { get; set; }
