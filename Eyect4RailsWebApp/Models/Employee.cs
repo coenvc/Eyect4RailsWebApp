@@ -26,9 +26,9 @@ namespace eyect4rails.Classes
         /// <summary>
         /// Constructor used to get Employees out of the database (when you have an ID)
         /// </summary>
-        public Employee(int employeeID, string name, string email, string telephoneNumber, string function, int accountID, string username, string password, string rFIDCode, bool active)
+        public Employee(int id, string name, string email, string telephoneNumber, string function, int accountID, string username, string password, string rFIDCode, bool active)
         {
-            EmployeeID = employeeID;
+            Id = id;
             Name = name;
             Email = email;
             TelephoneNumber = telephoneNumber;

@@ -44,3 +44,6 @@ D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.
 D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.csprojResolveAssemblyReference.cache
 D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.dll
 D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.pdb
+D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.csprojResolveAssemblyReference.cache
+D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.dll
+D:\Documenten\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\obj\Debug\Eyect4RailsWebApp.Tests.pdb
