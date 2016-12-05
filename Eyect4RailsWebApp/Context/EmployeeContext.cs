@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
+using Eyect4RailsWebApp.Enums;
 
 namespace Eyect4RailsWebApp.Context
 {
@@ -66,9 +67,9 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByRfid(rfid);
         }
   
-        public List<Employee> GetByFunctionName(string functionName)
+        public List<Employee> GetByFunction(Function function)
         {
-            return Context.GetByFunctionName(functionName);
+            return Context.GetByFunction(function);
         }
         public Employee GetByUsernamePassword(string username, string password)
         {

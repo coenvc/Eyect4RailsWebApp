@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using eyect4rails.Classes;
+using Eyect4RailsWebApp.Enums;
 
 namespace eyect4rails.IRepository
 {
@@ -11,7 +12,7 @@ namespace eyect4rails.IRepository
     {
         List<Employee> GetAllActive(bool active);
         Employee GetByRfid(string rfid);
-        List<Employee> GetByFunctionName(string functionName);
+        List<Employee> GetByFunction(Function function);
         Employee GetByUsernamePassword(string username, string password);
     }
 }

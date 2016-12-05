@@ -34,4 +34,13 @@ namespace Eyect4RailsWebApp.Enums
         KleineReparatie,
         GroteReparatie
     }
+
+    public enum Function
+    {
+        Beheerder = 1, 
+        Wagenparkbeheerder, 
+        Bestuurder, 
+        Technicus, 
+        Schoonmaker
+    }
 }

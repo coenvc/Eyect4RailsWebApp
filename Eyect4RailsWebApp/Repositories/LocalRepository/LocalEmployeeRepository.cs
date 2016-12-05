@@ -29,7 +29,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
         public LocalEmployeeRepository()
         {
             Employee Coen = new Employee("Coen", "van Campenhout", "0683992086", "RABO0041001241794", 
-                "coenvc", "Test123", "10102030", true, "Senior Software Architect", FullRights);
+                "coenvc", "Test123", "10102030", true, Function.Beheerder, FullRights);
 
             Employees.Add(Coen);
 
@@ -99,12 +99,12 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             return ReturnEmployee;
         }
 
-        public List<Employee> GetByFunctionName(string functionName)
+        public List<Employee> GetByFunction(Function function)
         {
             List<Employee> employeesWithFunction = new List<Employee>();
             foreach (Employee employee in Employees)
             {
-                if (employee.Function == functionName)
+                if (employee.Function == function)
                 {
                     employeesWithFunction.Add(employee);
                 }

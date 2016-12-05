@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eyect4RailsWebApp.Enums;
-using Eyect4RailsWebApp.Interfaces;
+using Eyect4RailsWebApp.Interfaces; 
 
 namespace eyect4rails.Classes
 {
@@ -13,14 +13,14 @@ namespace eyect4rails.Classes
         #region Properties
         public int Id { get; set; }
         public string Surname { get; set; }
-        public string Lastname { get; set; }
+        public string Name { get; set; }
         public string TelephoneNumber { get; set; }
         public string IBANNumber { get; set; }
         public string Username { get; set; }
-        public string Password { get; private set; }
+        public string Password { get;  set; }
         public string RFIDCode { get; set; }
         public bool Active { get; set; }
-        public string Function { get; set; }
+        public Function Function{ get; set; }
         public List<Rights> Rights { get; set; }
         #endregion
 
@@ -28,10 +28,10 @@ namespace eyect4rails.Classes
         {
         }
 
-        public Employee(string surname, string lastname, string telephoneNumber, string ibanNumber, string username, string password, string rfidCode, bool active, string function, List<Rights> rights)
+        public Employee(string surname, string name, string telephoneNumber, string ibanNumber, string username, string password, string rfidCode, bool active, Function function, List<Rights> rights)
         {
             Surname = surname;
-            Lastname = lastname;
+            Name = name;
             TelephoneNumber = telephoneNumber;
             IBANNumber = ibanNumber;
             Username = username;
@@ -42,11 +42,11 @@ namespace eyect4rails.Classes
             Rights = rights;
         }
 
-        public Employee(int id, string surname, string lastname, string telephoneNumber, string ibanNumber, string username, string password, string rfidCode, bool active, string function, List<Rights> rights)
+        public Employee(int id, string surname, string name, string telephoneNumber, string ibanNumber, string username, string password, string rfidCode, bool active, Function function, List<Rights> rights)
         {
             Id = id;
             Surname = surname;
-            Lastname = lastname;
+            Name = name;
             TelephoneNumber = telephoneNumber;
             IBANNumber = ibanNumber;
             Username = username;
@@ -63,7 +63,7 @@ namespace eyect4rails.Classes
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Surname} {Lastname}";
+            return $"{Surname} {Name}";
         }
 
 
