@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyect4RailsWebApp", "Eyect4RailsWebApp\Eyect4RailsWebApp.csproj", "{DBD0374D-2048-495A-89CB-9FACE86C02DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyect4RailsWebApp.Tests", "Eyect4RailsWebApp.Tests\Eyect4RailsWebApp.Tests.csproj", "{D91E67EF-40A9-44A3-8785-CCF1EA0D067F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBD0374D-2048-495A-89CB-9FACE86C02DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD0374D-2048-495A-89CB-9FACE86C02DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD0374D-2048-495A-89CB-9FACE86C02DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD0374D-2048-495A-89CB-9FACE86C02DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91E67EF-40A9-44A3-8785-CCF1EA0D067F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91E67EF-40A9-44A3-8785-CCF1EA0D067F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91E67EF-40A9-44A3-8785-CCF1EA0D067F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91E67EF-40A9-44A3-8785-CCF1EA0D067F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
