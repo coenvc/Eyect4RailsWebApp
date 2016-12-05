@@ -9,23 +9,30 @@ namespace eyect4rails.Classes
 {
     public class Remise:ICruddable
     {
+        #region Properties
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Track> Tracklist { get; set; }
-        public string TelephoneNumber { get; set; }
+        public List<Tram> Tramlist { get; set; }
+        #endregion
 
-        public Remise(int id, string name, string telephonenumber)
+        public Remise()
         {
-            this.Id = id;
-            this.Name = name;
-            this.TelephoneNumber = telephonenumber;
         }
 
-        public Remise(string name, string telephoneNumber)
+        public Remise(string name, List<Track> tracklist, List<Tram> tramlist)
         {
             Name = name;
-            TelephoneNumber = telephoneNumber;
+            Tracklist = tracklist;
+            Tramlist = tramlist;
         }
 
+        public Remise(int id, string name, List<Track> tracklist, List<Tram> tramlist)
+        {
+            Id = id;
+            Name = name;
+            Tracklist = tracklist;
+            Tramlist = tramlist;
+        }
     }
 }

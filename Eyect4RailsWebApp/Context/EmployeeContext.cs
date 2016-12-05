@@ -9,16 +9,16 @@ namespace Eyect4RailsWebApp.Context
 {
     public class EmployeeContext:IEmployeeRepository
     {
-        private IEmployeeRepository EmployeeRepository;
+        private IEmployeeRepository Context;
 
-        public EmployeeContext(IEmployeeRepository employeeRepository)
+        public EmployeeContext(IEmployeeRepository context)
         {
-            EmployeeRepository = employeeRepository;
+            Context = context;
         }   
         public bool Insert(Employee entity)
         {
 
-            if (EmployeeRepository.Insert(entity) == true)
+            if (Context.Insert(entity) == true)
             {
                 return true;
             }
@@ -30,13 +30,13 @@ namespace Eyect4RailsWebApp.Context
 
         public void Update(int id, Employee entity)
         {
-            EmployeeRepository.Update(id, entity); 
+            Context.Update(id, entity); 
 
         }
 
         public bool Delete(int id)
         {
-            if (EmployeeRepository.Delete(id) == true)
+            if (Context.Delete(id) == true)
             {
                 return true;
             }
@@ -48,31 +48,31 @@ namespace Eyect4RailsWebApp.Context
 
         public Employee GetById(int id)
         {
-            return EmployeeRepository.GetById(id);
+            return Context.GetById(id);
         }
 
         public List<Employee> GetAll()
         {
-            return EmployeeRepository.GetAll();
+            return Context.GetAll();
         }
 
         public List<Employee> GetAllActive(bool active)
         {
-            return EmployeeRepository.GetAllActive(active);
+            return Context.GetAllActive(active);
         }
 
         public Employee GetByRfid(string rfid)
         {
-            return EmployeeRepository.GetByRfid(rfid);
+            return Context.GetByRfid(rfid);
         }
   
         public List<Employee> GetByFunctionName(string functionName)
         {
-            return EmployeeRepository.GetByFunctionName(functionName);
+            return Context.GetByFunctionName(functionName);
         }
         public Employee GetByUsernamePassword(string username, string password)
         {
-            return EmployeeRepository.GetByUsernamePassword(username, password);
+            return Context.GetByUsernamePassword(username, password);
         }
     }
 }

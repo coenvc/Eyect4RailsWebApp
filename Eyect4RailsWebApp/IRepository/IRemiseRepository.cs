@@ -9,8 +9,6 @@ namespace eyect4rails.IRepository
 {
     public interface IRemiseRepository:IRepository<Remise>
     {
-        List<Track> GetTracksByRemiseID(int id);
-
-        List<Track> GetTracksByRemiseID(int id, string tracktype);
+        Remise GetByRemiseName(string name);
     }
 }
