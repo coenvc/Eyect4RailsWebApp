@@ -13,6 +13,5 @@ namespace Eyect4RailsWebApp.Interfaces
         /// This is needed to execute the methods in the Crud class
         /// </summary>
             int Id { get; set; }
-        
     }
 }

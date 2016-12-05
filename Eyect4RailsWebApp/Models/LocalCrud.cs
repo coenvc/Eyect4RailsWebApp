@@ -45,7 +45,6 @@ namespace Eyect4RailsWebApp.Models
         /// <param name="item"></param>
         public bool Insert(T item)
         {
-            
             Counter++;
             item.Id = Counter;
             All.Add(item);

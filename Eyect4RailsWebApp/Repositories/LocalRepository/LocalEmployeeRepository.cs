@@ -4,22 +4,38 @@ using System.Linq;
 using System.Web;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
+using Eyect4RailsWebApp.Enums;
 using Eyect4RailsWebApp.Models;
 
 namespace Eyect4RailsWebApp.Repositories.LocalRepository
 {
-    public class LocalEmployeeRepository:IEmployeeRepository
+    public class LocalEmployeeRepository : IEmployeeRepository
     {
         private LocalCrud<Employee> Crud;
 
-        private List<Employee> Employees = new List<Employee>()
+        private List<Rights> FullRights = new List<Rights>
         {
-            new Employee("Coen van Campenhout", "coenvc@gmail.com", "0683992086", "Cleaner", "coenvc", "Test123","10102030", true)
+            Rights.WagensInvoeren,
+            Rights.StatusVeranderen,
+            Rights.SporenBlokkeren,
+            Rights.WagensNaarDeSchoonmaakSturen,
+            Rights.TijdsindicatieReparatieGeven,
+            Rights.SchoonmaakLijstOpvragen,
+            Rights.DatumTijdSchoonmaakInvoeren
         };
+
+        private List<Employee> Employees = new List<Employee>();
+
         public LocalEmployeeRepository()
         {
+            Employee Coen = new Employee("Coen", "van Campenhout", "0683992086", "RABO0041001241794", 
+                "coenvc", "Test123", "10102030", true, "Senior Software Architect", FullRights);
+
+            Employees.Add(Coen);
+
             Crud = new LocalCrud<Employee>(Employees);
         }
+
         public bool Insert(Employee entity)
         {
             if (Crud.Insert(entity) == true)
@@ -45,7 +61,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             }
             return false;
         }
-    
+
 
         public Employee GetById(int id)
         {
@@ -108,6 +124,6 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
                 }
             }
             return employeeWithUsernameAndPassword;
-        } 
+        }
     }
 }
