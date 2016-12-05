@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eyect4RailsWebApp.Interfaces;
 
 namespace eyect4rails.Classes
 {
-    public class Remise
+    public class Remise:ICruddable
     {
-        public int Id;
-        public string Name;
-        public List<Track> Tracklist;
-        public string TelephoneNumber;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Track> Tracklist { get; set; }
+        public string TelephoneNumber { get; set; }
 
         public Remise(int id, string name, string telephonenumber)
         {
@@ -25,5 +26,6 @@ namespace eyect4rails.Classes
             Name = name;
             TelephoneNumber = telephoneNumber;
         }
+
     }
 }

@@ -11,8 +11,7 @@ namespace eyect4rails.IRepository
     {
         List<Employee> GetAllActive(bool active);
         Employee GetByRfid(string rfid);
-        List<Employee> GetByDepartmentId(int id);
-        List<Employee> GetByDepartmentName(string departmentName);
+        List<Employee> GetByFunctionName(string functionName);
         Employee GetByUsernamePassword(string username, string password);
     }
 }
