@@ -160,6 +160,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,7 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+<<<<<<< HEAD
+    <Folder Include="Logic\" />
+    <Folder Include="Repositories\LocalRepository\" />
+=======
     <Folder Include="NewFolder1\" />
+>>>>>>> 8d71a072f789061c1a79e2907ad1994f0df5811e
     <Folder Include="Repositories\MSSQLRepository\" />
   </ItemGroup>
   <ItemGroup>
