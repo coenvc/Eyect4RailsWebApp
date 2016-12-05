@@ -182,6 +182,8 @@
     <Compile Include="Models\Tram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
+    <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLRemiseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -226,13 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-<<<<<<< HEAD
     <Folder Include="Logic\" />
-    <Folder Include="Repositories\LocalRepository\" />
-=======
-    <Folder Include="NewFolder1\" />
->>>>>>> 8d71a072f789061c1a79e2907ad1994f0df5811e
-    <Folder Include="Repositories\MSSQLRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

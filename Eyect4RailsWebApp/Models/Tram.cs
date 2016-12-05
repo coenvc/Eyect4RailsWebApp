@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eyect4RailsWebApp.Enums;
-using static Eyect4RailsWebApp.Enums.Enums;
+using Eyect4RailsWebApp.Interfaces;
 
 namespace eyect4rails.Classes
 {
-    public class Tram
+    public class Tram : ICruddable
     {
-        private static int TramCounter = 0;
+        #region Properties
         public int Id { get; set; }
         public int RemiseId { get; set; }
         public TramType Tramtype { get; set; }
@@ -20,35 +20,37 @@ namespace eyect4rails.Classes
         public bool Defective { get; set; }
         public bool ConductorQualified { get; set; }
         public bool Available { get; set; }
+        #endregion
 
-        public Tram(int id, int remiseId, Enums.TramType tramtype, int tramnumber, int length,
-            bool filthy, bool defective, bool conductorqualified, bool available)
+        public Tram()
         {
-            this.Id = id;
-            this.RemiseId = remiseId;
-            this.Tramtype = tramtype;
-            this.TramNumber = tramnumber;
-            this.Length = length;
-            this.Filthy = filthy;
-            this.Defective = defective;
-            this.ConductorQualified = conductorqualified;
-            this.Available = available;
         }
 
-        public Tram(int remiseId, Enums.TramType tramtype, int tramnumber, int length,
-            bool filthy, bool defective, bool conductorqualified, bool available)
+        public Tram(int remiseId, TramType tramtype, int tramNumber, int length, bool filthy, bool defective, bool conductorQualified, bool available)
         {
-            this.Id = TramCounter;
-            this.RemiseId = remiseId;
-            this.Tramtype = tramtype;
-            this.TramNumber = tramnumber;
-            this.Length = length;
-            this.Filthy = filthy;
-            this.Defective = defective;
-            this.ConductorQualified = conductorqualified;
-            this.Available = available;
-            TramCounter++;
+            RemiseId = remiseId;
+            Tramtype = tramtype;
+            TramNumber = tramNumber;
+            Length = length;
+            Filthy = filthy;
+            Defective = defective;
+            ConductorQualified = conductorQualified;
+            Available = available;
         }
+
+        public Tram(int id, int remiseId, TramType tramtype, int tramNumber, int length, bool filthy, bool defective, bool conductorQualified, bool available)
+        {
+            Id = id;
+            RemiseId = remiseId;
+            Tramtype = tramtype;
+            TramNumber = tramNumber;
+            Length = length;
+            Filthy = filthy;
+            Defective = defective;
+            ConductorQualified = conductorQualified;
+            Available = available;
+        }
+
         public override string ToString()
         {
             return $"Tramtype: {Tramtype} Defect: {Defective} Vies: {Filthy}";

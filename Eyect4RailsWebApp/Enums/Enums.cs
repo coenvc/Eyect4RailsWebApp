@@ -5,36 +5,33 @@ using System.Web;
 
 namespace Eyect4RailsWebApp.Enums
 {
-    public class Enums
+    public enum TramType
     {
-        public enum TramType
-        {
-            Combino = 1,
-            ElevenG,
-            DubbelKopCombino,
-            TwelveG,
-            Opleidingstram,
-            NineG,
-            TenG
-        }
+        Combino = 1,
+        ElevenG,
+        DubbelKopCombino,
+        TwelveG,
+        Opleidingstram,
+        NineG,
+        TenG
+    }
 
-        public enum Rights
-        {
-            WagensInvoeren = 1,
-            StatusVeranderen,
-            SporenBlokkeren,
-            WagensNaarDeSchoonmaakSturen,
-            TijdsindicatieReparatieGeven,
-            SchoonmaakLijstOpvragen,
-            DatumTijdSchoonmaakInvoeren
-        }
+    public enum Rights
+    {
+        WagensInvoeren = 1,
+        StatusVeranderen,
+        SporenBlokkeren,
+        WagensNaarDeSchoonmaakSturen,
+        TijdsindicatieReparatieGeven,
+        SchoonmaakLijstOpvragen,
+        DatumTijdSchoonmaakInvoeren
+    }
 
-        public enum Tasks
-        {
-            KleineSchoonmaak,
-            GroteSchoonmaak,
-            KleineReparatie,
-            GroteReparatie
-        }
+    public enum Tasks
+    {
+        KleineSchoonmaak,
+        GroteSchoonmaak,
+        KleineReparatie,
+        GroteReparatie
     }
 }

@@ -7,44 +7,41 @@ using Eyect4RailsWebApp.Interfaces;
 
 namespace Eyect4RailsWebApp.Models
 {
-<<<<<<< HEAD
-    public class Sector
+    public class Sector : ICruddable
     {
         private static int SectorCounter;
+
+        #region Properties
         public int Id { get; set; }
         public int TrackId { get; set; }
         public int TramId { get; set; }
         public int Number { get; set; }
         public bool Available { get; set; }
         public bool Blocked { get; set; }
-=======
-    public class Sector:ICruddable
-    {
-        public int Id { get; set; }
-        Tram Tram { get; set; }
->>>>>>> 8d71a072f789061c1a79e2907ad1994f0df5811e
+        #endregion
 
-        public Sector(int id, int trackid, int tramid, int number, bool available, bool blocked)
+        public Sector()
         {
-            this.Id = id;
-            this.TrackId = trackid;
-            this.TramId = tramid;
-            this.Number = number;
-            this.Available = available;
-            this.Blocked = blocked;
         }
 
-        public Sector(int trackid, int tramid, int number, bool available, bool blocked)
+        public Sector(int trackId, int tramId, int number, bool available, bool blocked)
         {
-            this.Id = SectorCounter;
-            this.TrackId = trackid;
-            this.TramId = tramid;
-            this.Number = number;
-            this.Available = available;
-            this.Blocked = blocked;
-            SectorCounter++;
+            TrackId = trackId;
+            TramId = tramId;
+            Number = number;
+            Available = available;
+            Blocked = blocked;
         }
 
-
+        public Sector(int id, int trackId, int tramId, int number, bool available, bool blocked)
+        {
+            Id = id;
+            TrackId = trackId;
+            TramId = tramId;
+            Number = number;
+            Available = available;
+            Blocked = blocked;
+        }
     }
+
 }
