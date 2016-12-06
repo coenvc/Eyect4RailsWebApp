@@ -31,7 +31,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Employee Coen = new Employee("Coen", "van Campenhout", "0683992086", "RABO0041001241794", 
                 "coenvc", "Test123", "10102030", true, Function.Beheerder, FullRights);
 
-            Employees.Add(Coen);
+            Insert(Coen);
 
             Crud = new LocalCrud<Employee>(Employees);
         }
@@ -61,8 +61,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             }
             return false;
         }
-
-
+        
         public Employee GetById(int id)
         {
             return Crud.GetById(id);

@@ -19,8 +19,8 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Tram tram = new Tram(1, Enums.TramType.Combino, 1, 3, false, false, true, true);
             Tram tram1 = new Tram(1, Enums.TramType.DubbelKopCombino, 2, 5, false, true, false, false);
             Tram tram2 = new Tram(1, Enums.TramType.ElevenG, 3, 6, true, false, false, false);
-            Tram tram3 = new Tram(1, Enums.TramType.TenG, 4, 5, false, false, false, true);
-            Tram tram4 = new Tram(1, Enums.TramType.Opleidingstram, 5, 6, true, true, true, false);
+            Tram tram3 = new Tram(2, Enums.TramType.TenG, 4, 5, false, false, false, true);
+            Tram tram4 = new Tram(2, Enums.TramType.Opleidingstram, 5, 6, true, true, true, false);
 
             Insert(tram);
             Insert(tram1);

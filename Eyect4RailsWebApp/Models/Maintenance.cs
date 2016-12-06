@@ -14,9 +14,14 @@ namespace eyect4rails.Classes
         public DateTime ScheduledDate { get; set; } 
         public DateTime AvailableDate { get; set; } 
         public Tasks TaskType { get; set; }
-        public bool Completed { get; set; } = false;
+        public bool Completed { get; set; }
 
-        public Maintenance(int id, Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, Tasks taskType)
+        public Maintenance()
+        {
+            
+        }
+
+        public Maintenance(int id, Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, Tasks taskType, bool completed)
         {
             Id = id;
             Employee = employee;
@@ -24,20 +29,17 @@ namespace eyect4rails.Classes
             ScheduledDate = scheduledDate;
             AvailableDate = availableDate;
             TaskType = taskType;
+            Completed = completed;
         }
 
-        public Maintenance(Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, Tasks taskType)
+        public Maintenance(Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, Tasks taskType, bool completed)
         {
             Employee = employee;
             Tram = tram;
             ScheduledDate = scheduledDate;
             AvailableDate = availableDate;
             TaskType = taskType;
-        }
-
-        public Maintenance()
-        {
-            
+            Completed = completed;
         }
     }
 }

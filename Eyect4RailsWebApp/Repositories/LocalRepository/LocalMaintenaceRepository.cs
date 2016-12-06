@@ -24,35 +24,34 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Rights.DatumTijdSchoonmaakInvoeren
         };
 
+        // TODO: Get Employees from LocalEmployeeRepository
         private List<Employee> Employees = new List<Employee>()
         {
             new Employee("Coen", "van Campenhout", "0683992086", "RABO0041001241794", "coenvc", "Test123", "10102030",
-                true, Function.Beheerder, FullRights)
+                true, Function.Beheerder, FullRights),
+            new Employee("Reinoud", "van Zoelen", "0630102166", "RABO0041124129571", "rvzoelen", "crytopassword", "8t7hgw45uyg934", 
+                true, Function.Schoonmaker, FullRights)
         };
 
-        private List<Maintenance> Maintaenances;
+        private List<Maintenance> Maintenances;
 
         public LocalMaintenaceRepository()
         {
-            Maintaenances = new List<Maintenance>()
-            {
-                new Maintenance(Employees[0], new Tram(1, Enums.TramType.ElevenG, 4, 10, true, true, true, true),
-                    new DateTime(2016, 12, 12), new DateTime(2016, 12, 15), Enums.Tasks.KleineReparatie)
-            };
-            Crud = new LocalCrud<Maintenance>(Maintaenances);
+            Crud = new LocalCrud<Maintenance>(Maintenances);
+
+            // TODO: Get Tram from LocalTramRepository
+            Tram tram = new Tram();
+
+            Maintenance maintenance = new Maintenance(Employees[0], tram, new DateTime(2016, 12, 12), 
+                new DateTime(2016, 12, 15), Enums.Tasks.KleineReparatie, false);
+
+            Insert(maintenance);
         }
 
 
         public bool Insert(Maintenance entity)
         {
-            if (Crud.Insert(entity) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Crud.Insert(entity);
         }
 
         public void Update(int id, Maintenance entity)
@@ -62,14 +61,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
         public bool Delete(int id)
         {
-            if (Crud.Delete(id) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Crud.Delete(id);
         }
 
         public Maintenance GetById(int id)
@@ -90,14 +82,13 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
         public List<Maintenance> GetByEmployeeId(int id)
         {
-            return Crud.GetAll().Where(x => x.Employee.Id == id).ToList(); 
+            return Crud.GetAll().Where(x => x.Employee.Id == id).ToList();
         }
 
         public List<Maintenance> GetByEmployeeId(int id, bool completed)
         {
             return Crud.GetAll().Where(x => x.Employee.Id == id && x.Completed == completed).ToList();
-        } 
-       
+        }
 
         public List<Maintenance> GetByTramId(int id)
         {
@@ -111,14 +102,17 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
         public void Assign(Maintenance maintenance, Employee employee)
         {
-            maintenance.Employee = employee;
+            if (employee != null)
+            {
+                maintenance.Employee = employee;
+            }
         }
 
         public void Complete(Maintenance maintenance, Employee employee)
         {
             maintenance.Completed = true;
             maintenance.Employee = employee;
-            maintenance.AvailableDate = DateTime.Now; 
+            maintenance.AvailableDate = DateTime.Now;
         }
     }
 }
