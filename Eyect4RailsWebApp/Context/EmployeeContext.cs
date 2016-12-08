@@ -18,33 +18,17 @@ namespace Eyect4RailsWebApp.Context
         }   
         public bool Insert(Employee entity)
         {
-
-            if (Context.Insert(entity) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Context.Insert(entity);
         }
 
         public void Update(int id, Employee entity)
         {
             Context.Update(id, entity); 
-
         }
 
         public bool Delete(int id)
         {
-            if (Context.Delete(id) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Context.Delete(id);
         }
 
         public Employee GetById(int id)

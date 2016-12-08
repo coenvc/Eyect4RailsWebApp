@@ -113,30 +113,34 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Employee GetById(int id)
         {
-            Employee ReturnEmployee = null;
-            string query = "select * from medewerker where id = @id";
-            try
-            {
-                if (OpenConnection())
-                {
-                    using (SqlCommand command = new SqlCommand(query, Connection))
-                    {
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Employee Employee = new Employee(reader["Achternaam"].ToString(),
-                                reader["Voornaam"].ToString(), reader["Telefoonnummer"].ToString(),
-                                reader["Bankrekeningnummer"].ToString(), reader["Username"].ToString(),
-                                reader["Password"].ToString(), reader["RFIDCode"].ToString(),
-                                Convert.ToBoolean(reader["Active"]), (Function) reader["Functie_Id"],);
-                        }
-                    }
-                }
-            }
-            catch (SqlException exception)
-            {
-                //Ignore
-            }
+            throw new NotImplementedException();
+
+            // Tijdelijk gecomment door Reinoud, gaf nu compilatieproblemen
+
+            //Employee ReturnEmployee = null;
+            //string query = "select * from medewerker where id = @id";
+            //try
+            //{
+            //    if (OpenConnection())
+            //    {
+            //        using (SqlCommand command = new SqlCommand(query, Connection))
+            //        {
+            //            SqlDataReader reader = command.ExecuteReader();
+            //            while (reader.Read())
+            //            {
+            //                Employee Employee = new Employee(reader["Achternaam"].ToString(),
+            //                    reader["Voornaam"].ToString(), reader["Telefoonnummer"].ToString(),
+            //                    reader["Bankrekeningnummer"].ToString(), reader["Username"].ToString(),
+            //                    reader["Password"].ToString(), reader["RFIDCode"].ToString(),
+            //                    Convert.ToBoolean(reader["Active"]), (Function) reader["Functie_Id"],);
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (SqlException exception)
+            //{
+            //    //Ignore
+            //}
         }
 
         public List<Employee> GetAll()
