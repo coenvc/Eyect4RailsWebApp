@@ -38,7 +38,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             // TODO: Get Tram from MSSQLTramRepository
             Tram tram = new Tram();
 
-            Maintenance maintenance = new Maintenance(id, employee, tram, ScheduledDate, AvailableDate, task);
+            Maintenance maintenance = new Maintenance(id, employee, tram, ScheduledDate, AvailableDate, task, false);
 
             return maintenance;
         }

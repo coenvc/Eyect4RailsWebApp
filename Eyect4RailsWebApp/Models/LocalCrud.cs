@@ -9,6 +9,7 @@ namespace Eyect4RailsWebApp.Models
 {
     public class LocalCrud<T>  where T: class,ICruddable
     {
+        // TODO: Coen moet deze lijst Static zijn?
         public List<T> All = new List<T>();
         public int Counter = 0;
 

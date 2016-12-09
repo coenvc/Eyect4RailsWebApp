@@ -11,7 +11,6 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
     public class LocalRemiseRepository : IRemiseRepository
     {
         private LocalCrud<Remise> Crud;
-        private List<Remise> Remises = new List<Remise>();
 
         private LocalTramRepository tramRepository = new LocalTramRepository();
         //private LocalTrackRepository trackRepository = new LocalTrackRepository();
@@ -71,7 +70,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Remise remise = new Remise("ERROR", tracks, trams);
             #endregion
 
-            foreach (Remise selRemise in Remises)
+            foreach (Remise selRemise in Crud.All)
             {
                 if (selRemise.Name == name)
                 {
