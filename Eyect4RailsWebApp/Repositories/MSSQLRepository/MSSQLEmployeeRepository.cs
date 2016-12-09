@@ -128,7 +128,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                                 reader["Voornaam"].ToString(), reader["Telefoonnummer"].ToString(),
                                 reader["Bankrekeningnummer"].ToString(), reader["Username"].ToString(),
                                 reader["Password"].ToString(), reader["RFIDCode"].ToString(),
-                                Convert.ToBoolean(reader["Active"]), (Function) reader["Functie_Id"],);
+                                Convert.ToBoolean(reader["Active"]), (Function) reader["Functie_Id"],new List<Rights>() {Rights.DatumTijdSchoonmaakInvoeren,Rights.SchoonmaakLijstOpvragen,Rights.SporenBlokkeren,Rights.StatusVeranderen});
                         }
                     }
                 }
