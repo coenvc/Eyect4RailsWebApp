@@ -160,6 +160,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Context\MaintenanceContext.cs" />
+    <Compile Include="Context\RemiseContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,8 +186,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalMaintenaceRepository.cs" />
+    <Compile Include="Repositories\LocalRepository\LocalRemiseRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLEmployeeRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLMaintenanceRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLRemiseRepository.cs" />
   </ItemGroup>
   <ItemGroup>

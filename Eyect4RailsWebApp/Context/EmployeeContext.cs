@@ -24,7 +24,6 @@ namespace Eyect4RailsWebApp.Context
         public void Update(int id, Employee entity)
         {
             Context.Update(id, entity); 
-
         }
 
         public bool Delete(int id)
