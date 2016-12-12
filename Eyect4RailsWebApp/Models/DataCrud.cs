@@ -33,8 +33,8 @@ namespace Eyect4RailsWebApp.Models
                             insert = true;
                         }
                         catch (SqlException exception)
-                        { 
-
+                        {
+                            throw exception;
                         }
                     }
                 }

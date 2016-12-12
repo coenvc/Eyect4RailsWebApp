@@ -35,8 +35,9 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
         private List<Maintenance> Maintenances;
 
-        public LocalMaintenaceRepository()
+        public LocalMaintenaceRepository(List<Maintenance> maintenances)
         {
+            Maintenances = maintenances;
             Crud = new LocalCrud<Maintenance>(Maintenances);
 
             // TODO: Get Tram from LocalTramRepository

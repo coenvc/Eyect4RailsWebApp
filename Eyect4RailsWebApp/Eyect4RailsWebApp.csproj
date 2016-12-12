@@ -163,6 +163,7 @@
     <Compile Include="Context\RemiseContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Exceptions\CreateObjectException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
