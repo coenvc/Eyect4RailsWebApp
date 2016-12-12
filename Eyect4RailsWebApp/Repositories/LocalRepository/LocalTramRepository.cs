@@ -5,75 +5,104 @@ using System.Web;
 using System.Web.Http.Tracing;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
+using Eyect4RailsWebApp.Models;
 
 
 namespace Eyect4RailsWebApp.Repositories.LocalRepository
 {
     public class LocalTramRepository : ITramRepository
     {
-        private int TramCounter = 0;
-        private List<Tram> trams = new List<Tram>();
+        private LocalCrud<Tram> Crud;
+        private List<Tram> Trams;
+        private List<Track> Tracks;
+        private LocalCrud<Track> trackCrud;
 
         public LocalTramRepository()
         {
+            Crud = new LocalCrud<Tram>(Trams);
+          
+
             Tram tram = new Tram(1, Enums.TramType.Combino, 1, 3, false, false, true, true);
             Tram tram1 = new Tram(1, Enums.TramType.DubbelKopCombino, 2, 5, false, true, false, false);
             Tram tram2 = new Tram(1, Enums.TramType.ElevenG, 3, 6, true, false, false, false);
-            Tram tram3 = new Tram(2, Enums.TramType.TenG, 4, 5, false, false, false, true);
-            Tram tram4 = new Tram(2, Enums.TramType.Opleidingstram, 5, 6, true, true, true, false);
+            Tram tram3 = new Tram(1, Enums.TramType.TenG, 4, 5, false, false, false, true);
+            Tram tram4 = new Tram(1, Enums.TramType.Opleidingstram, 5, 6, true, true, true, false);
+            Tram tram5 = new Tram(1, Enums.TramType.TwelveG, 6, 3, false, false, false, true);
+            Tram tram6 = new Tram(1, Enums.TramType.TwelveG, 7, 1, true, false, false, true);
+            Tram tram7 = new Tram(1, Enums.TramType.Combino, 8, 1, false, true, false, false);
+            Tram tram8 = new Tram(1, Enums.TramType.DubbelKopCombino, 9, 4, false, false, true, true);
+            Tram tram9 = new Tram(1, Enums.TramType.TwelveG, 10, 8, false, false, true, true);
 
             Insert(tram);
             Insert(tram1);
             Insert(tram2);
             Insert(tram3);
             Insert(tram4);
+            Insert(tram5);
+            Insert(tram6);
+            Insert(tram7);
+            Insert(tram8);
+            Insert(tram9);
+
+        }
+
+        public bool Insert(Tram entity)
+        {
+            return Crud.Insert(entity);
+        }
+
+        public void Update(int id, Tram entity)
+        {
+            Crud.Update(id, entity);
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return Crud.Delete(id);
+        }
+
+        public Tram GetById(int id)
+        {
+            return Crud.GetById(id);
+        }
+
+        public List<Tram> GetAll()
+        {
+            return Crud.GetAll();
         }
 
         public bool Depart(int trackid, int tramid, DateTime depart)
         {
+            // Wat moet hier komen?
             throw new NotImplementedException();
         }
 
         public bool Enter(int trackid, int tramid, DateTime enter)
         {
+            // Wat moet hier komen?
             throw new NotImplementedException();
         }
 
-        public List<Tram> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Tram GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Tram> GetByTrackId(int id)
         {
             throw new NotImplementedException();
+           // TODO Als track klasse is gemaakt dan werkt deze methode.
+           //Track trackGetById = trackCrud.GetById(id);
+           // als track is gemaakt dan werkt deze functie
+           //   return trackGetById.trams;
         }
 
         public List<Tram> GetByTrackId(int id, bool present)
         {
             throw new NotImplementedException();
+            //TODO Als track klasse is gemaakt dan werkt deze methode.
+            //   Track trackGetById = trackCrud.GetById(id);
+            //als track is gemaakt dan werkt deze functie
+            //      return trackGetById.trams;
         }
 
-        public bool Insert(Tram entity)
-        {
-            entity.Id = TramCounter;
-            TramCounter++;
-            trams.Add(entity);
-
-            return true;
-        }
-
-        public void Update(int id, Tram entity)
+        public Tram GetBySectorId(int id)
         {
             throw new NotImplementedException();
         }

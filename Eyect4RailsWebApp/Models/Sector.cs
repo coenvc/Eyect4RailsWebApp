@@ -22,6 +22,7 @@ namespace Eyect4RailsWebApp.Models
 
         public Sector()
         {
+
         }
 
         public Sector(int trackId, int tramId, int number, bool available, bool blocked)
