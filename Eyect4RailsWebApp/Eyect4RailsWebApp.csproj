@@ -188,10 +188,12 @@
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalMaintenaceRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalRemiseRepository.cs" />
+    <Compile Include="Repositories\LocalRepository\LocalTrackRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLEmployeeRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLMaintenanceRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLRemiseRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />

@@ -9,7 +9,7 @@ namespace eyect4rails.IRepository
 {
     public interface ITrackRepository:IRepository<Track>
     {
-        Track GetLastKnownTrackByTramId(int tramid);
+        List<Track> GetByRemiseId(int remiseid);
         bool Insert(Remise remise, Track track);
     }
 }
