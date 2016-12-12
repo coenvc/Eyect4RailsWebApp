@@ -172,6 +172,7 @@
     <Compile Include="IRepository\IMaintenanceRepository.cs" />
     <Compile Include="IRepository\IRemiseRepository.cs" />
     <Compile Include="IRepository\IRepository.cs" />
+    <Compile Include="IRepository\ISectorRepository.cs" />
     <Compile Include="IRepository\ITrackRepository.cs" />
     <Compile Include="IRepository\ITramRepository.cs" />
     <Compile Include="Logic\EmployeeMSSQLTest.cs" />
@@ -188,12 +189,15 @@
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalMaintenaceRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalRemiseRepository.cs" />
+    <Compile Include="Repositories\LocalRepository\LocalSectorRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalTrackRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLEmployeeRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLMaintenanceRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLRemiseRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLSectorRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLTramRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />

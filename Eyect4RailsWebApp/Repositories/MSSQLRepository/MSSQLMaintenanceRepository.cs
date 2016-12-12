@@ -24,12 +24,15 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int tram_ID = Convert.ToInt32(reader["Tram_ID"]);
             int taak_ID = Convert.ToInt32(reader["Taak_ID"]);
 
-            DateTime ScheduledDate = Convert.ToDateTime(reader["DatumTijdstip"]);
+            DateTime ScheduledDate;// = Convert.ToDateTime(reader["DatumTijdstip"]);
+            DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
             DateTime AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
             string omschrijving = Convert.ToString(reader["Omschrijving"]);
 
-            Employee employee = EmployeeRepository.GetById(medewerker_ID);
+            // TODO: 
+            //Employee employee = EmployeeRepository.GetById(medewerker_ID);
+            Employee employee = new Employee(medewerker_ID, "", "", "", "", "", "", "", true, Function.Beheerder, new List<Rights>());
             Tram tram = TramRepository.GetById(tram_ID);
 
             Maintenance maintenance = new Maintenance(id, employee, tram, 
