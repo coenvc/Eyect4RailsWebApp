@@ -13,15 +13,9 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
     public class LocalTramRepository : ITramRepository
     {
         private LocalCrud<Tram> Crud;
-        private List<Tram> Trams;
-        private List<Track> Tracks;
-        private LocalCrud<Track> trackCrud;
 
         public LocalTramRepository()
         {
-            Crud = new LocalCrud<Tram>(Trams);
-          
-
             Tram tram = new Tram(1, Enums.TramType.Combino, 1, 3, false, false, true, true);
             Tram tram1 = new Tram(1, Enums.TramType.DubbelKopCombino, 2, 5, false, true, false, false);
             Tram tram2 = new Tram(1, Enums.TramType.ElevenG, 3, 6, true, false, false, false);
@@ -29,21 +23,25 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Tram tram4 = new Tram(1, Enums.TramType.Opleidingstram, 5, 6, true, true, true, false);
             Tram tram5 = new Tram(1, Enums.TramType.TwelveG, 6, 3, false, false, false, true);
             Tram tram6 = new Tram(1, Enums.TramType.TwelveG, 7, 1, true, false, false, true);
-            Tram tram7 = new Tram(1, Enums.TramType.Combino, 8, 1, false, true, false, false);
-            Tram tram8 = new Tram(1, Enums.TramType.DubbelKopCombino, 9, 4, false, false, true, true);
-            Tram tram9 = new Tram(1, Enums.TramType.TwelveG, 10, 8, false, false, true, true);
+            Tram tram7 = new Tram(2, Enums.TramType.Combino, 8, 1, false, true, false, false);
+            Tram tram8 = new Tram(2, Enums.TramType.DubbelKopCombino, 9, 4, false, false, true, true);
+            Tram tram9 = new Tram(2, Enums.TramType.TwelveG, 10, 8, false, false, true, true);
 
-            Insert(tram);
-            Insert(tram1);
-            Insert(tram2);
-            Insert(tram3);
-            Insert(tram4);
-            Insert(tram5);
-            Insert(tram6);
-            Insert(tram7);
-            Insert(tram8);
-            Insert(tram9);
+            List<Tram> trams = new List<Tram>
+            {
+                tram,
+                tram1,
+                tram2,
+                tram3,
+                tram4,
+                tram5,
+                tram6,
+                tram7,
+                tram8,
+                tram9
+            };
 
+            Crud = new LocalCrud<Tram>(trams);
         }
 
         public bool Insert(Tram entity)
@@ -71,38 +69,12 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             return Crud.GetAll();
         }
 
-        public bool Depart(int trackid, int tramid, DateTime depart)
-        {
-            // Wat moet hier komen?
-            throw new NotImplementedException();
-        }
-
-        public bool Enter(int trackid, int tramid, DateTime enter)
-        {
-            // Wat moet hier komen?
-            throw new NotImplementedException();
-        }
-
-
-        public List<Tram> GetByTrackId(int id)
-        {
-            throw new NotImplementedException();
-           // TODO Als track klasse is gemaakt dan werkt deze methode.
-           //Track trackGetById = trackCrud.GetById(id);
-           // als track is gemaakt dan werkt deze functie
-           //   return trackGetById.trams;
-        }
-
-        public List<Tram> GetByTrackId(int id, bool present)
-        {
-            throw new NotImplementedException();
-            //TODO Als track klasse is gemaakt dan werkt deze methode.
-            //   Track trackGetById = trackCrud.GetById(id);
-            //als track is gemaakt dan werkt deze functie
-            //      return trackGetById.trams;
-        }
-
         public Tram GetBySectorId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Tram> GetByRemiseId(int id)
         {
             throw new NotImplementedException();
         }

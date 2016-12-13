@@ -7,5 +7,6 @@ namespace eyect4rails.IRepository
     public interface ITramRepository:IRepository<Tram>
     {
         Tram GetBySectorId(int id);
+        List<Tram> GetByRemiseId(int id);
     }
 }

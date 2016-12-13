@@ -30,7 +30,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
             string omschrijving = Convert.ToString(reader["Omschrijving"]);
 
-            // TODO: 
+            // TODO: Get Employee from the MSSQLEmployeeRepository
             //Employee employee = EmployeeRepository.GetById(medewerker_ID);
             Employee employee = new Employee(medewerker_ID, "", "", "", "", "", "", "", true, Function.Beheerder, new List<Rights>());
             Tram tram = TramRepository.GetById(tram_ID);

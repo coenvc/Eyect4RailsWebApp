@@ -161,6 +161,7 @@
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Context\MaintenanceContext.cs" />
     <Compile Include="Context\RemiseContext.cs" />
+    <Compile Include="Context\TrackContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\CreateObjectException.cs" />

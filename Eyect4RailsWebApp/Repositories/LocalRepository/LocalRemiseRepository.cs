@@ -13,27 +13,26 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
         private LocalCrud<Remise> Crud;
 
         private LocalTramRepository tramRepository = new LocalTramRepository();
-        //private LocalTrackRepository trackRepository = new LocalTrackRepository();
+        private LocalTrackRepository trackRepository = new LocalTrackRepository();
 
         public LocalRemiseRepository()
         {
-            // TODO: Replace placeholderTracks when LocalTrackRepository is working
-            List<Track> placeholderTracks = new List<Track>
-            {
-                new Track()
-            };
+            // TODO: Add Trams.GetByRemiseID once it is configured
 
-            // TODO: Replace placeholderTrams when LocalTramRepository is working
-            List<Tram> placeholderTrams = new List<Tram>
-            {
-                new Tram()
-            };
+            List<Track> Tracks1 = trackRepository.GetByRemiseId(1);
+            List<Tram> Trams1 = tramRepository.GetAll();
 
-            Remise amsterdam = new Remise("Remise Amsterdam", placeholderTracks, placeholderTrams);
-            Remise rotterdam = new Remise("Remise Rotterdam", placeholderTracks, placeholderTrams);
+            List<Track> Tracks2 = trackRepository.GetByRemiseId(2);
+            List<Tram> Trams2 = tramRepository.GetAll();
 
-            Insert(amsterdam);
-            Insert(rotterdam);
+            Remise amsterdam = new Remise("Remise Amsterdam", Tracks1,Trams1);
+            Remise rotterdam = new Remise("Remise Rotterdam", Tracks2, Trams2);
+
+            List<Remise> remises = new List<Remise>();
+            remises.Add(amsterdam);
+            remises.Add(rotterdam);
+
+            Crud = new LocalCrud<Remise>(remises);
         }
 
         public bool Insert(Remise entity)

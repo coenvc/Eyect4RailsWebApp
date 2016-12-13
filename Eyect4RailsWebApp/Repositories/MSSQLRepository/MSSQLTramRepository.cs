@@ -36,6 +36,11 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             return tram;
         }
 
+        public List<Tram> GetByRemiseId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Insert(Tram entity)
         {
             bool insert = false;
