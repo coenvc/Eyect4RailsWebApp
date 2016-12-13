@@ -45,5 +45,10 @@ namespace Eyect4RailsWebApp.Context
         {
             return Context.GetBySectorId(id);
         }
+
+        public List<Tram> GetByRemiseId(int id)
+        {
+            return Context.GetByRemiseId(id);
+        }
     }
 }

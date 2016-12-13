@@ -7,7 +7,7 @@ using Eyect4RailsWebApp.IRepository;
 
 namespace Eyect4RailsWebApp.Context
 {
-    public class MaintenanceContext:IMaintenanceRepository
+    public class MaintenanceContext : IMaintenanceRepository
     {
         IMaintenanceRepository Context;
 
@@ -45,7 +45,7 @@ namespace Eyect4RailsWebApp.Context
                 return false;
             }
         }
-    
+
 
         public Maintenance GetById(int id)
         {
@@ -82,14 +82,14 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByTramId(id, completed);
         }
 
-        public void Assign(Maintenance maintenance, Employee employee)
+        public void Assign(int id, Employee employee)
         {
-            Context.Assign(maintenance, employee);
+            Context.Assign(id, employee);
         }
 
-        public void Complete(Maintenance maintenance, Employee employee)
+        public void Complete(int id, Employee employee, DateTime completed)
         {
-            Context.Complete(maintenance, employee);
+            Context.Complete(id, employee, completed);
         }
     }
 }
