@@ -161,7 +161,9 @@
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Context\MaintenanceContext.cs" />
     <Compile Include="Context\RemiseContext.cs" />
+    <Compile Include="Context\TramContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IOController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\CreateObjectException.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,9 +174,10 @@
     <Compile Include="IRepository\IMaintenanceRepository.cs" />
     <Compile Include="IRepository\IRemiseRepository.cs" />
     <Compile Include="IRepository\IRepository.cs" />
+    <Compile Include="IRepository\ISectorRepository.cs" />
     <Compile Include="IRepository\ITrackRepository.cs" />
     <Compile Include="IRepository\ITramRepository.cs" />
-    <Compile Include="Logic\EmployeeMSSQLTest.cs" />
+    <Compile Include="Logic\IOLogic.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DataCrud.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -188,12 +191,13 @@
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalMaintenaceRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalRemiseRepository.cs" />
-    <Compile Include="Repositories\LocalRepository\LocalTrackRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLEmployeeRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLMaintenanceRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLRemiseRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLSectorRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
+    <Compile Include="Repositories\MSSQLRepository\MSSQLTramRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -205,6 +209,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\avatar.png" />
+    <Content Include="Images\avatar04.png" />
+    <Content Include="Images\avatar2.png" />
+    <Content Include="Images\avatar3.png" />
+    <Content Include="Images\avatar5.png" />
+    <Content Include="Images\boxed-bg.jpg" />
+    <Content Include="Images\boxed-bg.png" />
+    <Content Include="Images\default-50x50.gif" />
+    <Content Include="Images\icons.png" />
+    <Content Include="Images\photo1.png" />
+    <Content Include="Images\photo2.png" />
+    <Content Include="Images\photo3.jpg" />
+    <Content Include="Images\photo4.jpg" />
+    <Content Include="Images\user1-128x128.jpg" />
+    <Content Include="Images\user2-160x160.jpg" />
+    <Content Include="Images\user3-128x128.jpg" />
+    <Content Include="Images\user4-128x128.jpg" />
+    <Content Include="Images\user5-128x128.jpg" />
+    <Content Include="Images\user6-128x128.jpg" />
+    <Content Include="Images\user7-128x128.jpg" />
+    <Content Include="Images\user8-128x128.jpg" />
     <Content Include="Layouts\calendar.html" />
     <Content Include="Layouts\charts\chartjs.html" />
     <Content Include="Layouts\charts\flot.html" />
@@ -241,6 +266,7 @@
     <Content Include="Layouts\widgets.html" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -272,9 +298,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\IO\Details.cshtml" />
+    <Content Include="Views\IO\Edit.cshtml" />
+    <Content Include="Views\IO\Delete.cshtml" />
+    <Content Include="Views\Shared\_Tram.cshtml" />
+    <Content Include="Views\IO\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\credit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

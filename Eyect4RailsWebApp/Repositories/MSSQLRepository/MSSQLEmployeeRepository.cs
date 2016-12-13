@@ -12,8 +12,41 @@ using Eyect4RailsWebApp.Models;
 namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
  {		
      public class MSSQLEmployeeRepository:Database,IEmployeeRepository		
-     {		
-         public bool Insert(Employee entity)		
+     {
+         private bool CheckActive(int boolInt)
+         {
+             if (boolInt == 1)
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
+         }
+        private Employee CreateObjectFromReader(SqlDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            int function = Convert.ToInt32(reader["FUNCTIE_ID"]);
+            string name = reader["voornaam"].ToString();
+            string surname = reader["achternaam"].ToString();
+            string phonenumber = Convert.ToString(reader["Telefoonnummer"]);
+            string bankaccount = Convert.ToString(reader["bankrekeningnummer"]);
+            string username = Convert.ToString(reader["username"]);
+            string password = Convert.ToString(reader["password"]);
+            string rfid = Convert.ToString(reader["RFIDCode"]);
+            int activeInt = Convert.ToInt32(reader["Active"]);
+            
+
+            //StatusEnum MyStatus = StatusEnum.Parse("Active");
+            //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
+
+            Employee employee = new Employee(surname,name,phonenumber,bankaccount,username,password,rfid,CheckActive(activeInt),(Function)function,List<Rights>(){Rights.DatumTijdSchoonmaakInvoeren,Rights.SporenBlokkeren,Rights.StatusVeranderen})
+            ;
+            return maintenance;
+        } 
+
+        public bool Insert(Employee entity)		
          { 		
              bool insert = false;		
              string query ="INSERT INTO MEDEWERKER(Functie_ID,Voornaam,Achternaam,Telefoonnummer,Bankrekeningnummer,Username,Password,RFIDCode,Active) values(@FunctieId,@Voornaam,@Achternaam,@Telefoonnummer,@Bankrekeningnummer,@Username,@Password,@RFIDCode,@Active)";		
