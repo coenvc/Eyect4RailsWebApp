@@ -13,7 +13,18 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
  {		
      public class MSSQLEmployeeRepository:Database,IEmployeeRepository		
      {
-         private bool CheckActive(int boolInt)
+
+        private List<Rights> FullRights = new List<Rights>
+        {
+            Rights.WagensInvoeren,
+            Rights.StatusVeranderen,
+            Rights.SporenBlokkeren,
+            Rights.WagensNaarDeSchoonmaakSturen,
+            Rights.TijdsindicatieReparatieGeven,
+            Rights.SchoonmaakLijstOpvragen,
+            Rights.DatumTijdSchoonmaakInvoeren
+        };
+        private bool CheckActive(int boolInt)
          {
              if (boolInt == 1)
              {
@@ -23,9 +34,11 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
              {
                  return false;
              }
-         }
+         } 
+
         private Employee CreateObjectFromReader(SqlDataReader reader)
         {
+
             int id = Convert.ToInt32(reader["ID"]);
             int function = Convert.ToInt32(reader["FUNCTIE_ID"]);
             string name = reader["voornaam"].ToString();
@@ -41,9 +54,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             //StatusEnum MyStatus = StatusEnum.Parse("Active");
             //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
 
-            Employee employee = new Employee(surname,name,phonenumber,bankaccount,username,password,rfid,CheckActive(activeInt),(Function)function,List<Rights>(){Rights.DatumTijdSchoonmaakInvoeren,Rights.SporenBlokkeren,Rights.StatusVeranderen})
-            ;
-            return maintenance;
+            Employee employee = new Employee(surname, name, phonenumber, bankaccount, username, password, rfid, CheckActive(activeInt), (Function) function, FullRights);
+            return employee;
         } 
 
         public bool Insert(Employee entity)		
@@ -143,52 +155,159 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                  //Ignored		
              }		
              return executed;		
-         }		
- 		
-         public Employee GetById(int id)		
-         {		
-             Employee ReturnEmployee = null;		
-             string query = "select * from medewerker where id = @id";		
-             try		
-             {		
-                 if (OpenConnection())		
-                 {		
-                     using (SqlCommand command = new SqlCommand(query, Connection))		
-                     {		
-                         SqlDataReader reader = command.ExecuteReader();		
-                         while (reader.Read())		
-                         {		
-                             //Employee Employee = new Employee(reader["Achternaam"].ToString(),		
-                             //    reader["Voornaam"].ToString(), reader["Telefoonnummer"].ToString(),		
-                             //    reader["Bankrekeningnummer"].ToString(), reader["Username"].ToString(),		
-                             //    reader["Password"].ToString(), reader["RFIDCode"].ToString(),		 
-                             //    Convert.ToBoolean(reader["Active"]), (Function) reader["Functie_Id"],); 
+         }
 
-                             return ReturnEmployee;
-                         }		
-                     }		
-                 }
-                 throw new NotImplementedException();
-             }		
-             catch (SqlException exception)
+         public Employee GetById(int id)
+         {
+             Employee employee = new Employee();
+
+             string query = "SELECT * FROM MEDEWERKER WHERE ID = @ID";
+             try
              {
-                 throw new NotImplementedException();
-             }		
-         }		
- 		
-         public List<Employee> GetAll()		
-         {		
-             throw new NotImplementedException();		
-         }		
- 		
-         public List<Employee> GetAllActive(bool active)		
-         {		
-             throw new NotImplementedException();		
-         }		
+                 if (OpenConnection())
+                 {
+                     using (SqlCommand command = new SqlCommand(query, Connection))
+                     {
+                         command.Parameters.AddWithValue("@ID", id);
+
+                         try
+                         {
+                             using (SqlDataReader reader = command.ExecuteReader())
+                             {
+                                 while (reader.Read())
+                                 {
+                                     employee = CreateObjectFromReader(reader);
+                                     return employee;
+                                 }
+                             }
+                         }
+
+                         catch (SqlException exception)
+                         {
+                             throw exception;
+                         }
+                     }
+                 }
+             }
+
+             catch (Exception exception)
+             {
+                return employee;
+             }
+             return employee;
+         }
+
+
+
+
+        public List<Employee> GetAll()
+        {
+            List<Employee> employees = new List<Employee>();
+
+            string query = "SELECT * FROM MEDEWERKER";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            try
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        employees.Add(CreateObjectFromReader(reader));
+                                    }
+                                }
+                            }
+
+                            catch (SqlException exception)
+                            {
+                                throw exception;
+                            }
+                        }
+                    }
+
+                    catch (SqlException exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
+
+            catch (SqlException exception)
+            {
+                throw exception;
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return employees;
+        }
+
+        public List<Employee> GetAllActive(bool active)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            string query = "SELECT * FROM MEDEWERKER WHERE  ";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            try
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        employees.Add(CreateObjectFromReader(reader));
+                                    }
+                                }
+                            }
+
+                            catch (SqlException exception)
+                            {
+                                throw exception;
+                            }
+                        }
+                    }
+
+                    catch (SqlException exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
+
+            catch (SqlException exception)
+            {
+                throw exception;
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return employees;
+        }
+   
  		
          public Employee GetByRfid(string rfid)		
          {		
-             throw new NotImplementedException();		
+             throw new NotImplementedException();
          }		
  		
          public List<Employee> GetByFunction(Function Function)		
