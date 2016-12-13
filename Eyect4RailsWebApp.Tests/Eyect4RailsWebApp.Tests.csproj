@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="LocalRepositoryTest\TuRemise.cs" />
     <Compile Include="MSSQLRepositoryTest\TU_MSSQLMaintenanceRepository.cs" />
+    <Compile Include="MSSQLRepositoryTest\TU_MSSQLRemiseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -27,5 +27,11 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             Assert.AreEqual(1, maintenance.TaskID);
             Assert.AreEqual("Kleine Schoonmaak", maintenance.Task, "Task description is not picked up correctly");
         }
+
+        [TestMethod]
+        public void tu_MSSQLMaintenance_Insert()
+        {
+            
+        }
     }
 }
