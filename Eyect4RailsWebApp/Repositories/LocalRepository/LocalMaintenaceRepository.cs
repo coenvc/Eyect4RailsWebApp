@@ -12,41 +12,25 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
     public class LocalMaintenaceRepository : IMaintenanceRepository
     {
         private LocalCrud<Maintenance> Crud;
-
-        private static List<Rights> FullRights = new List<Rights>()
-        {
-            Rights.WagensInvoeren,
-            Rights.StatusVeranderen,
-            Rights.SporenBlokkeren,
-            Rights.WagensNaarDeSchoonmaakSturen,
-            Rights.TijdsindicatieReparatieGeven,
-            Rights.SchoonmaakLijstOpvragen,
-            Rights.DatumTijdSchoonmaakInvoeren
-        };
-
-        // TODO: Get Employees from LocalEmployeeRepository
-        private List<Employee> Employees = new List<Employee>()
-        {
-            new Employee("Coen", "van Campenhout", "0683992086", "RABO0041001241794", "coenvc", "Test123", "10102030",
-                true, Function.Beheerder, FullRights),
-            new Employee("Reinoud", "van Zoelen", "0630102166", "RABO0041124129571", "rvzoelen", "crytopassword", "8t7hgw45uyg934", 
-                true, Function.Schoonmaker, FullRights)
-        };
+        private LocalEmployeeRepository EmployeeRepository = new LocalEmployeeRepository();
+        private LocalTramRepository TramRepository = new LocalTramRepository();
 
         private List<Maintenance> Maintenances;
+        private List<Employee> Employees;
+        private List<Tram> Trams;
 
-        public LocalMaintenaceRepository(List<Maintenance> maintenances)
+        public LocalMaintenaceRepository()
         {
-            Maintenances = maintenances;
+            Trams = TramRepository.GetAll();
+            Employees = EmployeeRepository.GetAll();
+
+            Maintenances = new List<Maintenance>
+            {
+                new Maintenance(Employees[0], Trams[0], DateTime.Now.AddDays(-1), DateTime.Now.AddDays(3), false, 0, "Grote Schoonmaak"),
+                new Maintenance(Employees[1], Trams[1], DateTime.Now.AddDays(-4), DateTime.Now.AddDays(-1), true, 1, "Kleine Schoonmaak")
+            };
+
             Crud = new LocalCrud<Maintenance>(Maintenances);
-
-            // TODO: Get Tram from LocalTramRepository
-            Tram tram = new Tram();
-
-            Maintenance maintenance = new Maintenance(Employees[0], tram, new DateTime(2016, 12, 12), 
-                new DateTime(2016, 12, 15), Enums.Tasks.KleineReparatie, false);
-
-            Insert(maintenance);
         }
 
 

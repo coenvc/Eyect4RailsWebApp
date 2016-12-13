@@ -12,34 +12,34 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 {
     public class MSSQLMaintenanceRepository:Database, IMaintenanceRepository
     {
-        // TODO: Add the MSSQLTramRepository
-        // TODO: Add the MSSQLEmployeeRepository
+        MSSQLTramRepository TramRepository = new MSSQLTramRepository();
+        MSSQLEmployeeRepository EmployeeRepository = new MSSQLEmployeeRepository();
 
-        private string StartQuery = "Select * From TRAM_ONDERHOUD";
+        private string StartQuery = "Select T_O.ID, Medewerker_ID, Tram_ID, DatumTijdstip, BeschikbaarDatum, Voltooid, Taak_ID, T.Omschrijving From TRAM_ONDERHOUD as T_O inner join TAAK as T on T.Id = T_O.Taak_ID";
 
         private Maintenance CreateObjectFromReader(SqlDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             int medewerker_ID = Convert.ToInt32(reader["Medewerker_ID"]);
             int tram_ID = Convert.ToInt32(reader["Tram_ID"]);
+            int taak_ID = Convert.ToInt32(reader["Taak_ID"]);
 
-            DateTime ScheduledDate = Convert.ToDateTime(reader["DatumTijdstip"]);
+            DateTime ScheduledDate;// = Convert.ToDateTime(reader["DatumTijdstip"]);
+            DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
             DateTime AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
-            string taskString = Convert.ToString(reader["TypeOnderhoud"]);
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
+            string omschrijving = Convert.ToString(reader["Omschrijving"]);
 
-            Tasks task = (Tasks)Enum.Parse(typeof(Tasks), taskString ,true);
+            // TODO: Get Employee from the MSSQLEmployeeRepository
+            //Employee employee = EmployeeRepository.GetById(medewerker_ID);
+            Employee employee = new Employee(medewerker_ID, "", "", "", "", "", "", "", true, Function.Beheerder, new List<Rights>());
+            Tram tram = TramRepository.GetById(tram_ID);
 
-            //StatusEnum MyStatus = StatusEnum.Parse("Active");
-            //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
+            Maintenance maintenance = new Maintenance(id, employee, tram, 
+                ScheduledDate, AvailableDate, 
+                completed, taak_ID, omschrijving);
 
-            // TODO: Get Employee from MSSQLEmployeeRepository
-            Employee employee = new Employee();
-            // TODO: Get Tram from MSSQLTramRepository
-            Tram tram = new Tram();
-
-            Maintenance maintenance = new Maintenance(id, employee, tram, ScheduledDate, AvailableDate, task, false);
-
+            // TODO: Added a Break Point to check if the Maintenance object is created properly
             return maintenance;
         }
 
@@ -65,9 +65,37 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public List<Maintenance> GetAll()
         {
-            throw new NotImplementedException();
-        }
+            List<Maintenance> maintenances = new List<Maintenance>();
 
+            string query = StartQuery;
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                maintenances.Add(CreateObjectFromReader(reader));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException exception)
+            {
+                ThrowDatabaseException(exception);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return maintenances;
+        }
         public List<Maintenance> GetAll(bool completed)
         {
             throw new NotImplementedException();
@@ -102,5 +130,11 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         {
             throw new NotImplementedException();
         }
+
+        private void ThrowDatabaseException(SqlException exception)
+        {
+            // TODO: implement error handling
+        }
+
     }
 }

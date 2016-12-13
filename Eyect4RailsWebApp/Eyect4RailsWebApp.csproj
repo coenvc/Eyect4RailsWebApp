@@ -161,7 +161,11 @@
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Context\MaintenanceContext.cs" />
     <Compile Include="Context\RemiseContext.cs" />
+<<<<<<< HEAD
     <Compile Include="Context\TramContext.cs" />
+=======
+    <Compile Include="Context\TrackContext.cs" />
+>>>>>>> 65e5d65e01ee32efbb7123125bced919823b7652
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -191,6 +195,11 @@
     <Compile Include="Repositories\LocalRepository\LocalEmployeeRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalMaintenaceRepository.cs" />
     <Compile Include="Repositories\LocalRepository\LocalRemiseRepository.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Repositories\LocalRepository\LocalSectorRepository.cs" />
+    <Compile Include="Repositories\LocalRepository\LocalTrackRepository.cs" />
+>>>>>>> 65e5d65e01ee32efbb7123125bced919823b7652
     <Compile Include="Repositories\LocalRepository\LocalTramRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLEmployeeRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLMaintenanceRepository.cs" />
