@@ -105,7 +105,6 @@ C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Eyect4RailsWebApp.Tests.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Eyect4RailsWebApp.Tests.pdb
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Eyect4RailsWebApp.dll
-C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.Web.Helpers.dll
@@ -119,7 +118,6 @@ C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Eyect4RailsWebApp.pdb
-C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp.Tests\bin\Debug\System.Web.Mvc.xml
