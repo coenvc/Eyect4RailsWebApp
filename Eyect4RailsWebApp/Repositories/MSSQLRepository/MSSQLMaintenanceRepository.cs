@@ -26,13 +26,25 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
             DateTime ScheduledDate;// = Convert.ToDateTime(reader["DatumTijdstip"]);
             DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
-            DateTime AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
+            
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
             string omschrijving = Convert.ToString(reader["Omschrijving"]);
 
             Employee employee = EmployeeRepository.GetById(medewerker_ID);
             Tram tram = TramRepository.GetById(tram_ID);
 
+            #region Properties that can be NULL in the database
+
+            DateTime AvailableDate = DateTime.MaxValue;
+            if (reader["BeschikbaarDatum"] != System.DBNull.Value)
+            {
+                // If it's not null
+                AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
+            }
+
+            #endregion
+
+            
             Maintenance maintenance = new Maintenance(id, employee, tram,
                 ScheduledDate, AvailableDate,
                 completed, taak_ID, omschrijving);
@@ -144,9 +156,9 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Maintenance GetById(int id)
         {
-            Maintenance maintenance = new Maintenance();
+            Maintenance maintenance = new Maintenance(200, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, 200, "Error");
 
-            string query = StartQuery + " where ID = @id";
+            string query = StartQuery + " where T_O.ID = @id";
 
             try
             {
