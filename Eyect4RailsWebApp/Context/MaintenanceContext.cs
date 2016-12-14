@@ -15,18 +15,10 @@ namespace Eyect4RailsWebApp.Context
         {
             this.Context = context;
         }
-
-
+        
         public bool Insert(Maintenance entity)
         {
-            if (Context.Insert(entity) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Context.Insert(entity);
         }
 
         public void Update(int id, Maintenance entity)
@@ -36,17 +28,9 @@ namespace Eyect4RailsWebApp.Context
 
         public bool Delete(int id)
         {
-            if (Context.Delete(id) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Context.Delete(id);
         }
-
-
+        
         public Maintenance GetById(int id)
         {
             return Context.GetById(id);
