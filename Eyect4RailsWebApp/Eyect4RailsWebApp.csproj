@@ -303,9 +303,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\IO\Details.cshtml" />
     <Content Include="Views\IO\Edit.cshtml" />
-    <Content Include="Views\IO\Delete.cshtml" />
     <Content Include="Views\Shared\_Tram.cshtml" />
-    <Content Include="Views\IO\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
