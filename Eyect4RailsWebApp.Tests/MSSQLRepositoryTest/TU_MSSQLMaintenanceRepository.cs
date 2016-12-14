@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Context;
+using Eyect4RailsWebApp.Enums;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,10 +26,12 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             //assert
             Assert.AreEqual(1, maintenance0.Employee.Id, "Employee is not picked up correctly");
             Assert.AreEqual(1, maintenance0.Tram.Id, "Tram is not picked up correctly");
+
             Assert.AreEqual(new DateTime(2016, 12, 12, 08, 00, 00), maintenance0.ScheduledDate);
             Assert.AreEqual(new DateTime(2016, 12, 12, 12, 00, 00), maintenance0.AvailableDate);
-            Assert.AreEqual(1, maintenance0.TaskID);
-            Assert.AreEqual("Kleine Schoonmaak", maintenance0.Task, "Task description is not picked up correctly");
+
+            Assert.AreEqual(Tasks.KleineSchoonmaak, maintenance0.Task);
+            Assert.AreEqual(Tasks.GroteReparatie, maintenance1.Task);
 
             Assert.AreEqual(DateTime.MaxValue, maintenance1.AvailableDate);
         }
@@ -51,7 +54,7 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             // act
             employee = employeeContext.GetById(1);
             tram = tramContext.GetById(1);
-            maintenance = new Maintenance(employee, tram, new DateTime(2016, 12, 14, 16, 06, 01), DateTime.MaxValue, false, 1, "Grote Schoonmaak");
+            maintenance = new Maintenance(employee, tram, new DateTime(2016, 12, 14, 16, 06, 01), DateTime.MaxValue, false, Tasks.GroteSchoonmaak);
 
             context.Insert(maintenance);
 
@@ -79,6 +82,7 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
 
             maintenance.Employee.Id = 3;
             maintenance.Tram.Id = 3;
+            maintenance.Task = Tasks.KleineSchoonmaak;
             maintenance.ScheduledDate = new DateTime(2016, 12, 14, 12, 00, 00);
 
             context.Update(maintenance.Id, maintenance);
@@ -90,10 +94,12 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             Assert.AreEqual(new DateTime(2016, 12, 14, 12, 00, 00), maintenance.ScheduledDate);
             Assert.AreEqual(3, verifyMaintenance.Employee.Id);
             Assert.AreEqual(3, verifyMaintenance.Tram.Id);
+            Assert.AreEqual(Tasks.KleineSchoonmaak, verifyMaintenance.Task);
 
             Assert.AreNotEqual(new DateTime(2016, 12, 14, 16, 06, 01), verifyMaintenance.ScheduledDate);
             Assert.AreNotEqual(1, verifyMaintenance.Employee.Id);
             Assert.AreNotEqual(1, verifyMaintenance.Tram.Id);
+            Assert.AreNotEqual(Tasks.GroteSchoonmaak, verifyMaintenance.Task);
 
         }
 

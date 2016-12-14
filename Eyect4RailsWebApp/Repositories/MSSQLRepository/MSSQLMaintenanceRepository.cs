@@ -15,7 +15,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         MSSQLTramRepository TramRepository = new MSSQLTramRepository();
         MSSQLEmployeeRepository EmployeeRepository = new MSSQLEmployeeRepository();
 
-        private string StartQuery = "Select T_O.ID, Medewerker_ID, Tram_ID, DatumTijdstip, BeschikbaarDatum, Voltooid, Taak_ID, T.Omschrijving From TRAM_ONDERHOUD as T_O inner join TAAK as T on T.Id = T_O.Taak_ID";
+        private string StartQuery = "Select * from TRAM_ONDERHOUD";
 
         private Maintenance CreateObjectFromReader(SqlDataReader reader)
         {
@@ -23,34 +23,30 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int medewerker_ID = Convert.ToInt32(reader["Medewerker_ID"]);
             int tram_ID = Convert.ToInt32(reader["Tram_ID"]);
             int taak_ID = Convert.ToInt32(reader["Taak_ID"]);
-
-            DateTime ScheduledDate;// = Convert.ToDateTime(reader["DatumTijdstip"]);
-            DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
-            
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
-            string omschrijving = Convert.ToString(reader["Omschrijving"]);
 
-            Employee employee = EmployeeRepository.GetById(medewerker_ID);
-            Tram tram = TramRepository.GetById(tram_ID);
+            Tasks task = (Tasks)taak_ID;
+
+            DateTime ScheduledDate;
+            DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
 
             #region Properties that can be NULL in the database
-
             DateTime AvailableDate = DateTime.MaxValue;
+
             if (reader["BeschikbaarDatum"] != System.DBNull.Value)
             {
                 // If it's not null
                 AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
             }
-
             #endregion
 
-            
-            Maintenance maintenance = new Maintenance(id, employee, tram,
-                ScheduledDate, AvailableDate,
-                completed, taak_ID, omschrijving);
+            Employee employee = EmployeeRepository.GetById(medewerker_ID);
+            Tram tram = TramRepository.GetById(tram_ID);
 
-            // TODO: Added a Break Point to check if the Maintenance object is created properly
-            // Still uncertain because i dont know if tram and employee are picked up correctly
+            Maintenance maintenance = new Maintenance(id, employee, tram,
+                            ScheduledDate, AvailableDate,
+                            completed, task);
+
             return maintenance;
         }
 
@@ -77,7 +73,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         {
                             command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
                         }
-                        command.Parameters.AddWithValue("@Taak_ID", entity.TaskID);
+                        command.Parameters.AddWithValue("@Taak_ID", (int)entity.Task);
                         command.Parameters.AddWithValue("@Voltooid", entity.Completed);
 
                         command.ExecuteNonQuery();
@@ -110,8 +106,15 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         command.Parameters.AddWithValue("@Medewerker_ID", entity.Employee.Id);
                         command.Parameters.AddWithValue("@Tram_ID", entity.Tram.Id);
                         command.Parameters.AddWithValue("@DatumTijdstip", entity.ScheduledDate);
-                        command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
-                        command.Parameters.AddWithValue("@Taak_ID", entity.TaskID);
+                        if (entity.AvailableDate.Year == 9999)
+                        {
+                            command.Parameters.AddWithValue("@BeschikbaarDatum", Convert.DBNull);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
+                        }
+                        command.Parameters.AddWithValue("@Taak_ID", (int)entity.Task);
                         command.Parameters.AddWithValue("@Voltooid", entity.Completed);
 
                         command.Parameters.AddWithValue("@id", id);
@@ -163,10 +166,9 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Maintenance GetById(int id)
         {
-            Maintenance maintenance = new Maintenance(-1, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, -2, "Error");
-            //Maintenance maintenance = new Maintenance();
+            Maintenance maintenance = new Maintenance(-1, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, Tasks.GroteReparatie);
 
-            string query = StartQuery + " where T_O.ID = @id";
+            string query = StartQuery + " where ID = @id";
 
             try
             {
