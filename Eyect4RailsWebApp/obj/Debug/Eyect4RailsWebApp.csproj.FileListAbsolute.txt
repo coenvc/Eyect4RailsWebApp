@@ -171,7 +171,7 @@ C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\bin\Newton
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\bin\System.Net.Http.Formatting.xml
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\bin\System.Web.Http.xml
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\bin\System.Web.Http.WebHost.xml
-C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\obj\Debug\Eyect4RailsWebApp.csprojResolveAssemblyReference.cache
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\obj\Debug\Eyect4RailsWebApp.dll
 C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\obj\Debug\Eyect4RailsWebApp.pdb
 D:\Documenten\GitHub\eyect4railswebapp\Eyect4RailsWebApp\bin\Eyect4RailsWebApp.dll.config
+C:\Users\Reinoud\Documents\GitHub\Eyect4RailsWebApp\Eyect4RailsWebApp\obj\Debug\Eyect4RailsWebApp.csprojResolveAssemblyReference.cache
