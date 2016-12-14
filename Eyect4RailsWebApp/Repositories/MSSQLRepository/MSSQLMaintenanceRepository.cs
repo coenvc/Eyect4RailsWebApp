@@ -69,7 +69,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         command.Parameters.AddWithValue("@Medewerker_ID", entity.Employee.Id);
                         command.Parameters.AddWithValue("@Tram_ID", entity.Tram.Id);
                         command.Parameters.AddWithValue("@DatumTijdstip", entity.ScheduledDate);
-                        command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
+                        if (entity.AvailableDate.Year == 9999)
+                        {
+                            command.Parameters.AddWithValue("@BeschikbaarDatum", Convert.DBNull);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
+                        }
                         command.Parameters.AddWithValue("@Taak_ID", entity.TaskID);
                         command.Parameters.AddWithValue("@Voltooid", entity.Completed);
 
@@ -156,7 +163,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Maintenance GetById(int id)
         {
-            Maintenance maintenance = new Maintenance(200, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, 200, "Error");
+            Maintenance maintenance = new Maintenance(-1, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, -2, "Error");
+            //Maintenance maintenance = new Maintenance();
 
             string query = StartQuery + " where T_O.ID = @id";
 

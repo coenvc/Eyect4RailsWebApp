@@ -1,1 +1,6 @@
-<Playlist Version="1.0"><Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Insert" /><Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Update" /><Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_CreateObjectFromReader" /><Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Delete" /></Playlist>
+<Playlist Version="1.0">
+<Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_CreateObjectFromReader" />
+<Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Insert" />
+<Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Update" />
+<Add Test="Eyect4RailsWebApp.Tests.MSSQLRepositoryTest.TU_MSSQLMaintenanceRepository.tu_MSSQLMaintenance_Delete" />
+</Playlist>
