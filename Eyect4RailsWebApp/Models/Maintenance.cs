@@ -11,7 +11,7 @@ namespace eyect4rails.Classes
     public class Maintenance : ICruddable
     {
         #region Properties
-        [Editable(false)]
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
 
         public Employee Employee { get; set; }
