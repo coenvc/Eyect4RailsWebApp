@@ -233,8 +233,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         {
             Sector sector = new Sector();
 
-            string query = "SELECT * FROM SECTOR WHERE Tram_ID = @TrackId";
-
+            string query = "SELECT * FROM SECTOR WHERE Tram_ID = @TramId";
+            
             try
             {
                 if (OpenConnection())
@@ -244,7 +244,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         using (SqlCommand command = new SqlCommand(query, Connection))
                         {
 
-                            command.Parameters.AddWithValue("@TrackId", id);
+                            command.Parameters.AddWithValue("@TramId", id);
 
                             try
                             {
@@ -289,7 +289,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             bool insert = false;
 
             string query =
-                "INSERT INTO SECTOR (ID, Spoor_ID, Tram_ID, Nummer, Beschikbaar, Blokkade) VALUES (@ID, @Spoor_Id, @Tram_Id, @Nummer, @Beschikbaar, @Blokkade)";
+                "INSERT INTO SECTOR (Spoor_ID, Tram_ID, Nummer, Beschikbaar, Blokkade) VALUES (@Spoor_Id, @Tram_Id, @Nummer, @Beschikbaar, @Blokkade)";
 
             try
             {
@@ -301,7 +301,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         {
                             try
                             {
-                                command.Parameters.AddWithValue("@ID", entity.Id);
                                 command.Parameters.AddWithValue("@Spoor_Id", entity.TrackId);
                                 command.Parameters.AddWithValue("@Tram_Id", entity.TramId);
                                 command.Parameters.AddWithValue("@Nummer", entity.Number);
@@ -342,7 +341,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         public void Update(int id, Sector entity)
         {
             string query =
-                "UPDATE SECTOR SET ID = @ID, Spoor_ID = @Spoor_Id, Tram_ID = @Tram_Id, Nummer = @Nummer, Beschikbaar = @Beschikbaar, Blokkade = @Blokkade";
+                "UPDATE SECTOR SET Spoor_ID = @Spoor_Id, Tram_ID = @Tram_Id, Nummer = @Nummer, Beschikbaar = @Beschikbaar, Blokkade = @Blokkade WHERE ID = @ID";
 
             try
             {

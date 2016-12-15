@@ -36,17 +36,12 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             return tram;
         }
 
-        public List<Tram> GetByRemiseId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Insert(Tram entity)
         {
             bool insert = false;
 
             string query =
-                "INSERT INTO TRAM (ID, Remise_ID_Standplaats, Tramtype_ID, Nummer, Lengte, Vervuild, Defect, ConducteurGeschikt, Beschikbaar) VALUES (@ID, @RemiseID, @Tramtype, @Tramnumber, @Length, @Filthy, @Defective, @ConductorQualified, @Available)";
+                "INSERT INTO TRAM (Remise_ID_Standplaats, Tramtype_ID, Nummer, Lengte, Vervuild, Defect, ConducteurGeschikt, Beschikbaar) VALUES (@RemiseID, @Tramtype, @Tramnumber, @Length, @Filthy, @Defective, @ConductorQualified, @Available)";
 
             try
             {
@@ -56,7 +51,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         try
                         {
-                            command.Parameters.AddWithValue("@ID", entity.Id);
                             command.Parameters.AddWithValue("@RemiseID", entity.RemiseId);
                             command.Parameters.AddWithValue("@Tramtype", entity.Tramtype);
                             command.Parameters.AddWithValue("@Tramnumber", entity.TramNumber);
@@ -140,10 +134,10 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             bool delete = false;
 
             string[] queries = new string[5];
-            queries[0] = "UPDATE SECTOR SET Tram_ID = NULL where Tram_ID = @ID";
-            queries[1] = "UPDATE RESERVERING SET Tram_ID = NULL where Tram_ID = @ID";
-            queries[2] = "UPDATE TRAM_ONDERHOUD SET Tram_ID = NULL where Tram_ID = @ID";
-            queries[3] = "UPDATE TRAM_LIJN SET Tram_ID = NULL where Tram_ID = @ID";
+            queries[0] = "DELETE FROM SECTOR WHERE Tram_ID = @ID";
+            queries[1] = "DELETE FROM RESERVERING WHERE Tram_ID = @ID";
+            queries[2] = "DELETE TRAM_ONDERHOUD WHERE Tram_ID = @ID";
+            queries[3] = "DELETE FROM TRAM_LIJN WHERE Tram_ID = @ID";
             queries[4] = "DELETE FROM TRAM WHERE ID = @ID";
 
             try
@@ -339,6 +333,60 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         private void ThrowDatabaseException(Exception ex)
         {
             // TODO: implement error handling
+        }
+
+        public List<Tram> GetByRemiseId(int id)
+        {
+            List<Tram> trams = new List<Tram>();
+
+            string query = "SELECT * FROM TRAM WHERE Remise_ID_Standplaats = @RemiseId";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            command.Parameters.AddWithValue("@RemiseId", id);
+
+                            try
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        trams.Add(CreateObjectFromReader(reader));
+                                    }
+                                }
+                            }
+
+                            catch (SqlException exception)
+                            {
+                                ThrowDatabaseException(exception);
+                            }
+                        }
+                    }
+
+                    catch (SqlException exception)
+                    {
+                        ThrowDatabaseException(exception);
+                    }
+                }
+            }
+
+            catch (SqlException exception)
+            {
+                ThrowDatabaseException(exception);
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return trams;
         }
     }
 }
