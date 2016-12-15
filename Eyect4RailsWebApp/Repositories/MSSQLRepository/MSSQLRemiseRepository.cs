@@ -12,17 +12,16 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 {
     public class MSSQLRemiseRepository : Database, IRemiseRepository
     {
-        // TODO: Add the MSSQLTramRepository and MSSQLTrackRepository
+        private MSSQLTramRepository TramRepository = new MSSQLTramRepository();
+        private MSSQLTrackRepository TrackRepository = new MSSQLTrackRepository();
         private string StartQuery = "Select ID, Naam From Remise";
 
         private Remise CreateObjectFromReader(SqlDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            string name = Convert.ToString(reader["Name"]);
-            // TODO: Get Trams from MSSQLTramRepository
-            List<Tram> trams = new List<Tram>();
-            // TODO: Get Tracks from MSSQLTrackRepository
-            List<Track> tracks = new List<Track>();
+            string name = Convert.ToString(reader["Naam"]);
+            List<Tram> trams = TramRepository.GetByRemiseId(id);
+            List<Track> tracks = TrackRepository.GetByRemiseId(id);
 
             Remise remise = new Remise(id, name, tracks, trams);
 
@@ -152,7 +151,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             List<Track> tracks = new List<Track>();
             List<Tram> trams = new List<Tram>();
 
-            Remise remise = new Remise("ERROR", tracks, trams);
+            Remise remise = new Remise(-1, "ERROR", tracks, trams);
             #endregion
 
             string query = StartQuery + " where ID = @ID";
@@ -233,8 +232,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             #region Create the placeholder object
             List<Track> tracks = new List<Track>();
             List<Tram> trams = new List<Tram>();
-
-            Remise remise = new Remise("ERROR", tracks, trams);
+            
+            Remise remise = new Remise(-1, "ERROR", tracks, trams);
             #endregion
 
             string query = StartQuery + " where Naam = @Naam";
