@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eyect4RailsWebApp.Interfaces;
+using Eyect4RailsWebApp.Models;
 
 namespace eyect4rails.Classes
 {

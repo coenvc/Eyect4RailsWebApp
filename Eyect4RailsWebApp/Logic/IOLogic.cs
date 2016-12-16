@@ -5,6 +5,7 @@ using System.Web;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
 using Eyect4RailsWebApp.Context;
+using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 
 namespace Eyect4RailsWebApp.Logic

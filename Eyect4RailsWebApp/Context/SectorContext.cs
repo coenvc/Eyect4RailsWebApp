@@ -11,6 +11,7 @@ namespace Eyect4RailsWebApp.Context
     public class SectorContext : ISectorRepository
     {
         private ISectorRepository Context;
+
         public SectorContext(ISectorRepository context)
         {
             this.Context = context;

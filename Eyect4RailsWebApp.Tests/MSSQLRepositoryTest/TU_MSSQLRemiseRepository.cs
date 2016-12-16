@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Context;
+using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

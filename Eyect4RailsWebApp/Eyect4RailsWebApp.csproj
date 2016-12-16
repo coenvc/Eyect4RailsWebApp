@@ -161,11 +161,14 @@
     <Compile Include="Context\EmployeeContext.cs" />
     <Compile Include="Context\MaintenanceContext.cs" />
     <Compile Include="Context\RemiseContext.cs" />
+    <Compile Include="Context\SectorContext.cs" />
     <Compile Include="Context\TramContext.cs" />
     <Compile Include="Context\TrackContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
     <Compile Include="Controllers\RemiseController.cs" />
+    <Compile Include="Controllers\SectorController.cs" />
+    <Compile Include="Controllers\TramController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\CreateObjectException.cs" />
     <Compile Include="Global.asax.cs">
@@ -181,6 +184,8 @@
     <Compile Include="IRepository\ITramRepository.cs" />
     <Compile Include="Logic\IOLogic.cs" />
     <Compile Include="Logic\RemiseLogic.cs" />
+    <Compile Include="Logic\SectorLogic.cs" />
+    <Compile Include="Logic\TramLogic.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DataCrud.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -209,6 +214,7 @@
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\skin-black.css" />
     <Content Include="Content\skin-blue.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -221,6 +227,13 @@
     <Content Include="Images\avatar5.png" />
     <Content Include="Images\boxed-bg.jpg" />
     <Content Include="Images\boxed-bg.png" />
+    <Content Include="Images\credit\american-express.png" />
+    <Content Include="Images\credit\cirrus.png" />
+    <Content Include="Images\credit\mastercard.png" />
+    <Content Include="Images\credit\mestro.png" />
+    <Content Include="Images\credit\paypal.png" />
+    <Content Include="Images\credit\paypal2.png" />
+    <Content Include="Images\credit\visa.png" />
     <Content Include="Images\default-50x50.gif" />
     <Content Include="Images\icons.png" />
     <Content Include="Images\photo1.png" />
@@ -313,10 +326,19 @@
     <Content Include="Views\Remise\Create.cshtml" />
     <Content Include="Views\Remise\Delete.cshtml" />
     <Content Include="Views\Remise\Edit.cshtml" />
+    <Content Include="Views\Sector\Create.cshtml" />
+    <Content Include="Views\Sector\Delete.cshtml" />
+    <Content Include="Views\Sector\Details.cshtml" />
+    <Content Include="Views\Sector\Edit.cshtml" />
+    <Content Include="Views\Sector\Index.cshtml" />
+    <Content Include="Views\Tram\Create.cshtml" />
+    <Content Include="Views\Tram\Delete.cshtml" />
+    <Content Include="Views\Tram\Details.cshtml" />
+    <Content Include="Views\Tram\Edit.cshtml" />
+    <Content Include="Views\Tram\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\credit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

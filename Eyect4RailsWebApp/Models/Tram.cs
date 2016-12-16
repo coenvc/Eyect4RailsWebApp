@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Eyect4RailsWebApp.Enums;
+﻿using Eyect4RailsWebApp.Enums;
 using Eyect4RailsWebApp.Interfaces;
 
-namespace eyect4rails.Classes
+namespace Eyect4RailsWebApp.Models
 {
     public class Tram : ICruddable
     {

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Logic;
+using Eyect4RailsWebApp.Models;
 
 namespace Eyect4RailsWebApp.Controllers
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using eyect4rails.IRepository;
 using Eyect4RailsWebApp.Context;
 using Eyect4RailsWebApp.IRepository;
 using Eyect4RailsWebApp.Models;

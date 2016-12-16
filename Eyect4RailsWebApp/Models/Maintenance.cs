@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using Eyect4RailsWebApp.Interfaces;
 using Eyect4RailsWebApp.Enums;
+using Eyect4RailsWebApp.Models;
+
 namespace eyect4rails.Classes
 {
     public class Maintenance : ICruddable
