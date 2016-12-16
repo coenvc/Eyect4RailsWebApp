@@ -165,6 +165,7 @@
     <Compile Include="Context\TrackContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
+    <Compile Include="Controllers\RemiseController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\CreateObjectException.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +180,7 @@
     <Compile Include="IRepository\ITrackRepository.cs" />
     <Compile Include="IRepository\ITramRepository.cs" />
     <Compile Include="Logic\IOLogic.cs" />
+    <Compile Include="Logic\RemiseLogic.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DataCrud.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -306,6 +308,11 @@
     <Content Include="Views\Shared\_Tram.cshtml" />
     <Content Include="Views\IO\Delete.cshtml" />
     <Content Include="Views\IO\List.cshtml" />
+    <Content Include="Views\Remise\Index.cshtml" />
+    <Content Include="Views\Remise\Details.cshtml" />
+    <Content Include="Views\Remise\Create.cshtml" />
+    <Content Include="Views\Remise\Delete.cshtml" />
+    <Content Include="Views\Remise\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

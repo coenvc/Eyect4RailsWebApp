@@ -147,12 +147,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Remise GetById(int id)
         {
-            #region Create the placeholder object
-            List<Track> tracks = new List<Track>();
-            List<Tram> trams = new List<Tram>();
-
-            Remise remise = new Remise(-1, "ERROR", tracks, trams);
-            #endregion
+            Remise remise = new Remise();
 
             string query = StartQuery + " where ID = @ID";
 
@@ -229,12 +224,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Remise GetByRemiseName(string name)
         {
-            #region Create the placeholder object
-            List<Track> tracks = new List<Track>();
-            List<Tram> trams = new List<Tram>();
-            
-            Remise remise = new Remise(-1, "ERROR", tracks, trams);
-            #endregion
+            Remise remise = new Remise();
 
             string query = StartQuery + " where Naam = @Naam";
 
