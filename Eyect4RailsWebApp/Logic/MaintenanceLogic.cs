@@ -17,8 +17,8 @@ namespace Eyect4RailsWebApp.Logic
         private MaintenanceContext maintenanceContext = new MaintenanceContext(new MSSQLMaintenanceRepository());
         private TramContext tramContext = new TramContext(new MSSQLTramRepository());
         private EmployeeContext employeeContext = new EmployeeContext(new MSSQLEmployeeRepository());
-        
-        public CreateMaintenance CreateMaintenance()
+
+        public CreateMaintenance Get_ViewModel_CreateMaintenance()
         {
             List<Employee> employees = employeeContext.GetAll();
             List<Tram> trams = tramContext.GetAll();
@@ -33,16 +33,13 @@ namespace Eyect4RailsWebApp.Logic
             return new CreateMaintenance(employees, trams, tasks);
         }
 
-        public void InsertNewTask(int employeeId, int tramId, int taskId, DateTime scheduled)
+        public void InsertNewTask(int tramId, int taskId, DateTime scheduled)
         {
-            Employee employee = employeeContext.GetById(employeeId);
             Tram tram = tramContext.GetById(tramId);
 
-            Maintenance maintenance = new Maintenance(employee, tram, scheduled, DateTime.MaxValue, false, (Tasks)taskId);
+            Maintenance maintenance = new Maintenance(new Employee(), tram, scheduled, DateTime.MaxValue, false, (Tasks)taskId);
 
             Insert(maintenance);
-            // Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, bool completed, Tasks task
-            //Medewerker_ID, Tram_ID, DatumTijdstip, BeschikbaarDatum, Taak_ID, Voltooid
         }
 
         public bool Insert(Maintenance entity)
@@ -62,6 +59,13 @@ namespace Eyect4RailsWebApp.Logic
 
         public Maintenance GetById(int id)
         {
+            var maintenance = maintenanceContext.GetById(id);
+
+            if (!(maintenance.Id >= 0))
+            {
+                throw new HttpException(404, "Maintenance could not be found.");
+            }
+
             return maintenanceContext.GetById(id);
         }
 
@@ -93,6 +97,26 @@ namespace Eyect4RailsWebApp.Logic
         public List<Maintenance> GetByTramId(int id, bool completed)
         {
             return maintenanceContext.GetByTramId(id, completed);
+        }
+
+        public AssignMaintenanceToEmployee Get_ViewModel_AssignMaintenanceToEmployee(int id)
+        {
+            // TODO: Get a list of possible employees from the logic
+            // So all cleaners instead of all Employees
+
+            Maintenance maintenance = maintenanceContext.GetById(id);
+            List<Employee> employees = employeeContext.GetAll();
+
+            AssignMaintenanceToEmployee viewmodel = new AssignMaintenanceToEmployee(maintenance, employees);
+
+            return viewmodel;
+        }
+
+        public void Assign(int id, int EmployeeID)
+        {
+            Employee employee = employeeContext.GetById(EmployeeID);
+
+            Assign(id, employee);
         }
 
         public void Assign(int id, Employee employee)

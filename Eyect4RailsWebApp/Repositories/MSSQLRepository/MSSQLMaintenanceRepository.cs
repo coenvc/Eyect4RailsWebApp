@@ -20,7 +20,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         private Maintenance CreateObjectFromReader(SqlDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            int medewerker_ID = Convert.ToInt32(reader["Medewerker_ID"]);
             int tram_ID = Convert.ToInt32(reader["Tram_ID"]);
             int taak_ID = Convert.ToInt32(reader["Taak_ID"]);
             bool completed = Convert.ToBoolean(reader["Voltooid"]);
@@ -29,8 +28,16 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
             DateTime ScheduledDate;
             DateTime.TryParse(Convert.ToString(reader["DatumTijdstip"]), out ScheduledDate);
-
+            
             #region Properties that can be NULL in the database
+            Employee employee = new Employee();
+
+            if (reader["Medewerker_ID"] != System.DBNull.Value)
+            {
+                // If it's not null
+                employee = EmployeeRepository.GetById(Convert.ToInt32(reader["Medewerker_ID"]));
+            }
+
             DateTime AvailableDate = DateTime.MaxValue;
 
             if (reader["BeschikbaarDatum"] != System.DBNull.Value)
@@ -40,7 +47,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
             #endregion
 
-            Employee employee = EmployeeRepository.GetById(medewerker_ID);
             Tram tram = TramRepository.GetById(tram_ID);
 
             Maintenance maintenance = new Maintenance(id, employee, tram,
@@ -62,7 +68,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        command.Parameters.AddWithValue("@Medewerker_ID", entity.Employee.Id);
+                        command.Parameters.AddWithValue("@Medewerker_ID", Convert.DBNull);
                         command.Parameters.AddWithValue("@Tram_ID", entity.Tram.Id);
                         command.Parameters.AddWithValue("@DatumTijdstip", entity.ScheduledDate);
                         if (entity.AvailableDate.Year == 9999)

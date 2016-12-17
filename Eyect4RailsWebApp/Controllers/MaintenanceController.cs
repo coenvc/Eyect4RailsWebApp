@@ -18,30 +18,33 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance
         public ActionResult Index()
         {
-            var maintenances = logic.GetAll();
+            List<Maintenance> maintenances = logic.GetAll();
 
             return View(maintenances);
         }
 
         public ActionResult Open()
         {
-            var maintenances = logic.GetAll(false);
+            List<Maintenance> maintenances = logic.GetAll(false);
 
             return View(maintenances);
         }
 
         public ActionResult Assign(int id)
         {
-            // TODO: Get a list of possible employees from the logic
-
-            EmployeeContext ec = new EmployeeContext(new MSSQLEmployeeRepository());
-
-            var maintenance = logic.GetById(id);
-            var employees = ec.GetAll();
-
-            var viewmodel = new AssignMaintenanceToEmployee(maintenance, employees);
-
+            AssignMaintenanceToEmployee viewmodel = logic.Get_ViewModel_AssignMaintenanceToEmployee(id);
+            
             return View(viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult Assign(int id, FormCollection collection, AssignMaintenanceToEmployee amte)
+        {
+            int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
+
+            logic.Assign(id, EmployeeID);
+
+            return Index();
         }
 
         // GET: Maintenance/Details/5
@@ -55,7 +58,7 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Create
         public ActionResult Create()
         {
-            var CreateMaintenance = logic.CreateMaintenance();
+            CreateMaintenance CreateMaintenance = logic.Get_ViewModel_CreateMaintenance();
 
             return View(CreateMaintenance);
         }
@@ -66,13 +69,13 @@ namespace Eyect4RailsWebApp.Controllers
         {
             try
             {
-                int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
+                //int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
                 int TramID = Convert.ToInt32(collection["TramID"]);
                 int TaskID = Convert.ToInt32(collection["TaskID"]);
 
-                logic.InsertNewTask(EmployeeID,TramID,TaskID, cm.Maintenance.ScheduledDate);
+                logic.InsertNewTask(TramID,TaskID, cm.Maintenance.ScheduledDate);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Open");
             }
             catch
             {
@@ -84,11 +87,6 @@ namespace Eyect4RailsWebApp.Controllers
         public ActionResult Edit(int id)
         {
             var maintenance = logic.GetById(id);
-
-            if (maintenance.Id == null)
-            {
-                throw new HttpException(404, "Maintenance could not be found.");
-            }
             
             return View(maintenance);
         }

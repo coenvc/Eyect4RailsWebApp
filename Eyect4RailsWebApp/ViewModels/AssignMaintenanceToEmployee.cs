@@ -11,6 +11,10 @@ namespace Eyect4RailsWebApp.ViewModels
         public Maintenance Maintenance { get; set; }
         public List<Employee> Employees { get; set; }
 
+        public AssignMaintenanceToEmployee()
+        {
+        }
+
         public AssignMaintenanceToEmployee(Maintenance maintenance, List<Employee> employees)
         {
             Maintenance = maintenance;
