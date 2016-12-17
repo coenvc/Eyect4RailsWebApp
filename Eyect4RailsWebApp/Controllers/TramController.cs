@@ -12,6 +12,7 @@ namespace Eyect4RailsWebApp.Controllers
     {
         // GET: Tram
         TramLogic logic = new TramLogic();
+
         public ActionResult Index()
         {
             List<Tram> trams = logic.GetAll();

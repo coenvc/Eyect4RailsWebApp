@@ -63,7 +63,7 @@ namespace eyect4rails.Classes
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Surname} {Name}";
+            return $"{Id} {Name} {Surname}";
         }
 
 

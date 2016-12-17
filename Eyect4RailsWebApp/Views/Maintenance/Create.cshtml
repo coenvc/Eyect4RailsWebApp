@@ -1,4 +1,5 @@
-﻿@model eyect4rails.Classes.Maintenance
+﻿@using eyect4rails.Classes
+@model Eyect4RailsWebApp.ViewModels.CreateMaintenance
 
 @{
     ViewBag.Title = "Create";
@@ -7,37 +8,41 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Maintenance</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
         <div class="form-group">
-            @Html.LabelFor(model => model.ScheduledDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Select a Task", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ScheduledDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ScheduledDate, "", new { @class = "text-danger" })
+                @Html.DropDownList("TaskID", new SelectList(Model.TasksDictionary, "Key", "Value"))
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AvailableDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Select a Tram", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AvailableDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AvailableDate, "", new { @class = "text-danger" })
+                @Html.DropDownList("TramID", new SelectList(Model.Trams, "Id", "Id"))
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Completed, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Select an Employee", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Completed)
-                    @Html.ValidationMessageFor(model => model.Completed, "", new { @class = "text-danger" })
-                </div>
+                @Html.DropDownList("EmployeeID", new SelectList(Model.Employees, "Id", "Surname"))
+            </div>
+        </div>
+
+        <div class="form-group" >
+            @Html.LabelFor(model => model.Maintenance.ScheduledDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Maintenance.ScheduledDate, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Maintenance.ScheduledDate, "", new {@class = "text-danger"})
             </div>
         </div>
 
@@ -52,3 +57,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+

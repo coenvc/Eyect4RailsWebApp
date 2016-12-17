@@ -211,6 +211,7 @@
     <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTramRepository.cs" />
     <Compile Include="ViewModels\AssignMaintenanceToEmployee.cs" />
+    <Compile Include="ViewModels\CreateMaintenance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -339,13 +340,13 @@
     <Content Include="Views\Tram\Edit.cshtml" />
     <Content Include="Views\Tram\Index.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
-    <Content Include="Views\Maintenance\Create.cshtml" />
     <Content Include="Views\Maintenance\Delete.cshtml" />
     <Content Include="Views\Maintenance\Details.cshtml" />
     <Content Include="Views\Remise\Edit.cshtml" />
     <Content Include="Views\Maintenance\Edit.cshtml" />
     <Content Include="Views\Maintenance\Open.cshtml" />
     <Content Include="Views\Maintenance\Assign.cshtml" />
+    <Content Include="Views\Maintenance\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

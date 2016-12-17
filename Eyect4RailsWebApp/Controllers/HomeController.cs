@@ -13,10 +13,6 @@ namespace Eyect4RailsWebApp.Controllers
     {
         public ActionResult Index()
         {
-            Employee Employee = new Employee("van Campenhout", "coen", "0683992086", "12345678", "coenvc", "Test123", "123456", true, Enums.Function.Bestuurder, new List<Enums.Rights>() {Enums.Rights.SporenBlokkeren});
-            EmployeeContext ctx = new EmployeeContext(new MSSQLEmployeeRepository());
-            ctx.Insert(Employee);
-            ctx.Update(1, Employee);
             return View();
         }
 

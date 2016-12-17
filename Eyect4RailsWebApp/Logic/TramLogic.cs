@@ -2,51 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using eyect4rails.Classes;
 using eyect4rails.IRepository;
 using Eyect4RailsWebApp.Context;
 using Eyect4RailsWebApp.IRepository;
 using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
+using Eyect4RailsWebApp.ViewModels;
 
 namespace Eyect4RailsWebApp.Logic
 {
-    public class TramLogic: ITramRepository
+    public class TramLogic : ITramRepository
     {
-       private TramContext tram = new TramContext(new MSSQLTramRepository());
-
+        private TramContext tramContext = new TramContext(new MSSQLTramRepository());
+        
         public bool Delete(int id)
         {
-           return tram.Delete(id);
+            return tramContext.Delete(id);
         }
 
         public List<Tram> GetAll()
         {
-            return tram.GetAll();
+            return tramContext.GetAll();
         }
 
         public Tram GetById(int id)
         {
-            return tram.GetById(id);
+            return tramContext.GetById(id);
         }
 
         public List<Tram> GetByRemiseId(int id)
         {
-            return tram.GetByRemiseId(id);
+            return tramContext.GetByRemiseId(id);
         }
 
         public Tram GetBySectorId(int id)
         {
-            return tram.GetBySectorId(id);
+            return tramContext.GetBySectorId(id);
         }
 
         public bool Insert(Tram entity)
         {
-            return tram.Insert(entity);
+            return tramContext.Insert(entity);
         }
 
         public void Update(int id, Tram entity)
         {
-            tram.Update(id, entity);
+            tramContext.Update(id, entity);
         }
     }
 }

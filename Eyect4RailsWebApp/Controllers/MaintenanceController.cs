@@ -13,19 +13,19 @@ namespace Eyect4RailsWebApp.Controllers
 {
     public class MaintenanceController : Controller
     {
-        private MaintenanceLogic MaintenanceLogic = new MaintenanceLogic(new MSSQLMaintenanceRepository());
+        private MaintenanceLogic logic = new MaintenanceLogic();
 
         // GET: Maintenance
         public ActionResult Index()
         {
-            var maintenances = MaintenanceLogic.GetAll();
+            var maintenances = logic.GetAll();
 
             return View(maintenances);
         }
 
         public ActionResult Open()
         {
-            var maintenances = MaintenanceLogic.GetAll(false);
+            var maintenances = logic.GetAll(false);
 
             return View(maintenances);
         }
@@ -36,7 +36,7 @@ namespace Eyect4RailsWebApp.Controllers
 
             EmployeeContext ec = new EmployeeContext(new MSSQLEmployeeRepository());
 
-            var maintenance = MaintenanceLogic.GetById(id);
+            var maintenance = logic.GetById(id);
             var employees = ec.GetAll();
 
             var viewmodel = new AssignMaintenanceToEmployee(maintenance, employees);
@@ -47,7 +47,7 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Details/5
         public ActionResult Details(int id)
         {
-            var maintenance = MaintenanceLogic.GetById(id);
+            var maintenance = logic.GetById(id);
 
             return View(maintenance);
         }
@@ -55,16 +55,22 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Create
         public ActionResult Create()
         {
-            return View();
+            var CreateMaintenance = logic.CreateMaintenance();
+
+            return View(CreateMaintenance);
         }
 
         // POST: Maintenance/Create
         [HttpPost]
-        public ActionResult Create(Maintenance maintenance)
+        public ActionResult Create(FormCollection collection, CreateMaintenance cm)
         {
             try
             {
-                MaintenanceLogic.Insert(maintenance);
+                int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
+                int TramID = Convert.ToInt32(collection["TramID"]);
+                int TaskID = Convert.ToInt32(collection["TaskID"]);
+
+                logic.InsertNewTask(EmployeeID,TramID,TaskID, cm.Maintenance.ScheduledDate);
 
                 return RedirectToAction("Index");
             }
@@ -77,7 +83,7 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Edit/5
         public ActionResult Edit(int id)
         {
-            var maintenance = MaintenanceLogic.GetById(id);
+            var maintenance = logic.GetById(id);
 
             if (maintenance.Id == null)
             {
@@ -93,7 +99,7 @@ namespace Eyect4RailsWebApp.Controllers
         {
             try
             {
-                MaintenanceLogic.Update(maintenance.Id, maintenance);
+                logic.Update(maintenance.Id, maintenance);
 
                 return RedirectToAction("Index");
             }
@@ -106,7 +112,7 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Delete/5
         public ActionResult Delete(int id)
         {
-            var maintenance = MaintenanceLogic.GetById(id);
+            var maintenance = logic.GetById(id);
 
             return View(maintenance);
         }
@@ -117,7 +123,7 @@ namespace Eyect4RailsWebApp.Controllers
         {
             try
             {
-                MaintenanceLogic.Delete(maintenance.Id);
+                logic.Delete(maintenance.Id);
 
                 return RedirectToAction("Index");
             }
