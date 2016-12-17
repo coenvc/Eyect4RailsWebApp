@@ -21,11 +21,13 @@ namespace eyect4rails.Classes
         [Required(ErrorMessage = "A task has to be assigned to a Tram. Tram is required.")]
         public Tram Tram { get; set; }
 
-        [DisplayName("Scheduled to be completed at"),
-            Required(ErrorMessage = "A task needs a scheduled date. Scheduled Date is required.")]
+        [DisplayName("Scheduled at"),
+            Required(ErrorMessage = "A task needs a scheduled date. Scheduled Date is required."),
+            DataType(DataType.Date)]
         public DateTime ScheduledDate { get; set; }
 
-        [DisplayName("Completed at")]
+        [DisplayName("Completed at"),
+            DataType(DataType.Date)]
         public DateTime AvailableDate { get; set; }
 
         public bool Completed { get; set; }

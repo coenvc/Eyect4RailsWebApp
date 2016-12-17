@@ -166,7 +166,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public Maintenance GetById(int id)
         {
-            Maintenance maintenance = new Maintenance(-1, new Employee(), new Tram(), DateTime.Now, DateTime.Now, true, Tasks.GroteReparatie);
+            Maintenance maintenance = new Maintenance();
 
             string query = StartQuery + " where ID = @id";
 

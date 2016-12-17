@@ -166,6 +166,7 @@
     <Compile Include="Context\TrackContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\RemiseController.cs" />
     <Compile Include="Controllers\SectorController.cs" />
     <Compile Include="Controllers\TramController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="IRepository\ITrackRepository.cs" />
     <Compile Include="IRepository\ITramRepository.cs" />
     <Compile Include="Logic\IOLogic.cs" />
+    <Compile Include="Logic\MaintenanceLogic.cs" />
     <Compile Include="Logic\RemiseLogic.cs" />
     <Compile Include="Logic\SectorLogic.cs" />
     <Compile Include="Logic\TramLogic.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Repositories\MSSQLRepository\MSSQLSectorRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTramRepository.cs" />
+    <Compile Include="ViewModels\AssignMaintenanceToEmployee.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -325,7 +328,6 @@
     <Content Include="Views\Remise\Details.cshtml" />
     <Content Include="Views\Remise\Create.cshtml" />
     <Content Include="Views\Remise\Delete.cshtml" />
-    <Content Include="Views\Remise\Edit.cshtml" />
     <Content Include="Views\Sector\Create.cshtml" />
     <Content Include="Views\Sector\Delete.cshtml" />
     <Content Include="Views\Sector\Details.cshtml" />
@@ -336,6 +338,14 @@
     <Content Include="Views\Tram\Details.cshtml" />
     <Content Include="Views\Tram\Edit.cshtml" />
     <Content Include="Views\Tram\Index.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Views\Maintenance\Create.cshtml" />
+    <Content Include="Views\Maintenance\Delete.cshtml" />
+    <Content Include="Views\Maintenance\Details.cshtml" />
+    <Content Include="Views\Remise\Edit.cshtml" />
+    <Content Include="Views\Maintenance\Edit.cshtml" />
+    <Content Include="Views\Maintenance\Open.cshtml" />
+    <Content Include="Views\Maintenance\Assign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,35 @@
+﻿@using eyect4rails.Classes
+@using Eyect4RailsWebApp.ViewModels
+@model Eyect4RailsWebApp.ViewModels.AssignMaintenanceToEmployee
+
+@{
+    ViewBag.Title = "Assign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign</h2>
+
+<div>
+    <h4>Maintenance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayNameFor(model => model.Maintenance.Task)
+        </dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Maintenance.Tram.Id)
+        </dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Maintenance.ScheduledDate)
+        </dd>
+        <dd>
+            @Html.DropDownListFor(x => x.Employees, new SelectList(Model.Employees))
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Maintenance.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
