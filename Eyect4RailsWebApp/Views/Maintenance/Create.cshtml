@@ -1,5 +1,5 @@
 ﻿@using eyect4rails.Classes
-@model Eyect4RailsWebApp.ViewModels.CreateMaintenance
+@model Eyect4RailsWebApp.ViewModels.viewmodel_Maintenance
 
 @{
     ViewBag.Title = "Create";
@@ -30,13 +30,6 @@
                 @Html.DropDownList("TramID", new SelectList(Model.Trams, "Id", "Id"))
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.Label("Select an Employee", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmployeeID", new SelectList(Model.Employees, "Id", "Surname"))
-            </div>
-        </div>*@
 
         <div class="form-group" >
             @Html.LabelFor(model => model.Maintenance.ScheduledDate, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -1,4 +1,5 @@
-﻿using Eyect4RailsWebApp.Enums;
+﻿using System.ComponentModel;
+using Eyect4RailsWebApp.Enums;
 using Eyect4RailsWebApp.Interfaces;
 
 namespace Eyect4RailsWebApp.Models
@@ -6,6 +7,7 @@ namespace Eyect4RailsWebApp.Models
     public class Tram : ICruddable
     {
         #region Properties
+        [DisplayName("TramID")]
         public int Id { get; set; }
         public int RemiseId { get; set; }
         public TramType Tramtype { get; set; }

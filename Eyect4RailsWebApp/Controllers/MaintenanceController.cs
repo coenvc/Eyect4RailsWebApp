@@ -58,14 +58,14 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Create
         public ActionResult Create()
         {
-            CreateMaintenance CreateMaintenance = logic.Get_ViewModel_CreateMaintenance();
+            viewmodel_Maintenance CreateMaintenance = logic.Get_ViewModel_Maintenance();
 
             return View(CreateMaintenance);
         }
 
         // POST: Maintenance/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection, CreateMaintenance cm)
+        public ActionResult Create(FormCollection collection, viewmodel_Maintenance cm)
         {
             try
             {
@@ -86,18 +86,30 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Edit/5
         public ActionResult Edit(int id)
         {
-            var maintenance = logic.GetById(id);
+            viewmodel_Maintenance maintenance = logic.Get_ViewModel_Maintenance(id);
             
             return View(maintenance);
         }
 
         // POST: Maintenance/Edit/5
         [HttpPost]
-        public ActionResult Edit(Maintenance maintenance)
+        public ActionResult Edit(viewmodel_Maintenance viewmodel, FormCollection collection)
         {
             try
             {
-                logic.Update(maintenance.Id, maintenance);
+                int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
+                int TramID = Convert.ToInt32(collection["TramID"]);
+                int TaskID = Convert.ToInt32(collection["TaskID"]);
+
+                Maintenance maintenance = viewmodel.Maintenance;
+
+                // Maxvalue will be handled as null by the database layer
+                if (maintenance.Completed == false)
+                {
+                    maintenance.AvailableDate = DateTime.MaxValue;
+                }
+
+                logic.Update(EmployeeID, TramID, TaskID, maintenance);
 
                 return RedirectToAction("Index");
             }
@@ -127,7 +139,7 @@ namespace Eyect4RailsWebApp.Controllers
             }
             catch
             {
-                return View();
+                return Index();
             }
         }
     }

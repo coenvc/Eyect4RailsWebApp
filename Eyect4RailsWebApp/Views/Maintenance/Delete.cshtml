@@ -12,6 +12,31 @@
     <h4>Maintenance</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            Assigned to
+        </dt>
+
+        <dd>
+            @Model.Employee.Name @Model.Employee.Surname
+            @*TODO: implement @Html.ActionLink(Model.Employee.Id.ToString(), "Details", "Employee", new { id = Model.Employee.Id }, null)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tram.Id)
+        </dt>
+
+        @if (Model.Tram != null)
+            {
+            <dd>
+                @Html.ActionLink(Model.Tram.Id.ToString(), "Details", "Tram", new { id = Model.Id }, null)
+            </dd>
+        }
+        else
+        {
+            <dd>Unassigned</dd>
+        }
+
         <dt>
             @Html.DisplayNameFor(model => model.ScheduledDate)
         </dt>
@@ -24,9 +49,16 @@
             @Html.DisplayNameFor(model => model.AvailableDate)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AvailableDate)
-        </dd>
+        @if (Model.AvailableDate.Year != 9999)
+            {
+            <dd>
+                @Html.DisplayFor(modelItem => Model.AvailableDate)
+            </dd>
+        }
+        else
+        {
+            <dd>n/a</dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Completed)

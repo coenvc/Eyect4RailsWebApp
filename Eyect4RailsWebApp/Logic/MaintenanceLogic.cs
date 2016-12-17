@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Context;
@@ -18,7 +19,7 @@ namespace Eyect4RailsWebApp.Logic
         private TramContext tramContext = new TramContext(new MSSQLTramRepository());
         private EmployeeContext employeeContext = new EmployeeContext(new MSSQLEmployeeRepository());
 
-        public CreateMaintenance Get_ViewModel_CreateMaintenance()
+        public viewmodel_Maintenance Get_ViewModel_Maintenance()
         {
             List<Employee> employees = employeeContext.GetAll();
             List<Tram> trams = tramContext.GetAll();
@@ -30,7 +31,16 @@ namespace Eyect4RailsWebApp.Logic
                 {3, "Kleine Reparatie"}
             };
 
-            return new CreateMaintenance(employees, trams, tasks);
+            return new viewmodel_Maintenance(employees, trams, tasks);
+        }
+
+        public viewmodel_Maintenance Get_ViewModel_Maintenance(int id)
+        {
+            viewmodel_Maintenance vm = Get_ViewModel_Maintenance();
+
+            vm.Maintenance = maintenanceContext.GetById(id);
+
+            return vm;
         }
 
         public void InsertNewTask(int tramId, int taskId, DateTime scheduled)
@@ -45,6 +55,18 @@ namespace Eyect4RailsWebApp.Logic
         public bool Insert(Maintenance entity)
         {
             return maintenanceContext.Insert(entity);
+        }
+
+        public void Update(int employeeId, int tramId, int taskId, Maintenance maintenance)
+        {
+            Employee employee = employeeContext.GetById(employeeId);
+            Tram tram = tramContext.GetById(tramId);
+            maintenance.Task = (Tasks)taskId;
+
+            maintenance.Employee = employee;
+            maintenance.Tram = tram;
+
+            Update(maintenance.Id, maintenance);
         }
 
         public void Update(int id, Maintenance entity)

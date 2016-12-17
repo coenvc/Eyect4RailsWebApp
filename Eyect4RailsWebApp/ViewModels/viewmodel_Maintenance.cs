@@ -7,18 +7,18 @@ using Eyect4RailsWebApp.Models;
 
 namespace Eyect4RailsWebApp.ViewModels
 {
-    public class CreateMaintenance
+    public class viewmodel_Maintenance
     {
         public Maintenance Maintenance { get; set; }
         public List<Employee> Employees { get; set; }
         public List<Tram> Trams { get; set; }
         public Dictionary<int, string> TasksDictionary { get; set; }
 
-        public CreateMaintenance()
+        public viewmodel_Maintenance()
         {
         }
 
-        public CreateMaintenance(List<Employee> employees, List<Tram> trams, Dictionary<int, string> tasksDictionary)
+        public viewmodel_Maintenance(List<Employee> employees, List<Tram> trams, Dictionary<int, string> tasksDictionary)
         {
             Maintenance = new Maintenance();
             Employees = employees;
