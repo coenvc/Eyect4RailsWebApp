@@ -1,0 +1,113 @@
+﻿@model IEnumerable<eyect4rails.Classes.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelephoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IBANNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RFIDCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>*@
+    @*<tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelephoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBANNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RFIDCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>*@
+
+    @foreach (var item in Model) {
+
+    <div class="col-md-4">
+        <!-- Widget: user widget style 1 -->
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+                <h3 class="widget-user-username"><a class="link-username" href="@Url.Action("Details", new { id = item.Id })">@item.Name @item.Surname</a></h3>
+                <h5 class="widget-user-desc">@item.Function.ToString()</h5>
+            </div>
+            <div class="widget-user-image">
+                <img class="img-circle" src="~/Images/avatar.png" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">3,200</h5>
+                            <span class="description-text">SALES</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">13,000</h5>
+                            <span class="description-text">FOLLOWERS</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4">
+                        <div class="description-block">
+                            <h5 class="description-header">35</h5>
+                            <span class="description-text">PRODUCTS</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+        <!-- /.widget-user -->
+    </div>
+}
+
+</table>

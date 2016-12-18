@@ -24,17 +24,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             Rights.SchoonmaakLijstOpvragen,
             Rights.DatumTijdSchoonmaakInvoeren
         };
-        private bool CheckActive(int boolInt)
-         {
-             if (boolInt == 1)
-             {
-                 return true;
-             }
-             else
-             {
-                 return false;
-             }
-         } 
 
         private Employee CreateObjectFromReader(SqlDataReader reader)
         {
@@ -48,13 +37,17 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             string username = Convert.ToString(reader["username"]);
             string password = Convert.ToString(reader["password"]);
             string rfid = Convert.ToString(reader["RFIDCode"]);
-            int activeInt = Convert.ToInt32(reader["Active"]);
+            bool active = Convert.ToBoolean(reader["Active"]);
             
 
             //StatusEnum MyStatus = StatusEnum.Parse("Active");
             //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
 
+<<<<<<< HEAD
             Employee employee = new Employee(id,surname, name, phonenumber, bankaccount, username, password, rfid, CheckActive(activeInt), (Function) function, FullRights);
+=======
+            Employee employee = new Employee(id, surname, name, phonenumber, bankaccount, username, password, rfid, active, (Function) function, FullRights);
+>>>>>>> bc1bb1bb36f938ea737d68fbf1fd520a9443860b
             return employee;
         } 
 

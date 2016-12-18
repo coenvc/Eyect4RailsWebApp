@@ -1,0 +1,55 @@
+﻿@using eyect4rails.Classes
+@using Eyect4RailsWebApp.ViewModels
+@model AssignMaintenanceToEmployee
+
+@{
+    ViewBag.Title = "Assign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>Maintenance</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Maintenance.Task)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Maintenance.Task)
+            </dd>
+
+            <dt>
+                TramID
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Maintenance.Tram.Id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employees)
+            </dt>
+
+            <dd>
+                @Html.DropDownList("EmployeeID", new SelectList(Model.Employees, "Id", "Surname"))
+            </dd>
+
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Assign" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Maintenance.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

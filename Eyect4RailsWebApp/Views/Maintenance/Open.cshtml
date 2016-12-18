@@ -1,0 +1,54 @@
+﻿@using eyect4rails.Classes
+@model IEnumerable<eyect4rails.Classes.Maintenance>
+
+@{
+    ViewBag.Title = "Openstaande Taken";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Openstaande Taken</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tram ID
+        </th>
+        <th>
+           @Html.DisplayNameFor(model => model.Tram.Tramtype) 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Task)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (Maintenance item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Tram.Id.ToString(), "Details", "Tram", new { id = item.Tram.Id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tram.Tramtype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Task)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduledDate)
+        </td>
+        <td>
+            @Html.ActionLink("Assign", "Assign", new {id = item.Id}) |
+            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+            @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+        </td>
+    </tr>
+}
+
+</table>

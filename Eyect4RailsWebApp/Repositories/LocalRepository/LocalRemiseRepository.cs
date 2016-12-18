@@ -17,13 +17,11 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
         public LocalRemiseRepository()
         {
-            // TODO: Add Trams.GetByRemiseID once it is configured
-
             List<Track> Tracks1 = trackRepository.GetByRemiseId(1);
-            List<Tram> Trams1 = tramRepository.GetAll();
+            List<Tram> Trams1 = tramRepository.GetByRemiseId(1);
 
             List<Track> Tracks2 = trackRepository.GetByRemiseId(2);
-            List<Tram> Trams2 = tramRepository.GetAll();
+            List<Tram> Trams2 = tramRepository.GetByRemiseId(1);
 
             Remise amsterdam = new Remise("Remise Amsterdam", Tracks1,Trams1);
             Remise rotterdam = new Remise("Remise Rotterdam", Tracks2, Trams2);

@@ -1,0 +1,75 @@
+﻿@model Eyect4RailsWebApp.Models.Tram
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tram</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RemiseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemiseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TramNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TramNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Filthy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Filthy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Defective)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Defective)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConductorQualified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConductorQualified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

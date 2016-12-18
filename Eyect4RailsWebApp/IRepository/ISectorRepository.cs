@@ -10,7 +10,7 @@ using eyect4rails.IRepository;
 
 namespace Eyect4RailsWebApp.IRepository
 {
-    interface ISectorRepository : IRepository<Sector>
+    public interface ISectorRepository : IRepository<Sector>
     {
         List<Sector> GetByTrackId(int id);
         Sector GetByTramId(int id);

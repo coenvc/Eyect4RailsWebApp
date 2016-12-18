@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using eyect4rails.Classes;
+using Eyect4RailsWebApp.Models;
 
 namespace eyect4rails.IRepository
 {

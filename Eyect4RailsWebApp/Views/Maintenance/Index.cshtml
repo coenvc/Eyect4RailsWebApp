@@ -1,0 +1,99 @@
+﻿@using eyect4rails.Classes
+@model IEnumerable<eyect4rails.Classes.Maintenance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Task)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Function)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tram.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvailableDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Maintenance item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task)
+            </td>
+            
+
+            @if (item.Employee.Name != null)
+            {
+                <td>
+                    
+                    @* TODO: Implement @Html.ActionLink(item.Employee.Id.ToString(), "Details", "Employee", new { id = item.Id }, null)*@
+                    @item.Employee.Name @item.Employee.Surname
+                </td>
+                <td>
+                    @item.Employee.Function
+                </td>
+            }
+            else
+            {
+                <td>Unassigned</td>
+                <td> </td>
+            }
+            
+            
+            @if (item.Tram.Id >= 0)
+            {
+                <td>
+                    @Html.ActionLink(item.Tram.Id.ToString(), "Details", "Tram", new {id = item.Id}, null)
+                </td>
+            }
+            else
+            {
+                <td>Unassigned</td>
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledDate)
+            </td>
+            
+
+            @if (item.AvailableDate.Year != 9999)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableDate)
+                </td>
+            }
+            else
+            {
+                <td>n/a</td>
+            }
+            
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>

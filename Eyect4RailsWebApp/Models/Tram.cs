@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using Eyect4RailsWebApp.Enums;
 using Eyect4RailsWebApp.Interfaces;
 
-namespace eyect4rails.Classes
+namespace Eyect4RailsWebApp.Models
 {
     public class Tram : ICruddable
     {
         #region Properties
+        [DisplayName("TramID")]
         public int Id { get; set; }
         public int RemiseId { get; set; }
         public TramType Tramtype { get; set; }

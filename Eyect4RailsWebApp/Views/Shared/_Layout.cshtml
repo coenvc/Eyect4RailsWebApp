@@ -49,7 +49,7 @@ desired effect
 <!-- Main Header -->
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">R</span>
         <!-- logo for regular state and mobile devices -->
@@ -166,16 +166,16 @@ desired effect
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="~/Images/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <img src="http://www.sardiniauniqueproperties.com/wp-content/uploads/2015/10/Square-Profile-Pic-1.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">Esther Courtier</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="~/Images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="http://www.sardiniauniqueproperties.com/wp-content/uploads/2015/10/Square-Profile-Pic-1.jpg" class="img-circle" alt="User Image">
                             <p>
-                                Alexander Pierce - Web Developer
+                                Esther Courtier - Schoonmaakster
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -220,10 +220,10 @@ desired effect
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="~/Images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="http://www.sardiniauniqueproperties.com/wp-content/uploads/2015/10/Square-Profile-Pic-1.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Esther Courtier</p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -250,12 +250,25 @@ desired effect
                 <a href="#">
                     <i class="fa fa-link"></i> <span>Multilevel</span>
                     <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#">Link in level 2</a></li>
                     <li><a href="#">Link in level 2</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Maintenance</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>@Html.ActionLink("Overzicht", "Index", "Maintenance")</li>
+                    <li>@Html.ActionLink("Openstaande taken", "Open", "Maintenance")</li>
+                    <li>@Html.ActionLink("Nieuwe taak aanmaken", "Create", "Maintenance")</li>
                 </ul>
             </li>
         </ul>

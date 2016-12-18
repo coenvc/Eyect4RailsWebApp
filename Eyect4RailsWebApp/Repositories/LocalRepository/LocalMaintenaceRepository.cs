@@ -26,8 +26,8 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
             Maintenances = new List<Maintenance>
             {
-                new Maintenance(Employees[0], Trams[0], DateTime.Now.AddDays(-1), DateTime.Now.AddDays(3), false, 0, "Grote Schoonmaak"),
-                new Maintenance(Employees[1], Trams[1], DateTime.Now.AddDays(-4), DateTime.Now.AddDays(-1), true, 1, "Kleine Schoonmaak")
+                new Maintenance(Employees[0], Trams[0], DateTime.Now.AddDays(-1), DateTime.Now.AddDays(3), false, Tasks.GroteReparatie),
+                new Maintenance(Employees[1], Trams[1], DateTime.Now.AddDays(-4), DateTime.Now.AddDays(-1), true, Tasks.KleineReparatie)
             };
 
             Crud = new LocalCrud<Maintenance>(Maintenances);
@@ -85,19 +85,28 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             return Crud.GetAll().Where(x => x.Tram.Id == id && x.Completed == completed).ToList();
         }
 
-        public void Assign(Maintenance maintenance, Employee employee)
+        public void Assign(int id, Employee employee)
         {
-            if (employee != null)
+            foreach (Maintenance maintenance in Crud.All)
             {
-                maintenance.Employee = employee;
+                if (maintenance.Id == id)
+                {
+                    maintenance.Employee = employee;
+                }
             }
         }
 
-        public void Complete(Maintenance maintenance, Employee employee)
+        public void Complete(int id, Employee employee, DateTime completed)
         {
-            maintenance.Completed = true;
-            maintenance.Employee = employee;
-            maintenance.AvailableDate = DateTime.Now;
+            foreach (Maintenance maintenance in Crud.All)
+            {
+                if (maintenance.Id == id)
+                {
+                    maintenance.Employee = employee;
+                    maintenance.AvailableDate = completed;
+                    maintenance.Completed = true;
+                }
+            }
         }
     }
 }
