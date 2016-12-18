@@ -163,6 +163,7 @@
     <Compile Include="Context\RemiseContext.cs" />
     <Compile Include="Context\TramContext.cs" />
     <Compile Include="Context\TrackContext.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="IRepository\ISectorRepository.cs" />
     <Compile Include="IRepository\ITrackRepository.cs" />
     <Compile Include="IRepository\ITramRepository.cs" />
+    <Compile Include="Logic\EmployeeLogic.cs" />
     <Compile Include="Logic\IOLogic.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DataCrud.cs" />
@@ -306,6 +308,8 @@
     <Content Include="Views\IO\Delete.cshtml" />
     <Content Include="Views\Shared\_Tram.cshtml" />
     <Content Include="Views\IO\List.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

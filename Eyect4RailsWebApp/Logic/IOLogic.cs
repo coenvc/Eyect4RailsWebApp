@@ -42,5 +42,10 @@ namespace Eyect4RailsWebApp.Logic
         {
             return Tram.GetBySectorId(id);
         }
+
+        public List<Tram> GetByRemiseId(int id)
+        {
+            return Tram.GetByRemiseId(id);
+        }
     }
 }

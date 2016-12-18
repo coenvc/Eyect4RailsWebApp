@@ -54,7 +54,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             //StatusEnum MyStatus = StatusEnum.Parse("Active");
             //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
 
-            Employee employee = new Employee(surname, name, phonenumber, bankaccount, username, password, rfid, CheckActive(activeInt), (Function) function, FullRights);
+            Employee employee = new Employee(id,surname, name, phonenumber, bankaccount, username, password, rfid, CheckActive(activeInt), (Function) function, FullRights);
             return employee;
         } 
 
@@ -256,7 +256,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         {
             List<Employee> employees = new List<Employee>();
 
-            string query = "SELECT * FROM MEDEWERKER WHERE  ";
+            string query = "select * from MEDEWERKER where active = @Active";
 
             try
             {
@@ -266,6 +266,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         using (SqlCommand command = new SqlCommand(query, Connection))
                         {
+                            if (active == true)
+                            {
+                                command.Parameters.AddWithValue("@Active", 1);
+                            }
+                            else
+                            {
+                                command.Parameters.AddWithValue("@Active", 0);
+                            }
                             try
                             {
                                 using (SqlDataReader reader = command.ExecuteReader())
@@ -306,18 +314,135 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
    
  		
          public Employee GetByRfid(string rfid)		
-         {		
-             throw new NotImplementedException();
-         }		
+         {
+            Employee employee = new Employee();
+
+            string query = "SELECT * FROM MEDEWERKER WHERE rfidcode = @RFID";
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", rfid);
+                        try
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    employee = CreateObjectFromReader(reader);
+                                    return employee;
+                                }
+                            }
+                        }
+
+                        catch (SqlException exception)
+                        {
+                            throw exception;
+                        }
+                    }
+                }
+            }
+
+            catch (Exception exception)
+            {
+                return employee;
+            }
+            return employee;
+        }		
  		
          public List<Employee> GetByFunction(Function Function)		
-         {		
-             throw new NotImplementedException();		
-         }		
+         {
+            List<Employee> employees = new List<Employee>();
+
+            string query = "select * from MEDEWERKER where function_id = @FunctionId";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            command.Parameters.AddWithValue("@FunctionId", (int)Function);
+                            try
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        employees.Add(CreateObjectFromReader(reader));
+                                    }
+                                }
+                            }
+
+                            catch (SqlException exception)
+                            {
+                                throw exception;
+                            }
+                        }
+                    }
+
+                    catch (SqlException exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
+
+            catch (SqlException exception)
+            {
+                throw exception;
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return employees;
+        }		
  		
          public Employee GetByUsernamePassword(string username, string password)		
-         {		
-             throw new NotImplementedException();		
-         }		
+         {
+            Employee employee = new Employee();
+
+            string query = "SELECT * FROM MEDEWERKER WHERE username = @username and password = @password";
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@password", password);
+                        try
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    employee = CreateObjectFromReader(reader);
+                                    return employee;
+                                }
+                            }
+                        }
+
+                        catch (SqlException exception)
+                        {
+                            throw exception;
+                        }
+                    }
+                }
+            }
+
+            catch (Exception exception)
+            {
+                return employee;
+            }
+            return employee;
+        }		
      }		
  } 
