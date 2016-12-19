@@ -1,4 +1,6 @@
-﻿@model eyect4rails.Classes.Remise
+﻿@using eyect4rails.Classes
+@using Eyect4RailsWebApp.Models
+@model eyect4rails.Classes.Remise
 
 @{
     ViewBag.Title = "Details";
@@ -21,6 +23,24 @@
 
     </dl>
 </div>
+
+@foreach (Track track in Model.Tracklist)
+{
+    <table border="1">
+        @foreach (Sector sector in track.SectorList)
+        {
+            <tr>
+                <td>
+                    @if (sector.TramId >= 0)
+                    {
+                        @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new { id = sector.TramId }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
