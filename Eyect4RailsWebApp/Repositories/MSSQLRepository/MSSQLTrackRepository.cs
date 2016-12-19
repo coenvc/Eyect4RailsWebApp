@@ -22,7 +22,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int sectors = Convert.ToInt32(reader["Lengte"]);
             bool available = Convert.ToBoolean(reader["Beschikbaar"]);
             bool entrydeparttrack = Convert.ToBoolean(reader["InUitRijspoor"]);
-            List<Sector> sectorlist = sectorRepository.GetByTrackId(id);
+            List<Sector> sectorlist = new MSSQLSectorRepository().GetByTrackId(id);
 
             Track track = new Track(id, remiseid, number,
                 sectors, available, entrydeparttrack, sectorlist);

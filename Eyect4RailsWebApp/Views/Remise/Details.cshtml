@@ -30,17 +30,20 @@
         @foreach (Sector sector in track.SectorList)
         {
             <tr>
+                tr
                 <td>
+                    td
                     @if (sector.TramId >= 0)
                     {
-                        @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new { id = sector.TramId }, null)
+                        @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new {id = sector.TramId}, null)
                     }
+                    @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new {id = sector.TramId}, null)
                 </td>
             </tr>
         }
     </table>
+<br>
 }
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
