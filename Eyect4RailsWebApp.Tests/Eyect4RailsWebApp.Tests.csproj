@@ -87,6 +87,8 @@
     <Compile Include="LocalRepositoryTest\TU_LocalRemiseRepository.cs" />
     <Compile Include="MSSQLRepositoryTest\TU_MSSQLMaintenanceRepository.cs" />
     <Compile Include="MSSQLRepositoryTest\TU_MSSQLRemiseRepository.cs" />
+    <Compile Include="MSSQLRepositoryTest\TU_MSSQLSectorRepository.cs" />
+    <Compile Include="MSSQLRepositoryTest\TU_MSSQLTramRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
