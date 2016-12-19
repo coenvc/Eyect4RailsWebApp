@@ -42,22 +42,22 @@ namespace Eyect4RailsWebApp.Logic
 
         public List<Employee> GetAllActive(bool active)
         {
-            throw new NotImplementedException();
+            return Context.GetAllActive(active);
         }
 
         public Employee GetByRfid(string rfid)
         {
-            throw new NotImplementedException();
+            return Context.GetByRfid(rfid);
         }
 
         public List<Employee> GetByFunction(Function function)
         {
-            throw new NotImplementedException();
+            return Context.GetByFunction(function);
         }
 
         public Employee GetByUsernamePassword(string username, string password)
         {
-            throw new NotImplementedException();
+            return Context.GetByUsernamePassword(username, password);
         }
 
         public Employee Login(string username, string password)

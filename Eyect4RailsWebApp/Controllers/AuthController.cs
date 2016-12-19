@@ -25,7 +25,7 @@ namespace Eyect4RailsWebApp.Controllers
             string password = employee.Password;
             try
             {
-                Logic.GetByUsernamePassword(username, password);
+                Logic.Login(username, password);
                 Session["LoggedInEmployee"] = employee;
                 return RedirectToAction("Index", "Employee");  
             }
@@ -34,10 +34,5 @@ namespace Eyect4RailsWebApp.Controllers
                 return View();
             }
         } 
-       
-
-        
-
-       
     }
 }

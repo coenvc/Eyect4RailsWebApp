@@ -171,6 +171,7 @@
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\RemiseController.cs" />
     <Compile Include="Controllers\SectorController.cs" />
+    <Compile Include="Controllers\TrackController.cs" />
     <Compile Include="Controllers\TramController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\CreateObjectException.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Logic\MaintenanceLogic.cs" />
     <Compile Include="Logic\RemiseLogic.cs" />
     <Compile Include="Logic\SectorLogic.cs" />
+    <Compile Include="Logic\TrackLogic.cs" />
     <Compile Include="Logic\TramLogic.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\DataCrud.cs" />
@@ -352,7 +354,12 @@
     <Content Include="Views\Maintenance\Open.cshtml" />
     <Content Include="Views\Maintenance\Assign.cshtml" />
     <Content Include="Views\Maintenance\Create.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Track\Index.cshtml" />
+    <Content Include="Views\Track\Details.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Track\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

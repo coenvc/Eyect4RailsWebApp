@@ -75,7 +75,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
             catch (SqlException exception)
             {
-                // TODO: Exception afhandelen
+                throw exception;
             }
             finally
             {
@@ -109,7 +109,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                         catch (SqlException exception)
                         {
-                            // TODO: Exception afhandelen
+                            throw exception;
                         }
                     }
                 }
@@ -149,7 +149,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
             catch (SqlException exception)
             {
-                // TODO: Exception afhandelen
+                throw exception;
             }
             finally
             {
@@ -181,14 +181,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                         catch (SqlException exception)
                         {
-                            // TODO: Exception afhandelen
+                            throw exception;
                         }
                     }
                 }
             }
             catch (SqlException exception)
             {
-                // TODO: Exception afhandelen
+                throw exception;
             }
             finally
             {
@@ -220,14 +220,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                         catch (SqlException exception)
                         {
-                            // TODO: Exception afhandelen
+                            throw exception;
                         }
                     }
                 }
             }
             catch (SqlException exception)
             {
-                // TODO: Exception afhandelen
+                throw exception;
             }
             finally
             {
@@ -258,14 +258,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                         catch (SqlException exception)
                         {
-                            // TODO: Exception afhandelen
+                            throw exception;
                         }
                     }
                 }
             }
             catch (SqlException exception)
             {
-                // TODO: Exception afhandelen
+                throw exception;
             }
             finally
             {

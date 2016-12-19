@@ -26,7 +26,41 @@ namespace Eyect4RailsWebApp.Controllers
             Employee Employee = EmployeeLogic.GetById(id);
 
             return View(Employee);
-        } 
-        
+        }
+
+        [HttpPost]
+        [ActionName("Details")]
+        public ActionResult DetailsPost(int id)
+        {
+            Employee Employee = EmployeeLogic.GetById(id);
+
+            return View(Employee);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        { 
+            return View(EmployeeLogic.GetById(id));
+        }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        public ActionResult EditPost(Employee employee)
+        {
+            EmployeeLogic.Update(employee.Id, employee);
+            return RedirectToAction("Details","Employee",employee.Id);
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Employee employee)
+        {
+            EmployeeLogic.Insert(employee);
+            return RedirectToAction("Index");
+        }
     }
 }
