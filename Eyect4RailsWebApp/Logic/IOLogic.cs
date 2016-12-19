@@ -46,11 +46,7 @@ namespace Eyect4RailsWebApp.Logic
 
         public List<Tram> GetByRemiseId(int id)
         {
-<<<<<<< HEAD
             return Tram.GetByRemiseId(id);
-=======
-            throw new NotImplementedException();
->>>>>>> bc1bb1bb36f938ea737d68fbf1fd520a9443860b
         }
     }
 }

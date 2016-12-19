@@ -43,13 +43,9 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             //StatusEnum MyStatus = StatusEnum.Parse("Active");
             //StatusEnum MyStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Active", true);
 
-<<<<<<< HEAD
-            Employee employee = new Employee(id,surname, name, phonenumber, bankaccount, username, password, rfid, CheckActive(activeInt), (Function) function, FullRights);
-=======
-            Employee employee = new Employee(id, surname, name, phonenumber, bankaccount, username, password, rfid, active, (Function) function, FullRights);
->>>>>>> bc1bb1bb36f938ea737d68fbf1fd520a9443860b
+            Employee employee = new Employee(id,surname, name, phonenumber, bankaccount, username, password, rfid, Convert.ToBoolean(active), (Function) function, FullRights);
             return employee;
-        } 
+        }  
 
         public bool Insert(Employee entity)		
          { 		

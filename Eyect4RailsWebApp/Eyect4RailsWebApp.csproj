@@ -164,6 +164,7 @@
     <Compile Include="Context\SectorContext.cs" />
     <Compile Include="Context\TramContext.cs" />
     <Compile Include="Context\TrackContext.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOController.cs" />
@@ -327,10 +328,8 @@
     <Content Include="Views\Shared\_Tram.cshtml" />
     <Content Include="Views\IO\Delete.cshtml" />
     <Content Include="Views\IO\List.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
-=======
     <Content Include="Views\Remise\Index.cshtml" />
     <Content Include="Views\Remise\Details.cshtml" />
     <Content Include="Views\Remise\Create.cshtml" />
@@ -353,7 +352,7 @@
     <Content Include="Views\Maintenance\Open.cshtml" />
     <Content Include="Views\Maintenance\Assign.cshtml" />
     <Content Include="Views\Maintenance\Create.cshtml" />
->>>>>>> bc1bb1bb36f938ea737d68fbf1fd520a9443860b
+    <Content Include="Views\Auth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

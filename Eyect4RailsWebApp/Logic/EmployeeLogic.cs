@@ -59,5 +59,18 @@ namespace Eyect4RailsWebApp.Logic
         {
             throw new NotImplementedException();
         }
+
+        public Employee Login(string username, string password)
+        {
+            Employee LoginEmployee = Context.GetByUsernamePassword(username, password);
+            if (LoginEmployee != null)
+            {
+                return LoginEmployee;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
     }
 }
