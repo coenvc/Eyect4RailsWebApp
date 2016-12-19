@@ -11,46 +11,21 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 {
     public class MSSQLTrackRepository : Database, ITrackRepository
     {
-        public bool Delete(int id)
-        {
-            bool executed = false;
-            string[] queries = new string[3];
-            queries[0] = "Update Sector Set Spoor_ID = NULL where Spoor_ID = @ID";
-            queries[1] = "Update Reservering Set Spoor_ID = NULL where Spoor_ID = @ID";
-            queries[2] = "Delete FROM Spoor where ID = @IID";
 
-            try
-            {
-                if (OpenConnection())
-                {
-                    foreach (string query in queries)
-                    {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
-                        {
-                            try
-                            {
-                                command.Parameters.AddWithValue("@ID", id);
-                                command.ExecuteNonQuery();
-                                executed = true;
-                            }
-                            catch (SqlException exception)
-                            {
-                                // TODO: Exception afhandelen
-                            }
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                // TODO: Exception afhandelen
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return executed;
+        private Track CreateObjectFromReader(SqlDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            int remiseid = Convert.ToInt32(reader["Remise_ID"]);
+            int number = Convert.ToInt32(reader["Nummer"]);
+            int sectors = Convert.ToInt32(reader["Lengte"]);
+            bool available = Convert.ToBoolean(reader["Beschikbaar"]);
+            bool entrydeparttrack = Convert.ToBoolean(reader["InUitRijspoor"]);
+            // TODO: List sectoren ophalen en in de track zetten
+            List<Sector> sectorlist = new List<Sector>();
+            Track track = new Track(id, remiseid, number, sectors, available, entrydeparttrack, sectorlist);
+            return track;
         }
+
 
         public List<Track> GetAll()
         {
@@ -273,18 +248,35 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
         }
 
-        private Track CreateObjectFromReader(SqlDataReader reader)
+        public bool Delete(int id)
         {
-            int id = Convert.ToInt32(reader["ID"]);
-            int remiseid = Convert.ToInt32(reader["Remise_ID"]);
-            int number = Convert.ToInt32(reader["Nummer"]);
-            int sectors = Convert.ToInt32(reader["Lengte"]);
-            bool available = Convert.ToBoolean(reader["Beschikbaar"]);
-            bool entrydeparttrack = Convert.ToBoolean(reader["InUitRijspoor"]);
-            // TODO: List sectoren ophalen en in de track zetten
-            List<Sector> sectorlist = new List<Sector>();
-            Track track = new Track(id, remiseid, number, sectors, available, entrydeparttrack, sectorlist);
-            return track;
+            bool executed = false;
+
+            string[] queries = new string[3];
+            queries[0] = "Update Sector Set Spoor_ID = NULL where Spoor_ID = @ID";
+            queries[1] = "Delete FROM Reservering Set where Spoor_ID = @ID";
+            queries[2] = "Delete FROM Spoor where ID = @IID";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    foreach (string query in queries)
+                    {
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            command.Parameters.AddWithValue("@ID", id);
+                            command.ExecuteNonQuery();
+                            executed = true;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return executed;
         }
     }
 }
