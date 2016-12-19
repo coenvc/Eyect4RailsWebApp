@@ -11,6 +11,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 {
     public class MSSQLTrackRepository : Database, ITrackRepository
     {
+        private string StaryQuery = "Select * From SPOOR";
+        private MSSQLSectorRepository sectorRepository = new MSSQLSectorRepository();
 
         private Track CreateObjectFromReader(SqlDataReader reader)
         {
@@ -20,9 +22,10 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int sectors = Convert.ToInt32(reader["Lengte"]);
             bool available = Convert.ToBoolean(reader["Beschikbaar"]);
             bool entrydeparttrack = Convert.ToBoolean(reader["InUitRijspoor"]);
-            // TODO: List sectoren ophalen en in de track zetten
-            List<Sector> sectorlist = new List<Sector>();
-            Track track = new Track(id, remiseid, number, sectors, available, entrydeparttrack, sectorlist);
+            List<Sector> sectorlist = sectorRepository.GetByTrackId(id);
+
+            Track track = new Track(id, remiseid, number,
+                sectors, available, entrydeparttrack, sectorlist);
             return track;
         }
 
@@ -30,13 +33,14 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         public List<Track> GetAll()
         {
             List<Track> tracks = new List<Track>();
-            string query2 = "Select * From Spoor";
+
+            string query = StaryQuery;
 
             try
             {
                 if (OpenConnection())
                 {
-                    using (SqlCommand command = new SqlCommand(query2, Connection))
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -48,22 +52,19 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-                throw exception;
-            }
             finally
             {
                 CloseConnection();
             }
+
             return tracks;
         }
 
         public Track GetById(int id)
         {
-            List<Sector> sectors = new List<Sector>();
-            Track track = new Track(0, 0, 0, 0, false, false, sectors);
-            string query = "Select * From Spoor Where ID = @ID";
+            Track track = new Track();
+
+            string query = StaryQuery + " where ID = @ID";
 
             try
             {
@@ -72,38 +73,31 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
                         command.Parameters.AddWithValue("@ID", id);
-                        try
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
-                                    track = CreateObjectFromReader(reader);
-                                }
+                                track = CreateObjectFromReader(reader);
                             }
                         }
-                        catch (SqlException exception)
-                        {
-                            throw exception;
-                        }
+
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                // TODO: Exception afhandelen
             }
             finally
             {
                 CloseConnection();
             }
+
             return track;
         }
 
         public List<Track> GetByRemiseId(int remiseid)
         {
             List<Track> tracks = new List<Track>();
-            string query = "Select * From Spoor Where Remise_ID = @ID";
+
+            string query = StaryQuery + " where Remise_ID = @ID";
 
             try
             {
@@ -112,6 +106,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
                         command.Parameters.AddWithValue("@ID", remiseid);
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -122,20 +117,18 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-                throw exception;
-            }
             finally
             {
                 CloseConnection();
             }
+
             return tracks;
         }
 
         public bool Insert(Track entity)
         {
             bool insert = false;
+
             string query = "INSERT INTO Spoor(Remise_ID, Nummer, Lengte, Beschikbaar, InUitRijspoor)values(@remiseid, @nummer, @lengte, @beschikbaar, @inuitrijspoor)";
 
             try
@@ -144,37 +137,29 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        try
-                        {
-                            command.Parameters.AddWithValue("@remiseid", entity.RemiseId);
-                            command.Parameters.AddWithValue("@nummer", entity.Number);
-                            command.Parameters.AddWithValue("@lengte", entity.Sectors);
-                            command.Parameters.AddWithValue("@beschikbaar", entity.Available);
-                            command.Parameters.AddWithValue("@inuitrijspoor", entity.EntryDepartTrack);
-                            command.ExecuteNonQuery();
-                            insert = true;
-                        }
-                        catch (SqlException exception)
-                        {
-                            throw exception;
-                        }
+                        command.Parameters.AddWithValue("@remiseid", entity.RemiseId);
+                        command.Parameters.AddWithValue("@nummer", entity.Number);
+                        command.Parameters.AddWithValue("@lengte", entity.Sectors);
+                        command.Parameters.AddWithValue("@beschikbaar", entity.Available);
+                        command.Parameters.AddWithValue("@inuitrijspoor", entity.EntryDepartTrack);
+                        command.ExecuteNonQuery();
+                        insert = true;
+
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                throw exception;
             }
             finally
             {
                 CloseConnection();
             }
+
             return insert;
         }
 
         public bool Insert(Remise remise, Track track)
         {
             bool insert = false;
+
             string query = "INSERT INTO Spoor(Remise_ID, Nummer, Lengte, Beschikbaar, InUitRijspoor)values(@remiseid, @nummer, @lengte, @beschikbaar, @inuitrijspoor)";
 
             try
@@ -221,26 +206,15 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        try
-                        {
-                            command.Parameters.AddWithValue("@id", id);
-                            command.Parameters.AddWithValue("@remise", entity.RemiseId);
-                            command.Parameters.AddWithValue("@number", entity.Number);
-                            command.Parameters.AddWithValue("@sectors", entity.Sectors);
-                            command.Parameters.AddWithValue("@available", entity.Available);
-                            command.Parameters.AddWithValue("@inuitrijspoor", entity.EntryDepartTrack);
-                            command.ExecuteNonQuery();
-                        }
-                        catch (SqlException exception)
-                        {
-                            throw exception;
-                        }
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@remise", entity.RemiseId);
+                        command.Parameters.AddWithValue("@number", entity.Number);
+                        command.Parameters.AddWithValue("@sectors", entity.Sectors);
+                        command.Parameters.AddWithValue("@available", entity.Available);
+                        command.Parameters.AddWithValue("@inuitrijspoor", entity.EntryDepartTrack);
+                        command.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                throw exception;
             }
             finally
             {
@@ -276,6 +250,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 CloseConnection();
             }
+
             return executed;
         }
     }
