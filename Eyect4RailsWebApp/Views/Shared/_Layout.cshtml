@@ -244,7 +244,7 @@ desired effect
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+            @*<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#">
@@ -257,7 +257,7 @@ desired effect
                     <li><a href="#">Link in level 2</a></li>
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
-            </li>
+            </li>*@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i> <span>Maintenance</span>
@@ -269,6 +269,39 @@ desired effect
                     <li>@Html.ActionLink("Overzicht", "Index", "Maintenance")</li>
                     <li>@Html.ActionLink("Openstaande taken", "Open", "Maintenance")</li>
                     <li>@Html.ActionLink("Nieuwe taak aanmaken", "Create", "Maintenance")</li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>In and Out</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>@Html.ActionLink("Overzicht", "List", "IO")</li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Werknemers</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>@Html.ActionLink("Overzicht", "Index", "Employee")</li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Remise</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>@Html.ActionLink("Overzicht", "Index", "Remise")</li>
                 </ul>
             </li>
         </ul>

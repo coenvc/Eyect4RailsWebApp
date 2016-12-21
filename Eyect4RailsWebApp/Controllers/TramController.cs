@@ -51,7 +51,8 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Tram/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            
+            return View(logic.GetById(id));
         }
 
         // POST: Tram/Edit/5
