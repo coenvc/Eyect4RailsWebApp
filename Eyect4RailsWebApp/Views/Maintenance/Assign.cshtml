@@ -1,6 +1,6 @@
 ﻿@using eyect4rails.Classes
 @using Eyect4RailsWebApp.ViewModels
-@model AssignMaintenanceToEmployee
+@model viewmodel_Maintenance
 
 @{
     ViewBag.Title = "Assign";
@@ -33,11 +33,11 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Employees)
+                @Html.DisplayNameFor(model => model.Maintenance.Employee)
             </dt>
 
             <dd>
-                @Html.DropDownList("EmployeeID", new SelectList(Model.Employees, "Id", "Surname"))
+                @Html.DropDownListFor(model => model.SelectedId_Employee, new SelectList(Model.Employees, "Id", "Surname"), Model.Maintenance.Employee.Surname)
             </dd>
 
         </dl>
