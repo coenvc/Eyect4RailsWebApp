@@ -246,6 +246,11 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
             string query = StartQuery + " where Voltooid = @completed";
 
+            if (completed == false)
+            {
+                query = query + " and Medewerker_ID is null";
+            }
+
             try
             {
                 if (OpenConnection())
@@ -448,10 +453,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         command.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-
             }
             finally
             {

@@ -20,14 +20,14 @@
         <div class="form-group">
             @Html.Label("Select a Task", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TaskID", new SelectList(Model.TasksDictionary, "Key", "Value"))
+                @Html.EnumDropDownListFor(model => model.Maintenance.Task, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Select a Tram", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TramID", new SelectList(Model.Trams, "Id", "Id"))
+                @Html.DropDownListFor(model => model.SelectedId_Tram, new SelectList(Model.Trams, "Id", "Id"), null, new { @class = "form-control" })
             </div>
         </div>
 

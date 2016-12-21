@@ -215,7 +215,6 @@
     <Compile Include="Repositories\MSSQLRepository\MSSQLSectorRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTrackRepository.cs" />
     <Compile Include="Repositories\MSSQLRepository\MSSQLTramRepository.cs" />
-    <Compile Include="ViewModels\AssignMaintenanceToEmployee.cs" />
     <Compile Include="ViewModels\viewmodel_Maintenance.cs" />
   </ItemGroup>
   <ItemGroup>

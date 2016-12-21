@@ -18,32 +18,13 @@ namespace Eyect4RailsWebApp.Logic
         private MaintenanceContext maintenanceContext = new MaintenanceContext(new MSSQLMaintenanceRepository());
         private TramContext tramContext = new TramContext(new MSSQLTramRepository());
         private EmployeeContext employeeContext = new EmployeeContext(new MSSQLEmployeeRepository());
-
-        public viewmodel_Maintenance Get_ViewModel_Maintenance()
+        
+        public viewmodel_Maintenance Create()
         {
-            List<Employee> employees = employeeContext.GetAll();
-            List<Tram> trams = tramContext.GetAll();
-            var tasks = new Dictionary<int, string>
-            {
-                {0, "Grote Schoonmaak" },
-                {1, "Kleine Schoonmaak" },
-                {2, "Grote Reparatie" },
-                {3, "Kleine Reparatie"}
-            };
-
-            return new viewmodel_Maintenance(employees, trams, tasks);
+            return new viewmodel_Maintenance(null, employeeContext.GetAll(), tramContext.GetAll());
         }
 
-        public viewmodel_Maintenance Get_ViewModel_Maintenance(int id)
-        {
-            viewmodel_Maintenance vm = Get_ViewModel_Maintenance();
-
-            vm.Maintenance = maintenanceContext.GetById(id);
-
-            return vm;
-        }
-
-        public void InsertNewTask(int tramId, int taskId, DateTime scheduled)
+        public void Create(int tramId, int taskId, DateTime scheduled)
         {
             Tram tram = tramContext.GetById(tramId);
 
@@ -52,12 +33,12 @@ namespace Eyect4RailsWebApp.Logic
             Insert(maintenance);
         }
 
-        public bool Insert(Maintenance entity)
+        public viewmodel_Maintenance Edit(int id)
         {
-            return maintenanceContext.Insert(entity);
+            return new viewmodel_Maintenance(maintenanceContext.GetById(id), employeeContext.GetAll(), tramContext.GetAll());
         }
 
-        public void Update(int employeeId, int tramId, int taskId, Maintenance maintenance)
+        public void Edit(int id, int employeeId, int tramId, int taskId, Maintenance maintenance)
         {
             Employee employee = employeeContext.GetById(employeeId);
             Tram tram = tramContext.GetById(tramId);
@@ -66,9 +47,37 @@ namespace Eyect4RailsWebApp.Logic
             maintenance.Employee = employee;
             maintenance.Tram = tram;
 
-            Update(maintenance.Id, maintenance);
+            if (maintenance.Completed == false)
+            {
+                maintenance.AvailableDate = DateTime.MaxValue;
+            }
+
+            Update(id, maintenance);
         }
 
+
+        public viewmodel_Maintenance Assign(int id)
+        {
+            return new viewmodel_Maintenance(maintenanceContext.GetById(id), employeeContext.GetAll(), tramContext.GetAll());
+        }
+
+        public void Assign(int id, int employeeId)
+        {
+            var employee = employeeContext.GetById(employeeId);
+
+            Assign(id, employee);
+        }
+        
+        /// 
+        /// 
+        /// Passthrough methods
+        /// 
+        /// 
+
+        public bool Insert(Maintenance entity)
+        {
+            return maintenanceContext.Insert(entity);
+        }
         public void Update(int id, Maintenance entity)
         {
             maintenanceContext.Update(id, entity);
@@ -119,26 +128,6 @@ namespace Eyect4RailsWebApp.Logic
         public List<Maintenance> GetByTramId(int id, bool completed)
         {
             return maintenanceContext.GetByTramId(id, completed);
-        }
-
-        public AssignMaintenanceToEmployee Get_ViewModel_AssignMaintenanceToEmployee(int id)
-        {
-            // TODO: Get a list of possible employees from the logic
-            // So all cleaners instead of all Employees
-
-            Maintenance maintenance = maintenanceContext.GetById(id);
-            List<Employee> employees = employeeContext.GetAll();
-
-            AssignMaintenanceToEmployee viewmodel = new AssignMaintenanceToEmployee(maintenance, employees);
-
-            return viewmodel;
-        }
-
-        public void Assign(int id, int EmployeeID)
-        {
-            Employee employee = employeeContext.GetById(EmployeeID);
-
-            Assign(id, employee);
         }
 
         public void Assign(int id, Employee employee)

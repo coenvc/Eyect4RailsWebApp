@@ -26,24 +26,30 @@
 
 @foreach (Track track in Model.Tracklist)
 {
-    <table border="1">
-        @foreach (Sector sector in track.SectorList)
-        {
-            <tr>
-                tr
-                <td>
-                    td
-                    @if (sector.TramId >= 0)
-                    {
-                        @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new {id = sector.TramId}, null)
-                    }
-                    @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new {id = sector.TramId}, null)
-                </td>
-            </tr>
-        }
-    </table>
-<br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">@track.Id.ToString()</h3>
+        </div>
+        <div class="panel-body">
+            @foreach (Sector sector in track.SectorList)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @if (sector.TramId >= 0)
+                        {
+                            @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new { id = sector.TramId }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink("No tram found", "Index", "Tram")
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

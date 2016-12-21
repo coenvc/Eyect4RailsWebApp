@@ -32,48 +32,43 @@ namespace Eyect4RailsWebApp.Controllers
 
         public ActionResult Assign(int id)
         {
-            AssignMaintenanceToEmployee viewmodel = logic.Get_ViewModel_AssignMaintenanceToEmployee(id);
-            
-            return View(viewmodel);
+            return View(logic.Assign(id));
         }
 
         [HttpPost]
-        public ActionResult Assign(int id, FormCollection collection, AssignMaintenanceToEmployee amte)
+        public ActionResult Assign(int id, viewmodel_Maintenance viewmodel)
         {
-            int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
-
-            logic.Assign(id, EmployeeID);
-
-            return Index();
+            try
+            {
+                logic.Assign(id, viewmodel.SelectedId_Employee);
+                
+                return RedirectToAction("Open");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Maintenance/Details/5
         public ActionResult Details(int id)
         {
-            var maintenance = logic.GetById(id);
-
-            return View(maintenance);
+            return View(logic.GetById(id));
         }
 
         // GET: Maintenance/Create
         public ActionResult Create()
         {
-            viewmodel_Maintenance CreateMaintenance = logic.Get_ViewModel_Maintenance();
-
-            return View(CreateMaintenance);
+            return View(logic.Create());
         }
 
         // POST: Maintenance/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection, viewmodel_Maintenance cm)
+        public ActionResult Create(viewmodel_Maintenance viewmodel, FormCollection collection)
         {
             try
             {
-                //int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
-                int TramID = Convert.ToInt32(collection["TramID"]);
-                int TaskID = Convert.ToInt32(collection["TaskID"]);
-
-                logic.InsertNewTask(TramID,TaskID, cm.Maintenance.ScheduledDate);
+                logic.Create(viewmodel.SelectedId_Tram, (int)viewmodel.Maintenance.Task, viewmodel.Maintenance.ScheduledDate);
 
                 return RedirectToAction("Open");
             }
@@ -86,21 +81,15 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance/Edit/5
         public ActionResult Edit(int id)
         {
-            viewmodel_Maintenance maintenance = logic.Get_ViewModel_Maintenance(id);
-            
-            return View(maintenance);
+            return View(logic.Edit(id));
         }
 
         // POST: Maintenance/Edit/5
         [HttpPost]
-        public ActionResult Edit(viewmodel_Maintenance viewmodel, FormCollection collection)
+        public ActionResult Edit(int id, viewmodel_Maintenance viewmodel)
         {
             try
             {
-                int EmployeeID = Convert.ToInt32(collection["EmployeeID"]);
-                int TramID = Convert.ToInt32(collection["TramID"]);
-                int TaskID = Convert.ToInt32(collection["TaskID"]);
-
                 Maintenance maintenance = viewmodel.Maintenance;
 
                 // Maxvalue will be handled as null by the database layer
@@ -109,7 +98,7 @@ namespace Eyect4RailsWebApp.Controllers
                     maintenance.AvailableDate = DateTime.MaxValue;
                 }
 
-                logic.Update(EmployeeID, TramID, TaskID, maintenance);
+                logic.Edit(id, viewmodel.SelectedId_Employee, viewmodel.SelectedId_Tram, (int)viewmodel.Maintenance.Task, viewmodel.Maintenance);
 
                 return RedirectToAction("Index");
             }
