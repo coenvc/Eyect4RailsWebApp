@@ -1,4 +1,5 @@
-﻿@model eyect4rails.Classes.Remise
+﻿@using eyect4rails.Classes
+@model eyect4rails.Classes.Remise
 
 @{
     ViewBag.Title = "Delete";
@@ -22,11 +23,19 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @if (Model.Tramlist.Count > 0)
+            {
+                <p>Een remise met @Model.Tramlist.Count.ToString() trams en @Model.Tracklist.Count.ToString() tracks kan niet verwijderd worden.</p>    
+            }
+            else
+            {
+                <input type="submit" value="Delete" class="btn btn-default" />
+            }
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
