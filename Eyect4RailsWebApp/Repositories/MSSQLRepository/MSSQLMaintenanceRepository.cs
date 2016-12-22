@@ -87,10 +87,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
@@ -129,10 +125,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
@@ -157,10 +149,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         delete = true;
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-
             }
             finally
             {
@@ -194,10 +182,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
@@ -227,10 +211,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
             finally
             {
@@ -271,10 +251,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
@@ -308,10 +284,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-
             }
             finally
             {
@@ -348,10 +320,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
@@ -385,10 +353,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-
             }
             finally
             {
@@ -424,10 +388,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         }
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-
             }
             finally
             {
@@ -478,19 +438,10 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-
-            }
             finally
             {
                 CloseConnection();
             }
-        }
-
-        private void ThrowDatabaseException(SqlException exception)
-        {
-            // TODO: implement error handling
         }
 
     }

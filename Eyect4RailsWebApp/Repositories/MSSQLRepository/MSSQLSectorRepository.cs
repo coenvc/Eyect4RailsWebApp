@@ -39,27 +39,13 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        try
-                        {
-                            command.Parameters.AddWithValue("@ID", id);
+                        command.Parameters.AddWithValue("@ID", id);
 
-                            command.ExecuteNonQuery();
-                            delete = true;
-                        }
-
-                        catch (SqlException exception)
-                        {
-                            ThrowDatabaseException(exception);
-                        }
+                        command.ExecuteNonQuery();
+                        delete = true;
                     }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
             finally
             {
                 CloseConnection();
@@ -78,40 +64,18 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            try
+                            while (reader.Read())
                             {
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        sectors.Add(CreateObjectFromReader(reader));
-                                    }
-                                }
-                            }
-
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
+                                sectors.Add(CreateObjectFromReader(reader));
                             }
                         }
                     }
-
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
-                    }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
             finally
             {
                 CloseConnection();
@@ -130,42 +94,21 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        command.Parameters.AddWithValue("@ID", id);
+
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            command.Parameters.AddWithValue("@ID", id);
-
-                            try
+                            while (reader.Read())
                             {
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        sector = CreateObjectFromReader(reader);
-                                    }
-                                }
-                            }
-
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
+                                sector = CreateObjectFromReader(reader);
                             }
                         }
                     }
-
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
-                    }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
             finally
             {
                 CloseConnection();
@@ -184,43 +127,21 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
+
+                        command.Parameters.AddWithValue("@TrackId", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-
-                            command.Parameters.AddWithValue("@TrackId", id);
-
-                            try
+                            while (reader.Read())
                             {
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        sectors.Add(CreateObjectFromReader(reader));
-                                    }
-                                }
-                            }
-
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
+                                sectors.Add(CreateObjectFromReader(reader));
                             }
                         }
                     }
-
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
-                    }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
             finally
             {
                 CloseConnection();
@@ -234,46 +155,27 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             Sector sector = new Sector();
 
             string query = "SELECT * FROM SECTOR WHERE Tram_ID = @TramId";
-            
+
             try
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
+
+                        command.Parameters.AddWithValue("@TramId", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-
-                            command.Parameters.AddWithValue("@TramId", id);
-
-                            try
+                            while (reader.Read())
                             {
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        sector = CreateObjectFromReader(reader);
-                                    }
-                                }
-                            }
-
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
+                                sector = CreateObjectFromReader(reader);
                             }
                         }
+
                     }
 
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
-                    }
                 }
-            }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
 
             finally
@@ -295,42 +197,22 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
-                        {
-                            try
-                            {
-                                command.Parameters.AddWithValue("@Spoor_Id", entity.TrackId);
-                                command.Parameters.AddWithValue("@Tram_Id", entity.TramId);
-                                command.Parameters.AddWithValue("@Nummer", entity.Number);
-                                command.Parameters.AddWithValue("@Beschikbaar", entity.Available);
-                                command.Parameters.AddWithValue("@Blokkade", entity.Blocked);
+                        command.Parameters.AddWithValue("@Spoor_Id", entity.TrackId);
+                        command.Parameters.AddWithValue("@Tram_Id", entity.TramId);
+                        command.Parameters.AddWithValue("@Nummer", entity.Number);
+                        command.Parameters.AddWithValue("@Beschikbaar", entity.Available);
+                        command.Parameters.AddWithValue("@Blokkade", entity.Blocked);
 
-                                command.ExecuteNonQuery();
-                                insert = true;
-                            }
+                        command.ExecuteNonQuery();
+                        insert = true;
 
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
-                            }
-                        }
                     }
 
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
-                    }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
-            finally 
+            finally
             {
                 CloseConnection();
             }
@@ -347,50 +229,24 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             {
                 if (OpenConnection())
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        using (SqlCommand command = new SqlCommand(query, Connection))
-                        {
-                            try
-                            {
-                                command.Parameters.AddWithValue("@ID", entity.Id);
-                                command.Parameters.AddWithValue("@Spoor_Id", entity.TrackId);
-                                command.Parameters.AddWithValue("@Tram_Id", entity.TramId);
-                                command.Parameters.AddWithValue("@Nummer", entity.Number);
-                                command.Parameters.AddWithValue("@Beschikbaar", entity.Available);
-                                command.Parameters.AddWithValue("@Blokkade", entity.Blocked);
+                        command.Parameters.AddWithValue("@ID", entity.Id);
+                        command.Parameters.AddWithValue("@Spoor_Id", entity.TrackId);
+                        command.Parameters.AddWithValue("@Tram_Id", entity.TramId);
+                        command.Parameters.AddWithValue("@Nummer", entity.Number);
+                        command.Parameters.AddWithValue("@Beschikbaar", entity.Available);
+                        command.Parameters.AddWithValue("@Blokkade", entity.Blocked);
 
-                                command.ExecuteNonQuery();
-                            }
-
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
-                            }
-                        }
-                    }
-
-                    catch (SqlException exception)
-                    {
-                        ThrowDatabaseException(exception);
+                        command.ExecuteNonQuery();
                     }
                 }
             }
-
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
-
             finally
             {
                 CloseConnection();
             }
         }
 
-        private void ThrowDatabaseException(Exception ex)
-        {
-            // TODO: implement error handling
-        }
     }
 }

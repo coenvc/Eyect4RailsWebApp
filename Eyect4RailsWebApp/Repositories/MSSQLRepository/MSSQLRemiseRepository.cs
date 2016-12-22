@@ -40,23 +40,12 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        try
-                        {
-                            command.Parameters.AddWithValue("@Naam", entity.Name);
+                        command.Parameters.AddWithValue("@Naam", entity.Name);
 
-                            command.ExecuteNonQuery();
-                            insert = true;
-                        }
-                        catch (SqlException exception)
-                        {
-                            ThrowDatabaseException(exception);
-                        }
+                        command.ExecuteNonQuery();
+                        insert = true;
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
             finally
             {
@@ -76,23 +65,12 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        try
-                        {
-                            command.Parameters.AddWithValue("@id", id);
-                            command.Parameters.AddWithValue("@Naam", entity.Name);
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@Naam", entity.Name);
 
-                            command.ExecuteNonQuery();
-                        }
-                        catch (SqlException exception)
-                        {
-                            ThrowDatabaseException(exception);
-                        }
+                        command.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
             finally
             {
@@ -118,25 +96,16 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         using (SqlCommand command = new SqlCommand(query, Connection))
                         {
-                            try
-                            {
-                                command.Parameters.AddWithValue("@ID", id);
+                            command.Parameters.AddWithValue("@ID", id);
 
-                                command.ExecuteNonQuery();
-                                delete = true;
-                            }
-                            catch (SqlException exception)
-                            {
-                                ThrowDatabaseException(exception);
-                            }
+                            command.ExecuteNonQuery();
+
+                            delete = true;
                         }
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
+
             finally
             {
                 CloseConnection();
@@ -159,26 +128,16 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         command.Parameters.AddWithValue("@ID", id);
 
-                        try
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
-                                    remise = CreateObjectFromReader(reader);
-                                }
+                                remise = CreateObjectFromReader(reader);
                             }
                         }
-                        catch (SqlException exception)
-                        {
-                            ThrowDatabaseException(exception);
-                        }
+
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
             finally
             {
@@ -210,10 +169,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
-            }
             finally
             {
                 CloseConnection();
@@ -236,26 +191,16 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         command.Parameters.AddWithValue("@Naam", name);
 
-                        try
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
-                                    remise = CreateObjectFromReader(reader);
-                                }
+                                remise = CreateObjectFromReader(reader);
                             }
                         }
-                        catch (SqlException exception)
-                        {
-                            ThrowDatabaseException(exception);
-                        }
+
                     }
                 }
-            }
-            catch (SqlException exception)
-            {
-                ThrowDatabaseException(exception);
             }
             finally
             {
@@ -263,11 +208,6 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
 
             return remise;
-        }
-
-        private void ThrowDatabaseException(Exception ex)
-        {
-            // TODO: implement error handling
         }
     }
 }
