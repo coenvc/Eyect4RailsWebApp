@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mijn taken</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -45,9 +45,7 @@
             @if (item.Employee.Name != null)
             {
                 <td>
-                    
-                    @Html.ActionLink(item.Employee.Name + " " + item.Employee.Surname , "Details", "Employee", new { id = item.Id }, null)
-                    @*@item.Employee.Name @item.Employee.Surname*@
+                    @Html.ActionLink(item.Employee.Name + " " + item.Employee.Surname, "Details", "Employee", new { id = item.Id }, null)
                 </td>
                 <td>
                     @item.Employee.Function

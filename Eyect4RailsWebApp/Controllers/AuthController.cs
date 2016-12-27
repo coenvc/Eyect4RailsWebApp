@@ -11,6 +11,7 @@ namespace Eyect4RailsWebApp.Controllers
     public class AuthController : Controller
     {
         private EmployeeLogic Logic = new EmployeeLogic();
+        
         // GET: Auth 
         [HttpGet]
         public ActionResult Login()

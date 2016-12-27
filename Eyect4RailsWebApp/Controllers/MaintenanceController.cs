@@ -18,6 +18,15 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Maintenance
         public ActionResult Index()
         {
+            Employee employee = (Employee) Session["LoggedInEmployee"];
+
+            List<Maintenance> maintenances = logic.GetByEmployeeId(employee.Id);
+
+            return View(maintenances);
+        }
+
+        public ActionResult All()
+        {
             List<Maintenance> maintenances = logic.GetAll();
 
             return View(maintenances);
