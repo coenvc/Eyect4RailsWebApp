@@ -24,10 +24,8 @@ namespace Eyect4RailsWebApp.Controllers
         {
             string username = employee.Username;
             string password = employee.Password;
-            try
-            {
-                Logic.Login(username, password);
-                Session["LoggedInEmployee"] = employee;
+            try{
+                Session["LoggedInEmployee"] = Logic.Login(username, password); 
                 return RedirectToAction("Index", "Employee");  
             }
             catch (Exception ex)

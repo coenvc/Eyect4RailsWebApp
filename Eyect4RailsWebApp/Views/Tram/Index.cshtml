@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Eyect4RailsWebApp.Models.Tram>
 
 @{
+    Employee loggedInEmployee = Session["LoggedInEmployee"] as Employee;
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -60,9 +61,16 @@
             @Html.DisplayFor(modelItem => item.Available)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @if ((int)loggedInEmployee.Function > 3)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                <span>|</span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                <span>|</span>
+            }
+            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+            @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
         </td>
     </tr>
 }
