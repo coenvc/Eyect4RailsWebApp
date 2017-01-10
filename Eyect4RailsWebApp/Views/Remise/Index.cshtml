@@ -1,15 +1,19 @@
-﻿@model IEnumerable<eyect4rails.Classes.Remise>
+﻿@using eyect4rails.Classes
+@model IEnumerable<eyect4rails.Classes.Remise>
 
 @{
+    Employee loggedInEmployee = Session["LoggedInEmployee"] as Employee;
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if ((int) loggedInEmployee.Function > 3)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -24,9 +28,15 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @if ((int) loggedInEmployee.Function > 3)
+            {
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                <span>|</span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                <span>|</span>
+            }
+            @Html.ActionLink("Details", "Details", new {id = item.Id}) 
+          
         </td>
     </tr>
 }

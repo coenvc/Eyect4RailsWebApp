@@ -62,8 +62,9 @@ namespace Eyect4RailsWebApp.Logic
 
         public Employee Login(string username, string password)
         {
-            Employee LoginEmployee = Context.GetByUsernamePassword(username, password);
-            if (LoginEmployee != null)
+            Employee LoginEmployee = Context.GetByUsernamePassword(username, password); 
+
+            if (LoginEmployee.Username != null && LoginEmployee.Password != null)
             {
                 return LoginEmployee;
             }
