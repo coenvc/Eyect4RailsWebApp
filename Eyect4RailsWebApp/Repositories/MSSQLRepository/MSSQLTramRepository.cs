@@ -63,6 +63,10 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                
+            }
             finally
             {
                 CloseConnection();
@@ -84,7 +88,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     {
                         command.Parameters.AddWithValue("@ID", entity.Id);
                         command.Parameters.AddWithValue("@RemiseID", entity.RemiseId);
-                        command.Parameters.AddWithValue("@Tramtype", (int)entity.Tramtype);
+                        command.Parameters.AddWithValue("@Tramtype", (int) entity.Tramtype);
                         command.Parameters.AddWithValue("@Tramnumber", entity.TramNumber);
                         command.Parameters.AddWithValue("@Length", entity.Length);
                         command.Parameters.AddWithValue("@Filthy", entity.Filthy);
@@ -96,6 +100,10 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                
             }
 
             finally
