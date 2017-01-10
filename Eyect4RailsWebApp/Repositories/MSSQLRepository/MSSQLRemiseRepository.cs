@@ -14,7 +14,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
     {
         private MSSQLTramRepository TramRepository = new MSSQLTramRepository();
         private MSSQLTrackRepository TrackRepository = new MSSQLTrackRepository();
-        private string StartQuery = "Select ID, Naam From Remise";
+        private string StartQuery = "Select ID, Naam,latitude,longitude From Remise";
 
         private Remise CreateObjectFromReader(SqlDataReader reader)
         {
@@ -22,9 +22,11 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             string name = Convert.ToString(reader["Naam"]);
             List<Tram> trams = TramRepository.GetByRemiseId(id);
             List<Track> tracks = TrackRepository.GetByRemiseId(id);
-
+            string latitude = Convert.ToString(reader["latitude"]);
+            string longitude = Convert.ToString(reader["longitude"]);
             Remise remise = new Remise(id, name, tracks, trams);
-
+            remise.Latitude = latitude;
+            remise.Longitude = longitude;
             return remise;
         }
 
@@ -130,19 +132,27 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            try
                             {
-                                remise = CreateObjectFromReader(reader);
+                                while (reader.Read())
+                                {
+                                    remise = CreateObjectFromReader(reader);
+                                }
+                            }
+                            catch (SqlException ex)
+                            {
+                                
                             }
                         }
 
                     }
                 }
             }
-            finally
+            catch (SqlException ex)
             {
-                CloseConnection();
+                
             }
+
 
             return remise;
         }

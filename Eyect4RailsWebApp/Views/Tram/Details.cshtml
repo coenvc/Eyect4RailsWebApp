@@ -4,79 +4,119 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <div>
+        <h4>Gegevens</h4>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RemiseId)
+            </dt>
 
-<h2>Details</h2>
+            <dd>
+                @Html.DisplayFor(model => model.RemiseId)
+            </dd>
 
-<div>
-    <h4>Tram</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RemiseId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TramNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RemiseId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TramNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TramNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Length)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TramNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Length)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Length)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tramtype)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Length)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Tramtype)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tramtype)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Filthy)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tramtype)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Filthy)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Filthy)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Defective)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Filthy)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Defective)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Defective)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ConductorQualified)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Defective)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ConductorQualified)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ConductorQualified)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Available)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ConductorQualified)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Available)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Available)
-        </dt>
+        </dl>
+    </div>
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+@if (Model.RemiseId != 0)
+{
+    <div class="row">
+        <h4>Parkeerplaats</h4>
+        <div id="map"></div>
+    </div>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Available)
-        </dd>
+<script>
+   
 
-    </dl>
-</div>
+
+    function initMap() {
+        var url = "http://localhost:41732/api/remiseapi/@Model.RemiseId";
+        console.log(url);
+    $.ajax({
+        url: "http://localhost:41732/api/remiseapi/@Model.RemiseId",
+        success: function (result) {
+            var lat = parseFloat(result.Latitude);
+            var long = parseFloat(result.Longitude);
+            draw(lat, long);
+            console.log(url);
+        }
+    });
+    function draw(lat,long){ 
+        var uluru = { lat: lat, lng: long };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 20,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        }); 
+        }
+    }
+</script>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

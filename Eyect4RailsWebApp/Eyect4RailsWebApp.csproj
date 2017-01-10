@@ -170,6 +170,7 @@
     <Compile Include="Controllers\IOController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\RemiseController.cs" />
+    <Compile Include="Controllers\RemiseApiController.cs" />
     <Compile Include="Controllers\SectorController.cs" />
     <Compile Include="Controllers\TrackController.cs" />
     <Compile Include="Controllers\TramController.cs" />
@@ -223,6 +224,7 @@
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\gmap.js" />
     <Content Include="Content\skin-black.css" />
     <Content Include="Content\skin-blue.min.css" />
     <Content Include="favicon.ico" />

@@ -25,7 +25,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             List<Sector> sectorlist = new MSSQLSectorRepository().GetByTrackId(id);
 
             Track track = new Track(id, remiseid, number,
-                sectors, available, entrydeparttrack, sectorlist);
+                sectors, available, entrydeparttrack, sectorlist); 
+            
             return track;
         }
 

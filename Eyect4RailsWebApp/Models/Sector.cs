@@ -17,7 +17,7 @@ namespace Eyect4RailsWebApp.Models
         public int TramId { get; set; }
         public int Number { get; set; }
         public bool Available { get; set; }
-        public bool Blocked { get; set; }
+        public bool Blocked { get; set; } 
         #endregion
 
         public Sector()
