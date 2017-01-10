@@ -30,6 +30,8 @@ namespace eyect4rails.Classes
             DataType(DataType.Date)]
         public DateTime AvailableDate { get; set; }
 
+        public string Comment { get; set; }
+
         public bool Completed { get; set; }
 
         public Tasks Task { get; set; }
@@ -45,25 +47,27 @@ namespace eyect4rails.Classes
 
         }
 
-        public Maintenance(Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, bool completed, Tasks task)
+        public Maintenance(Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, string comment, bool completed, Tasks task)
         {
             Employee = employee;
             Tram = tram;
             ScheduledDate = scheduledDate;
             AvailableDate = availableDate;
+            Comment = comment;
             Completed = completed;
-            this.Task = task;
+            Task = task;
         }
 
-        public Maintenance(int id, Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, bool completed, Tasks task)
+        public Maintenance(int id, Employee employee, Tram tram, DateTime scheduledDate, DateTime availableDate, string comment, bool completed, Tasks task)
         {
             Id = id;
             Employee = employee;
             Tram = tram;
             ScheduledDate = scheduledDate;
             AvailableDate = availableDate;
+            Comment = comment;
             Completed = completed;
-            this.Task = task;
+            Task = task;
         }
     }
 }

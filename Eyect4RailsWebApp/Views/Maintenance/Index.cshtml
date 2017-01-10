@@ -1,4 +1,5 @@
-﻿@using eyect4rails.Classes
+﻿@using System.Activities.Statements
+@using eyect4rails.Classes
 @model IEnumerable<eyect4rails.Classes.Maintenance>
 
 @{
@@ -40,14 +41,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Task)
             </td>
-            
+
 
             @if (item.Employee.Name != null)
             {
                 <td>
-                    
-                    @Html.ActionLink(item.Employee.Name + " " + item.Employee.Surname , "Details", "Employee", new { id = item.Id }, null)
-                    @*@item.Employee.Name @item.Employee.Surname*@
+                    @Html.ActionLink(item.Employee.Name + " " + item.Employee.Surname, "Details", "Employee", new { id = item.Id }, null)
                 </td>
                 <td>
                     @item.Employee.Function
@@ -58,12 +57,12 @@
                 <td>Unassigned</td>
                 <td> </td>
             }
-            
-            
+
+
             @if (item.Tram.Id >= 0)
             {
                 <td>
-                    @Html.ActionLink(item.Tram.Id.ToString(), "Details", "Tram", new {id = item.Id}, null)
+                    @Html.ActionLink(item.Tram.Id.ToString(), "Details", "Tram", new { id = item.Id }, null)
                 </td>
             }
             else
@@ -74,7 +73,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ScheduledDate)
             </td>
-            
+
 
             @if (item.AvailableDate.Year != 9999)
             {
@@ -87,12 +86,24 @@
                 <td>n/a</td>
             }
             
+            @if (item.Completed == false)
+            {
+                <td>
+                    @Html.ActionLink("Complete", "Complete", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
         </tr>
     }
 

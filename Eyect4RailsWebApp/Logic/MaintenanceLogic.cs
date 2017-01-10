@@ -28,7 +28,7 @@ namespace Eyect4RailsWebApp.Logic
         {
             Tram tram = tramContext.GetById(tramId);
 
-            Maintenance maintenance = new Maintenance(new Employee(), tram, scheduled, DateTime.MaxValue, false, (Tasks)taskId);
+            Maintenance maintenance = new Maintenance(new Employee(), tram, scheduled, DateTime.MaxValue, "", false, (Tasks)taskId);
 
             Insert(maintenance);
         }
@@ -135,9 +135,9 @@ namespace Eyect4RailsWebApp.Logic
             maintenanceContext.Assign(id, employee);
         }
 
-        public void Complete(int id, Employee employee, DateTime completed)
+        public void Complete(Maintenance entity)
         {
-            maintenanceContext.Complete(id, employee, completed);
+            maintenanceContext.Complete(entity);
         }
     }
 }

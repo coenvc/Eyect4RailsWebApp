@@ -71,9 +71,9 @@ namespace Eyect4RailsWebApp.Context
             Context.Assign(id, employee);
         }
 
-        public void Complete(int id, Employee employee, DateTime completed)
+        public void Complete(Maintenance entity)
         {
-            Context.Complete(id, employee, completed);
+            Context.Complete(entity);
         }
     }
 }

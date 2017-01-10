@@ -45,12 +45,20 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 // If it's not null
                 AvailableDate = Convert.ToDateTime(reader["BeschikbaarDatum"]);
             }
+
+            string Comment = "";
+
+            if (reader["Comment"] != System.DBNull.Value)
+            {
+                // If it's not null
+                Comment = Convert.ToString(reader["Comment"]);
+            }
             #endregion
 
             Tram tram = TramRepository.GetById(tram_ID);
 
             Maintenance maintenance = new Maintenance(id, employee, tram,
-                            ScheduledDate, AvailableDate,
+                            ScheduledDate, AvailableDate, Comment,
                             completed, task);
 
             return maintenance;
@@ -60,7 +68,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         {
             bool insert = false;
 
-            string query = $"INSERT INTO TRAM_ONDERHOUD(Medewerker_ID, Tram_ID, DatumTijdstip, BeschikbaarDatum, Taak_ID, Voltooid) values(@Medewerker_ID, @Tram_ID, @DatumTijdstip, @BeschikbaarDatum, @Taak_ID, @Voltooid)";
+            string query = $"INSERT INTO TRAM_ONDERHOUD(Medewerker_ID, Tram_ID, DatumTijdstip, BeschikbaarDatum, Comment, Taak_ID, Voltooid) values(@Medewerker_ID, @Tram_ID, @DatumTijdstip, @BeschikbaarDatum, @Comment, @Taak_ID, @Voltooid)";
 
             try
             {
@@ -79,6 +87,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         {
                             command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
                         }
+                        command.Parameters.AddWithValue("@Comment", entity.Comment);
                         command.Parameters.AddWithValue("@Taak_ID", (int)entity.Task);
                         command.Parameters.AddWithValue("@Voltooid", entity.Completed);
 
@@ -97,7 +106,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public void Update(int id, Maintenance entity)
         {
-            string query = $"Update TRAM_ONDERHOUD SET Medewerker_ID = @Medewerker_ID, Tram_ID = @Tram_ID, DatumTijdstip = @DatumTijdstip, BeschikbaarDatum = @BeschikbaarDatum, Taak_ID = @Taak_ID, Voltooid = @Voltooid where ID = @id";
+            string query = $"Update TRAM_ONDERHOUD SET Medewerker_ID = @Medewerker_ID, Tram_ID = @Tram_ID, DatumTijdstip = @DatumTijdstip, BeschikbaarDatum = @BeschikbaarDatum, Comment = @Comment, Taak_ID = @Taak_ID, Voltooid = @Voltooid where ID = @id";
 
             try
             {
@@ -116,6 +125,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                         {
                             command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
                         }
+                        command.Parameters.AddWithValue("@Comment", entity.Comment);
                         command.Parameters.AddWithValue("@Taak_ID", (int)entity.Task);
                         command.Parameters.AddWithValue("@Voltooid", entity.Completed);
 
@@ -420,9 +430,9 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
         }
 
-        public void Complete(int id, Employee employee, DateTime completed)
+        public void Complete(Maintenance entity)
         {
-            string query = $"Update TRAM_ONDERHOUD SET Medewerker_ID = @Medewerker_ID, BeschikbaarDatum = @Beschikbaardatum, Voltooid = 1 where ID = @id";
+            string query = $"Update TRAM_ONDERHOUD SET BeschikbaarDatum = @Beschikbaardatum, Voltooid = 1 where ID = @id";
 
             try
             {
@@ -430,9 +440,9 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 {
                     using (SqlCommand command = new SqlCommand(query, Connection))
                     {
-                        command.Parameters.AddWithValue("@Medewerker_ID", employee.Id);
-                        command.Parameters.AddWithValue("@BeschikbaarDatum", completed);
-                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@BeschikbaarDatum", entity.AvailableDate);
+                        command.Parameters.AddWithValue("@Comment", entity.Comment);
+                        command.Parameters.AddWithValue("@id", entity.Id);
 
                         command.ExecuteNonQuery();
                     }

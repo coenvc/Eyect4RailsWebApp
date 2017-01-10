@@ -16,6 +16,6 @@ namespace Eyect4RailsWebApp.IRepository
         List<Maintenance> GetByTramId(int id);
         List<Maintenance> GetByTramId(int id, bool completed);
         void Assign(int id, Employee employee);
-        void Complete(int id, Employee employee, DateTime completed); 
+        void Complete(Maintenance entity); 
     }
 }

@@ -24,11 +24,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             Trams = TramRepository.GetAll();
             Employees = EmployeeRepository.GetAll();
 
-            Maintenances = new List<Maintenance>
-            {
-                new Maintenance(Employees[0], Trams[0], DateTime.Now.AddDays(-1), DateTime.Now.AddDays(3), false, Tasks.GroteReparatie),
-                new Maintenance(Employees[1], Trams[1], DateTime.Now.AddDays(-4), DateTime.Now.AddDays(-1), true, Tasks.KleineReparatie)
-            };
+            Maintenances = new List<Maintenance>();
 
             Crud = new LocalCrud<Maintenance>(Maintenances);
         }
@@ -96,17 +92,9 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             }
         }
 
-        public void Complete(int id, Employee employee, DateTime completed)
+        public void Complete(Maintenance entity)
         {
-            foreach (Maintenance maintenance in Crud.All)
-            {
-                if (maintenance.Id == id)
-                {
-                    maintenance.Employee = employee;
-                    maintenance.AvailableDate = completed;
-                    maintenance.Completed = true;
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

@@ -87,6 +87,32 @@ namespace Eyect4RailsWebApp.Controllers
             }
         }
 
+        // GET: Maintenance/Complete/5
+        public ActionResult Complete(int id)
+        {
+            return View(logic.Edit(id));
+        }
+
+        // POST: Maintenance/Complete/5
+        [HttpPost]
+        public ActionResult Complete(int id, viewmodel_Maintenance viewmodel)
+        {
+            try
+            {
+                Maintenance maintenance = viewmodel.Maintenance;
+                maintenance.Id = id;
+                maintenance.Completed = true;
+
+                logic.Complete(maintenance);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        
         // GET: Maintenance/Edit/5
         public ActionResult Edit(int id)
         {
