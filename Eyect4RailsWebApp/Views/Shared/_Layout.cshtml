@@ -108,7 +108,7 @@
                 <ul class="treeview-menu">
                     <li>@Html.ActionLink("Overzicht", "Index", "Employee")</li>
                 </ul>
-            </li>
+            </li> 
             @*Remise*@
             <li class="treeview">
                 <a href="#">
@@ -137,6 +137,11 @@
                     </ul>
                 </li>
             }
+            <li class="treeview">
+                <a href="@Url.Action("LogOff","Auth")">
+                    <i class="fa fa-power-off"></i> <span>Uitloggen</span>
+                </a>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

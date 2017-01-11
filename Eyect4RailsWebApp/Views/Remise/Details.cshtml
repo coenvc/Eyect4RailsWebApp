@@ -23,15 +23,15 @@
 
                     if (track.SectorList.Count > i)
                     {
-                        Sector t = track.SectorList[i];
-                        if (t.TramId != null && t.TramId != 0)
+                        Sector sector = track.SectorList[i];
+                        if (sector.TramId != null && sector.TramId != 0)
                         {
-                            Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == t.TramId);
+                            Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == sector.TramId);
                             for (int y = 0; y < parkedTram.Length; y++)
                             {
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = t.TramId }, null)</p>
+                                        <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = sector.TramId }, null)</p>
                                     </div>
                                 </div>
                             }
@@ -39,12 +39,10 @@
                             if (i >= track.Sectors)
                             {
                                 break;
-                            }
-
+                            } 
                         }
 
                     }
-                
                 <div class="panel panel-default">
                     <div class="panel-body">
 
