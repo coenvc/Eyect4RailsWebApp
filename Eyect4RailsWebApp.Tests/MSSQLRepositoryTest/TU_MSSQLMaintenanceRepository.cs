@@ -55,7 +55,7 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             // act
             employee = employeeContext.GetById(1);
             tram = tramContext.GetById(1);
-            maintenance = new Maintenance(employee, tram, new DateTime(2016, 12, 14, 16, 06, 01), DateTime.MaxValue, false, Tasks.GroteSchoonmaak);
+            maintenance = new Maintenance(employee, tram, new DateTime(2016, 12, 14, 16, 06, 01), DateTime.MaxValue, "", false, Tasks.GroteSchoonmaak);
 
             context.Insert(maintenance);
 
