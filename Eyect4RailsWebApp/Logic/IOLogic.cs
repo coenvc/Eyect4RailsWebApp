@@ -26,6 +26,7 @@ namespace Eyect4RailsWebApp.Logic
             CETViewModel.Tracks = Track.GetByRemiseId(remiseId);
             CETViewModel.Remises = Remise.GetAll();
 
+
             foreach (Track track in CETViewModel.Tracks)
             {
                 foreach (Sector sector in track.SectorList)
