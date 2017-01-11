@@ -22,9 +22,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int number = Convert.ToInt32(reader["Nummer"]);
             bool available = Convert.ToBoolean(reader["Beschikbaar"]);
             bool blocked = Convert.ToBoolean(reader["Blokkade"]);
-
             Sector sector = new Sector(id, trackId, tramId, number, available, blocked);
-            return sector;
+            return sector; 
 
         }
         public bool Delete(int id)

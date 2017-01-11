@@ -24,7 +24,10 @@ namespace eyect4rails.Classes
         public List<Track> Tracklist { get; set; }
 
         [DisplayName("Trams in the Remise")]
-        public List<Tram> Tramlist { get; set; }
+        public List<Tram> Tramlist { get; set; } 
+
+        public string Latitude { get; set; } 
+        public string Longitude { get; set; } 
         #endregion
 
         public Remise()

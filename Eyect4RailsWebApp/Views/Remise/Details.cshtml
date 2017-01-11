@@ -7,51 +7,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Remise</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
-</div>
-
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 @foreach (Track track in Model.Tracklist)
 {
-  
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">@track.Id.ToString()</h3>
-            </div>
-            <div class="panel-body">
-                @foreach (Sector sector in track.SectorList)
-                {
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            @if (sector.TramId >= 0)
-                            {
-                                @Html.ActionLink(sector.TramId.ToString(), "Details", "Tram", new {id = sector.TramId}, null)
-                            }
-                            else
-                            {
-                                @Html.ActionLink("No tram found", "Index", "Tram")
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">@track.Id.ToString()</h3>
         </div>
-    
+        <div class="panel-body">
+            @for (int i = 0; i <= track.Sectors-1; i++)
+                {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                 
+                        @{
+                            try
+                            {
+                                if (track.SectorList.Count > i )
+                                {
+                                    Sector t = track.SectorList[i];
+                                    if (t.TramId != null)
+                                    {
+                                        <p>@Html.ActionLink($"Tram {t.TramId}","Details","Tram",new {Id = t.TramId},null)</p>
+                                    }
+                                }
+
+                            }
+                            finally
+                            {
+
+                            }
+
+                        } 
+
+                    </div>
+                </div>
+                            }
+        </div>
+    </div>
+
 
 }
 
