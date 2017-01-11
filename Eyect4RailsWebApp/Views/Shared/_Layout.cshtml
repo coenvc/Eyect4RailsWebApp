@@ -137,11 +137,46 @@
                     </ul>
                 </li>
             }
+<<<<<<< HEAD
             <li class="treeview">
                 <a href="@Url.Action("LogOff","Auth")">
                     <i class="fa fa-power-off"></i> <span>Uitloggen</span>
                 </a>
             </li>
+=======
+
+            @*Track*@
+            @if ((int)loggedinEmployee.Function < 4)
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Tracks</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>@Html.ActionLink("Overzicht", "Index", "Track")</li>
+                    </ul>
+                </li>
+            }
+
+            @*Sector*@
+            @if ((int)loggedinEmployee.Function < 4)
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Sectors</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>@Html.ActionLink("Overzicht", "Index", "Sector")</li>
+                    </ul>
+                </li>
+            }
+>>>>>>> 03804f6f99f11b272f25a735c56ff640cd5f0a06
         </ul>
         <!-- /.sidebar-menu -->
     </section>

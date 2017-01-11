@@ -84,7 +84,7 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Tram/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(logic.GetById(id));
         }
 
         // POST: Tram/Delete/5

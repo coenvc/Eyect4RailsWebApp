@@ -5,12 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Logic;
+using Eyect4RailsWebApp.ViewModels;
 
 namespace Eyect4RailsWebApp.Controllers
 {
     public class TrackController : Controller
     {
         private TrackLogic Logic = new TrackLogic();
+        CreateEditTramViewModel CETVModel = new CreateEditTramViewModel();
+        IOLogic logic = new IOLogic();
+
 
         // GET: Track
         public ActionResult Index()
@@ -27,16 +31,17 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Track/Create
         public ActionResult Create()
         {
-            return View();
+            CETVModel = logic.GetCETViewModel(1);
+            return View(CETVModel);
         }
 
         // POST: Track/Create
         [HttpPost]
-        public ActionResult Create(Track track)
+        public ActionResult Create(CreateEditTramViewModel CETVModel)
         {
             try
             {
-                Logic.Insert(track);
+                Logic.Insert(CETVModel.Track);
 
                 return RedirectToAction("Index");
             }
@@ -49,7 +54,9 @@ namespace Eyect4RailsWebApp.Controllers
         // GET: Track/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(Logic.GetById(id));
+            CETVModel = logic.GetCETViewModel(1);
+            CETVModel.Track = Logic.GetById(id);
+            return View(CETVModel);
         }
 
         // POST: Track/Edit/5
@@ -69,9 +76,9 @@ namespace Eyect4RailsWebApp.Controllers
         }
 
         // GET: Track/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, Track track)
         {
-            return View(Logic.GetById(id));
+            return View(track);
         }
 
         // POST: Track/Delete/5
