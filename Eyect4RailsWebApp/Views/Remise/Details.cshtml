@@ -29,9 +29,10 @@
                                 if (track.SectorList.Count > i )
                                 {
                                     Sector t = track.SectorList[i];
-                                    if (t.TramId != null)
+                                    if (t.TramId != null && t.TramId != 0)
                                     {
-                                        <p>@Html.ActionLink($"Tram {t.TramId}","Details","Tram",new {Id = t.TramId},null)</p>
+                                        Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == t.TramId);
+                                        <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}","Details","Tram",new {Id = t.TramId},null)</p>
                                     }
                                 }
 
