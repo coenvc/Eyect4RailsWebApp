@@ -16,6 +16,7 @@ namespace Eyect4RailsWebApp.Context
         {
             this.Context = context;
         }
+
         public List<Sector> GetByTrackId(int id)
         {
             return Context.GetByTrackId(id);
@@ -50,5 +51,22 @@ namespace Eyect4RailsWebApp.Context
         {
             return Context.GetAll();
         }
+
+        public int MaximalSectorNumber(int trackId)
+        {
+            return Context.MaximalSectorNumber(trackId);
+        }
+
+        public int MinimalSectorNumber(int trackId)
+        {
+            return Context.MinimalSectorNumber(trackId);
+        }
+
+        public void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid)
+        {
+            Context.UpdateAssignTramSectors(trackId, sectorNumber, tramid);
+        }
+
     }
+
 }

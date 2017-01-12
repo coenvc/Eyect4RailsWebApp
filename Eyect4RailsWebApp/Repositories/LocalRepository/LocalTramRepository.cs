@@ -91,5 +91,10 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             
             return remiseTrams;
         }
+
+        public int GetHighestSector(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

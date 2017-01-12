@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using eyect4rails.Classes;
 using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Enums;
+using Eyect4RailsWebApp.Logic;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -133,5 +135,32 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
             // assert
             Assert.AreNotEqual(testTram.Id, tram.Id);
         }
+
+        [TestMethod]
+
+        public void TestAssigntram()
+        {
+            IOLogic logic = new IOLogic();
+
+            int number = logic.AssignTramToSector(77);
+            int number2 = 0;
+
+            Assert.AreNotEqual(number2, number);
+
+
+        }
+
+        //[TestMethod]
+        //public void testremisetracks()
+        //{
+        //    MSSQLTrackRepository mssqlTrackRepository = new MSSQLTrackRepository();
+        //    List<Track> tracks = new List<Track>();
+        //    List<Track> targetTracks = new List<Track>();
+
+        //    targetTracks = mssqlTrackRepository.GetAvailableByRemiseId(1);
+
+        //    Assert.AreNotEqual(tracks.Count, targetTracks.Count);
+
+        //}
     }
 }

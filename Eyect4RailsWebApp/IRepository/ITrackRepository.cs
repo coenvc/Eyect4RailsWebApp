@@ -11,5 +11,7 @@ namespace eyect4rails.IRepository
     {
         List<Track> GetByRemiseId(int remiseid);
         bool Insert(Remise remise, Track track);
+
+        List<Track> GetAvailableByRemiseId(int remiseid);
     }
 }

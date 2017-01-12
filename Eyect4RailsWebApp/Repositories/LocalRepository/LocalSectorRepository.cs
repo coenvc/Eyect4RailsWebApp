@@ -87,9 +87,24 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             return crud.Insert(entity);
         }
 
+        public int MaximalSectorNumber(int trackId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int MinimalSectorNumber(int trackId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(int id, Sector entity)
         {
             crud.Update(id, entity);
+        }
+
+        public void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid)
+        {
+            throw new NotImplementedException();
         }
     }
 }
