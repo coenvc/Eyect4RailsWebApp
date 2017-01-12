@@ -366,6 +366,7 @@
     <Content Include="Views\Track\Create.cshtml" />
     <Content Include="Views\Maintenance\All.cshtml" />
     <Content Include="Views\Maintenance\Complete.cshtml" />
+    <Content Include="Views\Tram\Park.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

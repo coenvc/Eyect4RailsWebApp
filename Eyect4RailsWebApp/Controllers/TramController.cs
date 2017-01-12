@@ -102,5 +102,23 @@ namespace Eyect4RailsWebApp.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Park()
+        {
+            return View(logic.GetAll());
+        }
+
+        [HttpPost]
+        public ActionResult Park(FormCollection collection)
+        {
+            int test = Convert.ToInt32(collection["tramvalues"]);
+            bool dirty = Convert.ToBoolean(Convert.ToInt32(collection["dirty"]));
+            bool defective = Convert.ToBoolean(Convert.ToInt32(collection["defective"]));
+            Tram t= logic.GetAll().FirstOrDefault(x=> x.TramNumber == test);
+            t.Defective = defective;
+            t.Filthy = dirty; 
+            return RedirectToAction ("Details",t); 
+        }
     }
 }
