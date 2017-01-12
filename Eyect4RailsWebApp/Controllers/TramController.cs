@@ -119,6 +119,8 @@ namespace Eyect4RailsWebApp.Controllers
             t.Defective = defective;
             t.Filthy = dirty; 
             return RedirectToAction ("Details",t); 
-        }
+        } 
+
+       
     }
 }

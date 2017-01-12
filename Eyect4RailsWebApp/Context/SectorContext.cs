@@ -26,6 +26,8 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByTramId(id);
         }
 
+
+
         public bool Insert(Sector entity)
         {
             return Context.Insert(entity);
@@ -49,6 +51,7 @@ namespace Eyect4RailsWebApp.Context
         public List<Sector> GetAll()
         {
             return Context.GetAll();
-        }
+        } 
+
     }
 }

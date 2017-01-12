@@ -51,5 +51,10 @@ namespace Eyect4RailsWebApp.Context
         {
             return Context.GetByRemiseId(id);
         }
+
+        public List<Tram> GetNotParkedTrams()
+        {
+            return Context.GetNotParkedTrams();
+        }
     }
 }

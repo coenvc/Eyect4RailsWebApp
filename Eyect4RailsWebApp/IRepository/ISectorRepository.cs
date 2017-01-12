@@ -14,5 +14,6 @@ namespace Eyect4RailsWebApp.IRepository
     {
         List<Sector> GetByTrackId(int id);
         Sector GetByTramId(int id);
+
     }
 }

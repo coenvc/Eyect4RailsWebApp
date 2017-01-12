@@ -46,5 +46,9 @@ namespace Eyect4RailsWebApp.Logic
         {
             return Context.GetByRemiseName(name);
         }
+        public void EmptyAll(int id)
+        {
+            Context.EmptyAll(id);
+        }
     }
 }

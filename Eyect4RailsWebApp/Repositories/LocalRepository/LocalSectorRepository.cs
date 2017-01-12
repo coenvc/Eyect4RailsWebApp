@@ -82,6 +82,7 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             return emptySector;
         }
 
+
         public bool Insert(Sector entity)
         {
             return crud.Insert(entity);
@@ -90,6 +91,8 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
         public void Update(int id, Sector entity)
         {
             crud.Update(id, entity);
-        }
+        } 
+
+        
     }
 }

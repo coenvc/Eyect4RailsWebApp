@@ -37,6 +37,8 @@ namespace Eyect4RailsWebApp.Logic
             return sector.GetByTramId(id);
         }
 
+
+
         public bool Insert(Sector entity)
         {
             return sector.Insert(entity);

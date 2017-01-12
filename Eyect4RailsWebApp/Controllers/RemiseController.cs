@@ -12,6 +12,7 @@ namespace Eyect4RailsWebApp.Controllers
     public class RemiseController : Controller
     {
         private RemiseLogic RemiseLogic = new RemiseLogic(new MSSQLRemiseRepository());
+        private TramLogic TramLogic = new TramLogic();
         
         // GET: Remise
         public ActionResult Index()
@@ -113,5 +114,20 @@ namespace Eyect4RailsWebApp.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult SimulateRemise(int id)
+        {
+            RemiseLogic.EmptyAll(id);
+            return View("SimulationDetails", RemiseLogic.GetById(id));
+        }
+
+        public ActionResult NotParked()
+        {
+            TramLogic.GetNotParkedTrams();
+            return View("NotParkedTrams", TramLogic.GetNotParkedTrams()); 
+        }
+
+
     }
 }

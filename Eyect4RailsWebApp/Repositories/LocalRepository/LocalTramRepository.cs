@@ -91,5 +91,10 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
             
             return remiseTrams;
         }
+
+        public List<Tram> GetNotParkedTrams()
+        {
+            return this.GetAll();
+        }
     }
 }

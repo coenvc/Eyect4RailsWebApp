@@ -93,6 +93,11 @@ namespace Eyect4RailsWebApp.Logic
             return Tram.GetByRemiseId(id);
         }
 
+        public List<Tram> GetNotParkedTrams()
+        {
+            throw new NotImplementedException();
+        }
+
         //public int GetHighestSector(int id)
         //{
         //    return Tram.GetHighestSector(id);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using eyect4rails.Classes;
+using Eyect4RailsWebApp.Models;
 
 namespace eyect4rails.IRepository
 {
@@ -11,5 +12,6 @@ namespace eyect4rails.IRepository
     {
         List<Track> GetByRemiseId(int remiseid);
         bool Insert(Remise remise, Track track);
+      
     }
 }

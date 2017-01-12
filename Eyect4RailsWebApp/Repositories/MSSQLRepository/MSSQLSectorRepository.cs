@@ -16,9 +16,17 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
         // int trackId, int tramId, int number, bool available, bool blocked
         private Sector CreateObjectFromReader(SqlDataReader reader)
         {
+            int tramId = 0;
             int id = Convert.ToInt32(reader["ID"]);
             int trackId = Convert.ToInt32(reader["Spoor_ID"]);
-            int tramId = Convert.ToInt32(reader["Tram_ID"]);
+            if (reader["Tram_ID"] is DBNull)
+            {
+                tramId = 0;
+            }
+            else
+            {
+                tramId = Convert.ToInt32(reader["Tram_ID"]);
+            }
             int number = Convert.ToInt32(reader["Nummer"]);
             bool available = Convert.ToBoolean(reader["Beschikbaar"]);
             bool blocked = Convert.ToBoolean(reader["Blokkade"]);
@@ -184,6 +192,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
             return sector;
         }
+
+
 
         public bool Insert(Sector entity)
         {
