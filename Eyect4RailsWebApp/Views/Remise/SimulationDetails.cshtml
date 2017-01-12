@@ -21,28 +21,28 @@
             @for (int i = 0; i <= track.Sectors - 1; i++)
             {
 
-                    if (track.SectorList.Count > i)
+                if (track.SectorList.Count > i)
+                {
+                    Sector sector = track.SectorList[i];
+                    if (sector.TramId != null && sector.TramId != 0)
                     {
-                        Sector sector = track.SectorList[i];
-                        if (sector.TramId != null && sector.TramId != 0)
+                        Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == sector.TramId);
+                        for (int y = 0; y < parkedTram.Length; y++)
                         {
-                            Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == sector.TramId);
-                            for (int y = 0; y < parkedTram.Length; y++)
-                            {
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = sector.TramId }, null)</p>
-                                    </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = sector.TramId }, null)</p>
                                 </div>
-                            }
-                            i = i + parkedTram.Length;
-                            if (i >= track.Sectors)
-                            {
-                                break;
-                            } 
+                            </div>
                         }
-
+                        i = i + parkedTram.Length;
+                        if (i >= track.Sectors)
+                        {
+                            break;
+                        }
                     }
+
+                }
                 <div class="panel panel-default">
                     <div class="panel-body">
 
@@ -56,11 +56,10 @@
         </div>
 
     </div>
-
-
 }
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Niet Geparkeerd", "NotParked", new { Id = Model.Id})
 </p>

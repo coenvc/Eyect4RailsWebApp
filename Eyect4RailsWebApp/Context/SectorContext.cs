@@ -27,6 +27,8 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByTramId(id);
         }
 
+
+
         public bool Insert(Sector entity)
         {
             return Context.Insert(entity);
@@ -50,6 +52,7 @@ namespace Eyect4RailsWebApp.Context
         public List<Sector> GetAll()
         {
             return Context.GetAll();
+<<<<<<< HEAD
         }
 
         public int MaximalSectorNumber(int trackId)
@@ -66,6 +69,9 @@ namespace Eyect4RailsWebApp.Context
         {
             Context.UpdateAssignTramSectors(trackId, sectorNumber, tramid);
         }
+=======
+        } 
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
 
     }
 

@@ -77,5 +77,10 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
 
             return remise;
         }
+        public void EmptyAll(int id)
+        {
+            this.Delete(id);
+        }
+
     }
 }

@@ -194,6 +194,8 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             return sector;
         }
 
+
+
         public bool Insert(Sector entity)
         {
             bool insert = false;

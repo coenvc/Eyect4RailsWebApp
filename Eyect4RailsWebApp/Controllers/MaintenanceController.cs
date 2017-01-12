@@ -14,6 +14,7 @@ namespace Eyect4RailsWebApp.Controllers
     public class MaintenanceController : Controller
     {
         private MaintenanceLogic logic = new MaintenanceLogic();
+        private IOLogic IOLogic = new IOLogic();
 
         // GET: Maintenance
         public ActionResult Index()
@@ -77,6 +78,7 @@ namespace Eyect4RailsWebApp.Controllers
         {
             try
             {
+
                 logic.Create(viewmodel.SelectedId_Tram, (int)viewmodel.Maintenance.Task, viewmodel.Maintenance.ScheduledDate);
 
                 return RedirectToAction("Open");

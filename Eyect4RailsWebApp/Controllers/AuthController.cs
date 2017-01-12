@@ -31,7 +31,13 @@ namespace Eyect4RailsWebApp.Controllers
             catch (Exception ex)
             {
                 return View();
-            }
+            } 
+        }
+
+        public ActionResult LogOff()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
         } 
     }
 }

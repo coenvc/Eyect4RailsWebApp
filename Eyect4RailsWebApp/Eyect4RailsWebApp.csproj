@@ -334,15 +334,6 @@
     <Content Include="Views\IO\List.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Remise\Index.cshtml" />
-    <Content Include="Views\Remise\Details.cshtml" />
-    <Content Include="Views\Remise\Create.cshtml" />
-    <Content Include="Views\Remise\Delete.cshtml" />
-    <Content Include="Views\Sector\Create.cshtml" />
-    <Content Include="Views\Sector\Delete.cshtml" />
-    <Content Include="Views\Sector\Details.cshtml" />
-    <Content Include="Views\Sector\Edit.cshtml" />
-    <Content Include="Views\Sector\Index.cshtml" />
     <Content Include="Views\Tram\Create.cshtml" />
     <Content Include="Views\Tram\Delete.cshtml" />
     <Content Include="Views\Tram\Details.cshtml" />
@@ -351,7 +342,6 @@
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Maintenance\Delete.cshtml" />
     <Content Include="Views\Maintenance\Details.cshtml" />
-    <Content Include="Views\Remise\Edit.cshtml" />
     <Content Include="Views\Maintenance\Edit.cshtml" />
     <Content Include="Views\Maintenance\Open.cshtml" />
     <Content Include="Views\Maintenance\Assign.cshtml" />
@@ -366,9 +356,23 @@
     <Content Include="Views\Track\Create.cshtml" />
     <Content Include="Views\Maintenance\All.cshtml" />
     <Content Include="Views\Maintenance\Complete.cshtml" />
+    <Content Include="Views\Tram\Park.cshtml" />
+    <Content Include="Views\Remise\Edit.cshtml" />
+    <Content Include="Views\Remise\Index.cshtml" />
+    <Content Include="Views\Remise\Details.cshtml" />
+    <Content Include="Views\Remise\Delete.cshtml" />
+    <Content Include="Views\Remise\Create.cshtml" />
+    <Content Include="Views\Simulation\Create.cshtml" />
+    <Content Include="Views\Simulation\Delete.cshtml" />
+    <Content Include="Views\Simulation\Details.cshtml" />
+    <Content Include="Views\Simulation\Index.cshtml" />
+    <Content Include="Views\Simulation\Edit.cshtml" />
+    <Content Include="Views\Remise\SimulationDetails.cshtml" />
+    <Content Include="Views\Remise\NotParkedTrams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sector\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

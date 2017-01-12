@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.UI;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
@@ -218,6 +219,19 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             }
 
             return remise;
+        }
+
+        public void EmptyAll(int id)
+        {
+            string query = "update SECTOR set Tram_ID = null";
+
+            if (OpenConnection())
+            {
+                using (SqlCommand command = new SqlCommand(query, Connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

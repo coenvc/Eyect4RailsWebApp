@@ -9,6 +9,10 @@ namespace eyect4rails.IRepository
     {
         Tram GetBySectorId(int id);
         List<Tram> GetByRemiseId(int id);
+<<<<<<< HEAD
         int GetHighestSector(int id);
+=======
+        List<Tram> GetNotParkedTrams();
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
     }
 }

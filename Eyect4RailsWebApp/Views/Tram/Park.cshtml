@@ -1,0 +1,44 @@
+﻿@using System.Net.Mime
+@using Eyect4RailsWebApp.Models
+@model List<Tram>
+@{
+    ViewBag.Title = "Park";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Park</h2>
+
+@using (Html.BeginForm())
+{
+
+    var list = new List<SelectListItem>();
+
+    foreach (Tram item in Model)
+    {
+        list.Add(new SelectListItem { Text = item.TramNumber.ToString(), Value = item.Id.ToString() });
+    }
+
+    <select name="tramvalues">
+       
+        @foreach (Tram item in Model)
+        {
+            <option value="@item.TramNumber">@item.TramNumber</option>
+        } 
+    </select>
+    <div class="checkbox">
+        <label><input type="checkbox" name="dirty" value="1">Vies</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="defective" value="1">Defect</label>
+    </div>
+
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Assign" class="btn btn-default" />
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

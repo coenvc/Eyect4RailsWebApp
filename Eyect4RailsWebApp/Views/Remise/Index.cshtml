@@ -35,8 +35,11 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 <span>|</span>
             }
-            @Html.ActionLink("Details", "Details", new {id = item.Id}) 
-          
+            @Html.ActionLink("Details", "Details", new {id = item.Id}) | 
+            @Html.ActionLink("Simulatie", "SimulateRemise", new { id = item.Id })
+
+            
+
         </td>
     </tr>
 }
