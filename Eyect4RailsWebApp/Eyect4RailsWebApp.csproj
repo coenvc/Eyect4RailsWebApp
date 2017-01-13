@@ -369,10 +369,14 @@
     <Content Include="Views\Simulation\Edit.cshtml" />
     <Content Include="Views\Remise\SimulationDetails.cshtml" />
     <Content Include="Views\Remise\NotParkedTrams.cshtml" />
+    <Content Include="Views\Sector\Create.cshtml" />
+    <Content Include="Views\Sector\Delete.cshtml" />
+    <Content Include="Views\Sector\Details.cshtml" />
+    <Content Include="Views\Sector\Edit.cshtml" />
+    <Content Include="Views\Sector\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Sector\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
