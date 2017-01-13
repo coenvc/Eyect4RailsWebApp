@@ -101,17 +101,11 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
         public void Update(int id, Sector entity)
         {
             crud.Update(id, entity);
-<<<<<<< HEAD
         }
 
         public void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid)
         {
             throw new NotImplementedException();
         }
-=======
-        } 
-
-        
->>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
     }
 }

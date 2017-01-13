@@ -88,19 +88,19 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
                     remiseTrams.Add(tram);
                 }
             }
-            
+
             return remiseTrams;
         }
 
-<<<<<<< HEAD
         public int GetHighestSector(int id)
         {
+
             throw new NotImplementedException();
-=======
+        }
+
         public List<Tram> GetNotParkedTrams()
         {
             return this.GetAll();
->>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
         }
     }
 }

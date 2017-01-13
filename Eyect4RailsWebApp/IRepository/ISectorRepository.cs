@@ -15,13 +15,9 @@ namespace Eyect4RailsWebApp.IRepository
         List<Sector> GetByTrackId(int id);
         Sector GetByTramId(int id);
 
-<<<<<<< HEAD
         int MaximalSectorNumber(int trackId);
 
         int MinimalSectorNumber(int trackId);
-
         void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid);
-=======
->>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
     }
 }

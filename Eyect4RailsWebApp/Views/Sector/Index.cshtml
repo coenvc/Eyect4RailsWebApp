@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Eyect4RailsWebApp.Models.Sector>
+﻿@using Eyect4RailsWebApp.Models
+@model List<Eyect4RailsWebApp.Models.Sector>
 
 @{
     ViewBag.Title = "View";
@@ -13,24 +14,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TrackId)
+            @Html.DisplayNameFor(model => model[0].TrackId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TramId)
+            @Html.DisplayNameFor(model => model[0].TramId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
+            @Html.DisplayNameFor(model => model[0].Number)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Available)
+            @Html.DisplayNameFor(model => model[0].Available)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Blocked)
+            @Html.DisplayNameFor(model => model[0].Blocked)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (Sector item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TrackId)
