@@ -14,7 +14,13 @@ namespace Eyect4RailsWebApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Login",
+            "Login", // Route name
+            "",        // URL with parameters
+            new { controller = "Auth", action = "Login" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                name: "Login1",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Auth", action = "Login", id = UrlParameter.Optional }
             );

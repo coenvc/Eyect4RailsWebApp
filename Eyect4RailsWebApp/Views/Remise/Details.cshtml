@@ -18,38 +18,39 @@
             <h3 class="panel-title">@track.Id.ToString()</h3>
         </div>
         <div class="panel-body">
-            @for (int i = 0; i <= track.Sectors - 1; i++)
+            @foreach (Sector sector in track.SectorList)
             {
-
-                    if (track.SectorList.Count > i)
-                    {
-                        Sector sector = track.SectorList[i];
-                        if (sector.TramId != null && sector.TramId != 0)
-                        {
-                            Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == sector.TramId);
-                            for (int y = 0; y < parkedTram.Length; y++)
-                            {
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <p>@Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = sector.TramId }, null)</p>
-                                    </div>
-                                </div>
-                            }
-                            i = i + parkedTram.Length;
-                            if (i >= track.Sectors)
-                            {
-                                break;
-                            } 
-                        }
-
-                    }
-                <div class="panel panel-default">
-                    <div class="panel-body">
-
+                if (sector.TramId != 0)
+                {
+                    Tram parkedTram = Model.Tramlist.FirstOrDefault(x => x.Id == sector.TramId);
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>
+                                @Html.ActionLink($"Tram {parkedTram.TramNumber}", "Details", "Tram", new { Id = sector.TramId }, null)
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-
+                }
+                else if (sector.Blocked == true)
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>
+                                blocked
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>
+                                leeg
+                            </p>
+                        </div>
+                    </div>
+                }
             }
 
 

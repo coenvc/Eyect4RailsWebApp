@@ -12,55 +12,67 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>Track</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.RemiseId)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.RemiseId)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Number)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Number)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Sectors)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Sectors)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Available)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Available)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.EntryDepartTrack)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.EntryDepartTrack)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+
+    @if (Model.Id == 0)
+    {
+        <div>
+            <h4>We hebben de tram helaas niet kunnen plaatsen. Er is geen ruimte meer over op de remise.</h4>
+        </div>
+    }
+    else
+    {
+
+        <div>
+            <h4>Track</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RemiseId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RemiseId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Number)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Number)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sectors)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sectors)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Available)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Available)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EntryDepartTrack)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EntryDepartTrack)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    }
 </body>
 </html>

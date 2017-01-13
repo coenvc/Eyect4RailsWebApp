@@ -15,7 +15,7 @@ namespace Eyect4RailsWebApp.Controllers
         private RemiseLogic RemiseLogic = new RemiseLogic(new MSSQLRemiseRepository());
         private TramLogic TramLogic = new TramLogic();
         private IOLogic IOlogic = new IOLogic();
-        
+
         // GET: Remise
         public ActionResult Index()
         {
@@ -95,7 +95,7 @@ namespace Eyect4RailsWebApp.Controllers
 
             if (remise.Name == null)
             {
-                throw new HttpException(404, "Film could not be found.");
+                throw new HttpException(404, "Remise could not be found.");
             }
 
             return View(remise);
@@ -120,31 +120,22 @@ namespace Eyect4RailsWebApp.Controllers
 
         public ActionResult SimulateRemise(int id)
         {
-
             RemiseLogic.EmptyAll(id);
-            List<Tram> trams = TramLogic.GetAll();
-            List<Tram> tenTrams = new List<Tram>();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    tenTrams.Add(trams[i]);
-            //}
 
-            //foreach (var tram in tenTrams)
-            //{
-            //    IOlogic.AssignTramToSector(tram.Id);
-            //}
+            List<Tram> trams = TramLogic.GetAll();
 
             foreach (var tram in trams)
             {
                 IOlogic.AssignTramToSector(tram.Id);
             }
-            return View("SimulationDetails", RemiseLogic.GetById(id));
+
+            return RedirectToAction("NotParked", RemiseLogic.GetById(id));
         }
 
         public ActionResult NotParked()
         {
             TramLogic.GetNotParkedTrams();
-            return View("NotParkedTrams", TramLogic.GetNotParkedTrams()); 
+            return View("NotParkedTrams", TramLogic.GetNotParkedTrams());
         }
 
 
