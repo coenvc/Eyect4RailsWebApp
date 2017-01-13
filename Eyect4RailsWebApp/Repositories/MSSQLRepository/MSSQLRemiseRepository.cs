@@ -223,7 +223,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public void EmptyAll(int id)
         {
-            string query = "update SECTOR set Tram_ID = null";
+            string query = "Update SECTOR set Tram_ID = null, Beschikbaar = '1', Blokkade = '0'";
 
             if (OpenConnection())
             {
