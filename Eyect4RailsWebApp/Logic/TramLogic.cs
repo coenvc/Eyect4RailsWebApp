@@ -59,12 +59,8 @@ namespace Eyect4RailsWebApp.Logic
         public void Update(int id, Tram entity)
         {
             tramContext.Update(id, entity);
-<<<<<<< HEAD
         }
 
-=======
         } 
->>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
 
     }
-}

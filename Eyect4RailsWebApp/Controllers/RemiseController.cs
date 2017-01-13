@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using eyect4rails.Classes;
 using Eyect4RailsWebApp.Logic;
+using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 
 namespace Eyect4RailsWebApp.Controllers
@@ -13,6 +14,7 @@ namespace Eyect4RailsWebApp.Controllers
     {
         private RemiseLogic RemiseLogic = new RemiseLogic(new MSSQLRemiseRepository());
         private TramLogic TramLogic = new TramLogic();
+        private IOLogic IOlogic = new IOLogic();
         
         // GET: Remise
         public ActionResult Index()
@@ -118,7 +120,24 @@ namespace Eyect4RailsWebApp.Controllers
 
         public ActionResult SimulateRemise(int id)
         {
+
             RemiseLogic.EmptyAll(id);
+            List<Tram> trams = TramLogic.GetAll();
+            List<Tram> tenTrams = new List<Tram>();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    tenTrams.Add(trams[i]);
+            //}
+
+            //foreach (var tram in tenTrams)
+            //{
+            //    IOlogic.AssignTramToSector(tram.Id);
+            //}
+
+            foreach (var tram in trams)
+            {
+                IOlogic.AssignTramToSector(tram.Id);
+            }
             return View("SimulationDetails", RemiseLogic.GetById(id));
         }
 

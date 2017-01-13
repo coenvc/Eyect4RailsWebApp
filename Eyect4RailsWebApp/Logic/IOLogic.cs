@@ -68,7 +68,7 @@ namespace Eyect4RailsWebApp.Logic
                         sectorPlaceNumber++;
                     }
 
-                    return firstSectorPlaceNumber;
+                    return track.Id;
 
                 }
 
@@ -80,7 +80,7 @@ namespace Eyect4RailsWebApp.Logic
                         sectorPlaceNumber++;
                     }
 
-                    return firstSectorPlaceNumber;
+                    return track.Id;
                 }
             }
 
@@ -142,13 +142,11 @@ namespace Eyect4RailsWebApp.Logic
             return Tram.GetByRemiseId(id);
         }
 
-<<<<<<< HEAD
         public int GetHighestSector(int id)
         {
             return Tram.GetHighestSector(id);
         }
 
-=======
         public List<Tram> GetNotParkedTrams()
         {
             throw new NotImplementedException();
@@ -158,6 +156,5 @@ namespace Eyect4RailsWebApp.Logic
         //{
         //    return Tram.GetHighestSector(id);
         //}
->>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
     }
 }

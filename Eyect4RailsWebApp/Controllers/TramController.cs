@@ -117,8 +117,10 @@ namespace Eyect4RailsWebApp.Controllers
             bool defective = Convert.ToBoolean(Convert.ToInt32(collection["defective"]));
             Tram t= logic.GetAll().FirstOrDefault(x=> x.TramNumber == test);
             t.Defective = defective;
-            t.Filthy = dirty; 
-            return RedirectToAction ("Details",t); 
+            t.Filthy = dirty;
+
+            return Redirect("/Track/Details/" + logic.AssignTramToSector(t.Id));
+      //      return RedirectToAction ("Details", "Track", logic.AssignTramToSector(t.Id)); 
         } 
 
        

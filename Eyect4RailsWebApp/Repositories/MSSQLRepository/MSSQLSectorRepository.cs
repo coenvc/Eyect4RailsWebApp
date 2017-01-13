@@ -263,7 +263,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             int minimalSectorNumber = 0;
 
             string query =
-                @"SELECT MIN(Nummer) FROM SECTOR WHERE Spoor_ID = @SpoorID AND (Beschikbaar = 0 OR Blokkade = 1) ";
+                @"SELECT MAX(Nummer) FROM SECTOR WHERE Spoor_ID = @SpoorID AND (Beschikbaar = 0 OR Blokkade = 1) ";
 
             try
             {
