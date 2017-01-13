@@ -88,13 +88,13 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
                     remiseTrams.Add(tram);
                 }
             }
-            
+
             return remiseTrams;
         }
 
-
         public int GetHighestSector(int id)
         {
+
             throw new NotImplementedException();
         }
 

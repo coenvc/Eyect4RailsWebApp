@@ -68,6 +68,8 @@ namespace Eyect4RailsWebApp.Context
         {
             Context.UpdateAssignTramSectors(trackId, sectorNumber, tramid);
         }
+
         } 
+
 
     }

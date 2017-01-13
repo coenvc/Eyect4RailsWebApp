@@ -3,81 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using eyect4rails.Classes;
 using Eyect4RailsWebApp.Logic;
 using Eyect4RailsWebApp.Models;
-using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 using Eyect4RailsWebApp.ViewModels;
 
 namespace Eyect4RailsWebApp.Controllers
 {
     public class SectorController : Controller
     {
-        private RemiseLogic RemiseLogic = new RemiseLogic(new MSSQLRemiseRepository());
+        // GET: Sector
+        SectorLogic logic = new SectorLogic();
+        IOLogic Logic = new IOLogic();
+        CreateEditTramViewModel CETVM = new CreateEditTramViewModel();
 
-        // GET: Remise
         public ActionResult Index()
         {
-            List<Remise> remises = RemiseLogic.GetAll();
-
-            return View(remises);
+            List<Sector> sectors = logic.GetAll();
+            return View(sectors);
         }
 
-        // GET: Remise/Details/5
+        // GET: Sector/Details/5
         public ActionResult Details(int id)
         {
-            Remise remise = RemiseLogic.GetById(id);
-
-            if (remise.Name == null)
-            {
-                throw new HttpException(404, "Remise could not be found");
-            }
-
-            return View(remise);
+            Sector sector = logic.GetById(id);
+            return View(sector);
         }
 
-        // GET: Remise/Create
+        // GET: Sector/Create
         public ActionResult Create()
         {
-            return View();
+            CETVM = Logic.GetCETViewModel(1);
+            return View(CETVM);
         }
 
-        // POST: Remise/Create
+        // POST: Sector/Create
         [HttpPost]
-        public ActionResult Create(Remise remise)
+        public ActionResult Create(CreateEditTramViewModel CETVM)
         {
             try
             {
-                RemiseLogic.Insert(remise);
+                CETVM.Sector.TrackId = CETVM.Track.Id;
+                logic.Insert(CETVM.Sector);
 
                 return RedirectToAction("Index");
             }
+
             catch
             {
                 return View();
             }
         }
 
-        // GET: Remise/Edit/5
+        // GET: Sector/Edit/5
         public ActionResult Edit(int id)
         {
-            Remise remise = RemiseLogic.GetById(id);
-
-            if (remise.Name == null)
-            {
-                throw new HttpException(404, "Film could not be found.");
-            }
-
-            return View(remise);
+            CETVM = Logic.GetCETViewModel(1);
+            CETVM.Sector = logic.GetById(id);
+            return View(CETVM);
         }
 
-        // POST: Remise/Edit/5
+        // POST: Sector/Edit/5
         [HttpPost]
-        public ActionResult Edit(Remise remise)
+        public ActionResult Edit(int id, CreateEditTramViewModel CETVM)
         {
             try
             {
-                RemiseLogic.Update(remise.Id, remise);
+                CETVM.Sector.TrackId = CETVM.Track.Id;
+                CETVM.Sector.TramId = CETVM.Tram.Id;
+                logic.Update(id, CETVM.Sector);
 
                 return RedirectToAction("Index");
             }
@@ -87,35 +80,27 @@ namespace Eyect4RailsWebApp.Controllers
             }
         }
 
-        // GET: Remise/Delete/5
+        // GET: Sector/Delete/5
         public ActionResult Delete(int id)
         {
-            Remise remise = RemiseLogic.GetById(id);
-
-            if (remise.Name == null)
-            {
-                throw new HttpException(404, "Film could not be found.");
-            }
-
-            return View(remise);
+            return View(logic.GetById(id));
         }
 
-        // POST: Remise/Delete/5
+        // POST: Sector/Delete/5
         [HttpPost]
-        public ActionResult Delete(Remise remise)
+        public ActionResult Delete(int id, Sector sector)
         {
             try
             {
-                RemiseLogic.Delete(remise.Id);
+                logic.Delete(sector.Id);
 
                 return RedirectToAction("Index");
+
             }
             catch
             {
                 return View();
             }
         }
-
-
     }
 }

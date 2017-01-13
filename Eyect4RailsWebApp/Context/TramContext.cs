@@ -52,7 +52,6 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByRemiseId(id);
         }
 
-
         public int GetHighestSector(int id)
         {
             return Context.GetHighestSector(id);
