@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Eyect4RailsWebApp.Context;
+using Eyect4RailsWebApp.Logic;
 using Eyect4RailsWebApp.Models;
 using Eyect4RailsWebApp.Repositories.MSSQLRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -115,6 +117,36 @@ namespace Eyect4RailsWebApp.Tests.MSSQLRepositoryTest
 
             // assert
             Assert.AreEqual(getSector.Available, sector.Available);
+        }
+
+        [TestMethod]
+        public void TestMin()
+        {
+            // Arrange
+            var mssqlSectorRepository = new MSSQLSectorRepository();
+            int nummer = -1;
+            int targetNummer;
+
+            // Act 
+            targetNummer = mssqlSectorRepository.MinimalSectorNumber(1);
+
+            // Assert
+            Assert.AreNotEqual(nummer, targetNummer);
+        }
+
+        [TestMethod]
+        public void TestMax()
+        {
+            // Arrange
+            var mssqlSectorRepository = new MSSQLSectorRepository();
+            int nummer = 0;
+            int targetNummer;
+
+            // Act 
+            targetNummer = mssqlSectorRepository.MaximalSectorNumber(1);
+
+            // Assert
+            Assert.AreNotEqual(nummer, targetNummer);
         }
     }
 }

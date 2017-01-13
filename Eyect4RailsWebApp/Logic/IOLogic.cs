@@ -40,25 +40,74 @@ namespace Eyect4RailsWebApp.Logic
         }
 
 
-        //public int AssignTramToSector(int tramId)
-        //{
-        //    var tracklist = Track.GetByRemiseId(1);
-        //    int trackId = 0;
+        public int AssignTramToSector(int tramId)
+        {
+            var tracklist = Track.GetAvailableByRemiseId(1);
+            Tram tram = Tram.GetById(tramId);
 
-        //    foreach (Track track in tracklist)
-        //    {
-        //        if (Tram.GetHighestSector(track.Id) > 0)
-        //        {
-        //            var sector = Sector.GetById(Tram.GetHighestSector(track.Id));
-        //            sector.Available = false;
-        //            sector.TramId = tramId;
-        //            Sector.Update(sector.Id, sector);
-        //            return track.Id;
-        //        }
-        //    }
+            int sectorMinNumber;
+            int sectorMaxNumber;
+            int availableConnectingSectors;
 
-        //    return trackId;
-        //}
+            int sectorPlaceNumber;
+            int firstSectorPlaceNumber;
+
+            foreach (Track track in tracklist)
+            {
+                sectorMaxNumber = Sector.MaximalSectorNumber(track.Id);
+                sectorMinNumber = Sector.MinimalSectorNumber(track.Id);
+                availableConnectingSectors = sectorMaxNumber - sectorMinNumber;
+                sectorPlaceNumber = sectorMinNumber + 1;
+                firstSectorPlaceNumber = sectorMinNumber + 1;
+
+                if (PerfectParking(tram, availableConnectingSectors))
+                {
+                    for (int sectornummer = tram.Length; sectornummer > 0; sectornummer--)
+                    {
+                         Sector.UpdateAssignTramSectors(track.Id, sectorPlaceNumber, tram.Id);
+                        sectorPlaceNumber++;
+                    }
+
+                    return firstSectorPlaceNumber;
+
+                }
+
+                else if (ParkTram(tram, availableConnectingSectors))
+                {
+                    for (int sectornummer = tram.Length; sectornummer > 0; sectornummer--)
+                    {
+                        Sector.UpdateAssignTramSectors(track.Id, sectorPlaceNumber, tram.Id);
+                        sectorPlaceNumber++;
+                    }
+
+                    return firstSectorPlaceNumber;
+                }
+            }
+
+            return -1;
+
+
+        }
+
+        private bool ParkTram(Tram tram, int availableConnectingSectors)
+        {
+            if (tram.Length <= availableConnectingSectors)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool PerfectParking(Tram tram, int availableConnectingSectors)
+        {
+            if (tram.Length == availableConnectingSectors)
+            {
+                return true;
+            }
+
+            return false;
+        }
         public bool Insert(Tram entity)
         {
             return Tram.Insert(entity);
@@ -93,6 +142,13 @@ namespace Eyect4RailsWebApp.Logic
             return Tram.GetByRemiseId(id);
         }
 
+<<<<<<< HEAD
+        public int GetHighestSector(int id)
+        {
+            return Tram.GetHighestSector(id);
+        }
+
+=======
         public List<Tram> GetNotParkedTrams()
         {
             throw new NotImplementedException();
@@ -102,5 +158,6 @@ namespace Eyect4RailsWebApp.Logic
         //{
         //    return Tram.GetHighestSector(id);
         //}
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
     }
 }

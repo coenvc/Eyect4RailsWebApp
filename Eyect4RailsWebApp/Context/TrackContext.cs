@@ -26,6 +26,11 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetAll();
         }
 
+        public List<Track> GetAvailableByRemiseId(int remiseid)
+        {
+            return Context.GetAvailableByRemiseId(remiseid);
+        }
+
         public Track GetById(int id)
         {
             return Context.GetById(id);

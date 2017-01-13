@@ -46,5 +46,11 @@ namespace Eyect4RailsWebApp.Logic
         {
             return Context.Insert(remise, track);
         }
+
+        public List<Track> GetAvailableByRemiseId(int remiseid)
+        {
+            return Context.GetAvailableByRemiseId(remiseid);
+        }
+
     }
 }

@@ -282,6 +282,37 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             return trams;
         }
 
+<<<<<<< HEAD
+        public int GetHighestSector(int id)
+        {
+            string query = "SELECT MAX(ID) FROM SECTOR WHERE Beschikbaar = 1 AND Blokkade = 0 AND Spoor_ID = @ID";
+            int sectorNumber = 0;
+            try
+            {
+                if (OpenConnection())
+                {                   
+                        using (SqlCommand command = new SqlCommand(query, Connection))
+                        {
+                            command.Parameters.AddWithValue("@ID", id);
+                          
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        sectorNumber = Convert.ToInt32(reader["ID"]);
+                                    }
+                                }                                                   
+                        }                  
+                }
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return sectorNumber;
+=======
         public List<Tram> GetNotParkedTrams()
         {
             List<Tram> NotParkedTrams = new List<Tram>();
@@ -315,6 +346,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                 
             }
             throw new Exception();
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
         }
     }
 }

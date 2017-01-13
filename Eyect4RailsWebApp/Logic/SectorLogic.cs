@@ -44,9 +44,24 @@ namespace Eyect4RailsWebApp.Logic
             return sector.Insert(entity);
         }
 
+        public int MaximalSectorNumber(int trackId)
+        {
+            return sector.MaximalSectorNumber(trackId);
+        }
+
+        public int MinimalSectorNumber(int trackId)
+        {
+            return sector.MinimalSectorNumber(trackId);
+        }
+
         public void Update(int id, Sector entity)
         {
             sector.Update(id, entity);
+        }
+
+        public void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid)
+        {
+            sector.UpdateAssignTramSectors(trackId, sectorNumber, tramid);
         }
     }
 }

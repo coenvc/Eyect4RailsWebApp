@@ -46,6 +46,11 @@ namespace Eyect4RailsWebApp.Logic
             return tramContext.GetBySectorId(id);
         }
 
+        public int GetHighestSector(int id)
+        {
+            return tramContext.GetHighestSector(id);
+        }
+
         public bool Insert(Tram entity)
         {
             return tramContext.Insert(entity);
@@ -54,7 +59,12 @@ namespace Eyect4RailsWebApp.Logic
         public void Update(int id, Tram entity)
         {
             tramContext.Update(id, entity);
+<<<<<<< HEAD
+        }
+
+=======
         } 
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
 
     }
 }

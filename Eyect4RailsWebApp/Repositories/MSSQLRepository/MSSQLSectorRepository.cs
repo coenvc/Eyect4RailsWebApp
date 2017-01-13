@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using eyect4rails.Classes;
 using eyect4rails.IRepository;
@@ -31,7 +32,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             bool available = Convert.ToBoolean(reader["Beschikbaar"]);
             bool blocked = Convert.ToBoolean(reader["Blokkade"]);
             Sector sector = new Sector(id, trackId, tramId, number, available, blocked);
-            return sector; 
+            return sector;
 
         }
         public bool Delete(int id)
@@ -251,6 +252,101 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
                     }
                 }
             }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public int MinimalSectorNumber(int trackId)
+        {
+            int minimalSectorNumber = 0;
+
+            string query =
+                @"SELECT MIN(Nummer) FROM SECTOR WHERE Spoor_ID = @SpoorID AND (Beschikbaar = 0 OR Blokkade = 1) ";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@SpoorID", trackId);
+                        if (command.ExecuteScalar() != System.DBNull.Value)
+                        {
+                            minimalSectorNumber = (int)command.ExecuteScalar();
+                        }
+                        else
+                        {
+                            minimalSectorNumber = 0;
+                        }
+                    }
+                }
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+            return minimalSectorNumber;
+        }
+
+        public int MaximalSectorNumber(int trackId)
+        {
+            int maximalSectorNumber = 0;
+
+            string query =
+                @"SELECT MAX(Nummer) FROM SECTOR WHERE Spoor_ID = @SpoorID AND (Beschikbaar = 1 AND Blokkade = 0)";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@SpoorID", trackId);
+                        if (command.ExecuteScalar() != System.DBNull.Value)
+                        {
+                            maximalSectorNumber = (int) command.ExecuteScalar();
+                        }
+                        else
+                        {
+                            maximalSectorNumber = 0;
+                        }
+                    }
+                }
+            }
+
+            finally
+            {
+                CloseConnection();
+            }
+
+
+            return maximalSectorNumber;
+        }
+
+
+        public void UpdateAssignTramSectors(int trackId, int sectorNumber, int tramid)
+        {
+            string query =
+                @"UPDATE SECTOR SET SECTOR.Tram_ID = @TramID WHERE SECTOR.Nummer = @Nummer AND SECTOR.Spoor_ID = @SpoorID";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@TramID", tramid);
+;                        command.Parameters.AddWithValue("@Nummer", sectorNumber);
+                        command.Parameters.AddWithValue("@SpoorID", trackId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
             finally
             {
                 CloseConnection();

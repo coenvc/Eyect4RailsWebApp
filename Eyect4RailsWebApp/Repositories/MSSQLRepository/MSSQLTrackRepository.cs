@@ -126,6 +126,39 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
             return tracks;
         }
 
+
+        public List<Track> GetAvailableByRemiseId(int remiseid)
+        {
+            List<Track> tracks = new List<Track>();
+
+            string query = StaryQuery + " WHERE Remise_ID = @ID AND Beschikbaar = 1 AND InUitRijspoor = 0";
+
+            try
+            {
+                if (OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, Connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", remiseid);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                tracks.Add(CreateObjectFromReader(reader));
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return tracks;
+        }
+
         public bool Insert(Track entity)
         {
             bool insert = false;

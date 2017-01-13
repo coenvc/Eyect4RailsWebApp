@@ -137,5 +137,10 @@ namespace Eyect4RailsWebApp.Repositories.LocalRepository
                 }
             }
         }
+
+        public List<Track> GetAvailableByRemiseId(int remiseid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

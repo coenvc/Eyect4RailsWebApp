@@ -52,9 +52,15 @@ namespace Eyect4RailsWebApp.Context
             return Context.GetByRemiseId(id);
         }
 
+<<<<<<< HEAD
+        public int GetHighestSector(int id)
+        {
+            return Context.GetHighestSector(id);
+=======
         public List<Tram> GetNotParkedTrams()
         {
             return Context.GetNotParkedTrams();
+>>>>>>> def2af0de5d0716dd472d2a8fdf1629471e08cfa
         }
     }
 }
