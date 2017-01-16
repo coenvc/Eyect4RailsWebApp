@@ -432,7 +432,7 @@ namespace Eyect4RailsWebApp.Repositories.MSSQLRepository
 
         public void Complete(Maintenance entity)
         {
-            string query = $"Update TRAM_ONDERHOUD SET BeschikbaarDatum = @Beschikbaardatum, Voltooid = 1 where ID = @id";
+            string query = $"Update TRAM_ONDERHOUD SET BeschikbaarDatum = @Beschikbaardatum, Voltooid = 1, Comment = @Comment where ID = @id";
 
             try
             {
